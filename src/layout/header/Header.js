@@ -4,6 +4,7 @@ import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Ty
 import { Menu as MenuIcon } from '@mui/icons-material'
 import HeaderWeb from './HeaderWeb'
 import HeaderResponsive from './HeaderResponsive'
+import HeaderUserOptions from './HeaderUserOptions'
 
 const headerOptions = [
   {
@@ -29,9 +30,16 @@ export default function Header() {
     e.preventDefault();
     setNavMenu(null);
 
-    if (path) {
-      navigate(path)
-    }
+    if (path) navigate(path)
+  }
+
+  const handleOpenNavUser = (event) => {
+    setNavUser(event.currentTarget);
+  }
+  
+  const handleCloseNavUser = (e, path) => {
+    e.preventDefault();
+    setNavUser(null);
   }
 
   return (
@@ -40,6 +48,7 @@ export default function Header() {
         <Toolbar disableGutters>
           <HeaderWeb navMenu={navMenu} headerOptions={headerOptions} handleOpenNavMenu={handleOpenNavMenu} handleCloseNavMenu={handleCloseNavMenu}/>
           <HeaderResponsive navMenu={navMenu} headerOptions={headerOptions} handleOpenNavMenu={handleOpenNavMenu} handleCloseNavMenu={handleCloseNavMenu}/>
+          <HeaderUserOptions navUser={navUser} handleOpenNavUser={handleOpenNavUser} handleCloseNavUser={handleCloseNavUser}/>
         </Toolbar>
       </Container>
     </AppBar>
