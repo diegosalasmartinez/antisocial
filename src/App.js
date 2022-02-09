@@ -15,6 +15,7 @@ export default class App extends Component {
         <React.Suspense fallback={loading}>
           <Routes>
             <Route path='/' element={<Layout {...this.props}/>}>
+              <Route path='' element={<Content {...this.props} element={A}/>}/>
               <Route path='home' element={<Content {...this.props} element={A}/>}/>
               <Route path='posts' element={<Content {...this.props} element={B}/>}/>
               <Route path='*' element={<div>Not found</div>}/>

@@ -1,6 +1,6 @@
-import { Container } from '@mui/material';
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react'
+import { Box, Container } from '@mui/material'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function Content(props) {
   const location = useLocation();
@@ -8,7 +8,9 @@ export default function Content(props) {
 
   return (
     <Container maxWidth='xl'>
-      <props.element location={location} navigate={navigate}/>
+      <Box sx={{my: 2}}>
+        <props.element location={location} navigate={navigate}/>
+      </Box>
     </Container>
   )
 }
