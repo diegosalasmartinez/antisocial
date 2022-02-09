@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import './scss/style.scss'
+import loading from './theme/loading'
 
 const Layout = React.lazy(() => import('./layout/Layout'))
-const Content = React.lazy(() => import('./layout/Content'))
-const A = React.lazy(() => import('./layout/A'))
-const B = React.lazy(() => import('./layout/B'))
-
-const loading = <div>Loading</div>
+const Content = React.lazy(() => import('./layout/content/Content'))
+const A = React.lazy(() => import('./pages/A'))
+const B = React.lazy(() => import('./pages/B'))
 
 export default class App extends Component {
   render() {
