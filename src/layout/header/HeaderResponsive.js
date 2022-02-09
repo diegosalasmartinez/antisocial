@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Button, IconButton, Menu, MenuItem, Typography } from '@mui/material'
+import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material'
 import { Menu as MenuIcon } from '@mui/icons-material'
 
 export default class HeaderResponsive extends Component {
