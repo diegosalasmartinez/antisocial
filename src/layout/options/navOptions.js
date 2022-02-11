@@ -1,11 +1,15 @@
+import { Home, Newspaper } from '@mui/icons-material'
+
 const navOptions = [
   {
     name: 'Home',
-    path: '/'
+    path: '/',
+    icon: <Home/>
   },
   {
     name: 'My Posts',
-    path: '/user'
+    path: '/user',
+    icon: <Newspaper/>
   },
 ]
 
