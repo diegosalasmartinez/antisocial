@@ -4,7 +4,7 @@ import './scss/style.scss'
 import loading from './theme/loading'
 
 const Layout = React.lazy(() => import('./layout/Layout'))
-const Content = React.lazy(() => import('./layout/content/Content'))
+const Content = React.lazy(() => import('./layout/Content'))
 const A = React.lazy(() => import('./pages/A'))
 const B = React.lazy(() => import('./pages/B'))
 
