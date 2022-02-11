@@ -1,11 +1,11 @@
 const navOptions = [
   {
     name: 'Home',
-    path: '/home'
+    path: '/'
   },
   {
-    name: 'Posts',
-    path: '/posts'
+    name: 'My Posts',
+    path: '/user'
   },
 ]
 
