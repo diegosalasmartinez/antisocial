@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 
 export default class HeaderWeb extends Component {
@@ -15,11 +15,11 @@ export default class HeaderWeb extends Component {
           </Typography>
         </Box>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          { this.props.headerOptions.map((h, index) => 
+          {/* { this.props.headerOptions.map((h, index) => 
             <Button key={index} sx={{ my: 2, color: 'white', display: 'block' }} onClick={e => this.props.handleCloseNavMenu(e, h.path)}>
               {h.name}
             </Button>
-          ) }
+          ) } */}
         </Box>
       </>
     )

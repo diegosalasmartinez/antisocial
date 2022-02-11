@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Box, IconButton, Menu, MenuItem, Typography } from '@mui/material'
 import { Menu as MenuIcon } from '@mui/icons-material'
 
@@ -29,7 +29,7 @@ export default class HeaderResponsive extends Component {
           >
             { this.props.headerOptions.map((h, index) => 
               <MenuItem key={index} onClick={e => this.props.handleCloseNavMenu(e, h.path)}>
-                  <Typography textAlign="center">{h.name}</Typography>
+                <Typography textAlign="left">{h.name}</Typography>
               </MenuItem>
             ) }
           </Menu>

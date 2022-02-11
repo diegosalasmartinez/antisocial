@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 
 const options = ["Profile", "Settings", "Logout"]
