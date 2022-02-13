@@ -1,8 +1,12 @@
 const colors = {
-  'PRIMARY': '#1B2223',
-  'PRIMARY-LIGHT': '#0E0E10',
+  'PRIMARY': '#0E0E10',
+  'PRIMARYLIGHT': '#1B2223',
   'SECONDARY': '#19857B',
-  'BACKGROUND': '#3A4F50'
+  'BLUE': '#005EF3',
+  'BLUELIGHT': '#79F2EC',
+  'PURPLE': '#5F7ADB',
+  'PURPLELIGHT': '#A2B2EE',
+  'WHITE': '#F4FEFD'
 }
 
 export default colors

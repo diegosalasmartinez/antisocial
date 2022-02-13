@@ -1,4 +1,4 @@
-const loading = <div className='loadingg'>
+const loading = <div className='loading'>
   <ul>
     <li></li>
     <li></li>
