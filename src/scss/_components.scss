@@ -16,6 +16,7 @@
   color: $blue;
 
   &:hover {
+    filter: brightness(1.75);
     cursor: pointer;
   }
 }

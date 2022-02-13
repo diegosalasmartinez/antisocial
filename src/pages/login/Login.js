@@ -24,10 +24,11 @@ export default class Login extends Component {
     } else {
       objectUpdated[key] = val;
     }
-
-    console.log(objectUpdated);
-
     this.setState({user: objectUpdated});
+  }
+
+  onSignUp = () => {
+    
   }
 
   render() {
@@ -35,23 +36,37 @@ export default class Login extends Component {
     const { username, password } = user;
 
     return (
-      <Box className='login' sx={{ height: '100vh', pt: '60px'}}>
-        <Container maxWidth='xs' sx={{backgroundColor: colors.PURPLE}}>
-          <Box className='title jc-c'>
-            <Typography variant='h5' noWrap component="div">
-              Sign In
+      <Box className='login' sx={{ height: '100vh', pt: '120px'}}>
+        <Box className='login-form'>
+          <Container maxWidth='xs'>
+            <Box className='title jc-c'>
+              <Typography variant='h5' noWrap component="div">
+                Sign In
+              </Typography>
+            </Box>
+            <Box className='form'>
+              <TextField id='username' label='Username' value={username} fullWidth variant='standard' onChange={this.onChange('username')}/>
+              <TextField id='password' label='Password' value={password} fullWidth variant='standard' onChange={this.onChange('password')}/>
+            </Box>
+            <Box className='myButton jc-c'>
+              <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained'>
+                <Typography variant='body1' noWrap component="div">
+                  Login
+                </Typography>
+              </Button>
+            </Box>
+          </Container>
+        </Box>
+        <Box className='login-options'>
+          <Container maxWidth='xs' className='jc'>
+            <Typography variant='body1' noWrap component="div" sx={{mb: 0.5}}>
+              Don't have an account? <span className='textLink' onClick={this.onSignUp}>Sign Up</span>
             </Typography>
-          </Box>
-          <Box className='form'>
-            <TextField id='username' label='Username' value={username} fullWidth variant='standard' onChange={this.onChange('username')}/>
-            <TextField id='password' label='Password' value={password} fullWidth variant='standard' onChange={this.onChange('password')}/>
-          </Box>
-          <Box className='myButton jc-c'>
-            <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained'>
-              Login
-            </Button>
-          </Box>
-        </Container>
+            <Typography className='textLink' variant='body1' noWrap component="div">
+              Forget your account?
+            </Typography>
+          </Container>
+        </Box>
       </Box>
     )
   }
