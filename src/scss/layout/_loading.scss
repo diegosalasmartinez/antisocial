@@ -1,9 +1,9 @@
-.loadingg{
+.loading {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $background;
+  background-color: $primary;
 
   ul{
     width: 150px;
@@ -18,7 +18,7 @@
     height: 30px;
     margin: 2px;
     background-color: transparent;
-    animation: loading 0.8s infinite;
+    animation: loadingframe 0.8s infinite;
   }
   
   ul li:nth-child(5){
@@ -49,7 +49,7 @@
     animation-delay: 0.8s;
   }  
 
-  @keyframes loading{
+  @keyframes loadingframe{
     1%{
       background-color: white;
     }
