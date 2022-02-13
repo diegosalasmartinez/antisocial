@@ -7,7 +7,7 @@ import colors from '../theme/colors'
 export default class Layout extends Component {
   render() {
     return (
-      <Box sx={{backgroundColor: colors['PRIMARY-LIGHT'], height: '100vh'}}>
+      <Box sx={{backgroundColor: colors.PRIMARY, height: '100vh'}}>
         <Header {...this.props}/>
         <Outlet/>
       </Box>

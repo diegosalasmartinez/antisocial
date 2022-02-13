@@ -5,6 +5,7 @@ import loading from './theme/loading'
 
 const Layout = React.lazy(() => import('./layout/Layout'))
 const Content = React.lazy(() => import('./layout/Content'))
+const Login = React.lazy(() => import('./pages/login/Login'))
 const A = React.lazy(() => import('./pages/A'))
 const B = React.lazy(() => import('./pages/B'))
 
@@ -14,6 +15,7 @@ export default class App extends Component {
       <BrowserRouter>
         <React.Suspense fallback={loading}>
           <Routes>
+            <Route path='/' element={<Login {...this.props}/>}/>
             <Route path='/' element={<Layout {...this.props}/>}>
               <Route path='' element={<Content {...this.props} element={A}/>}/>
               <Route path='user' element={<Content {...this.props} element={B}/>}/>
