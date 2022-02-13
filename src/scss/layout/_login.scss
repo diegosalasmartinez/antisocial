@@ -1,41 +1,55 @@
 .login {
   background-image: linear-gradient(to right, $primary-light 0%, $primary 100%);
 
-  .MuiContainer-root{
-    background: rgba(255, 255, 255, 0.09);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    
-    .title {
-      margin-bottom: 1rem;
-
-      .MuiTypography-root {
-        padding-top: 1rem;
-        font-weight: 700;
-        color: white;
-      }
-    }
-    
-    .form {
-
-      .MuiFormControl-root {
-        &:first-of-type {
-          margin-bottom: 1rem;
-        }
-
-        .MuiInputLabel-root {
+  .login-form {
+    margin-bottom: 2rem;
+    .MuiContainer-root{
+      background: rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      
+      .title {
+        margin-bottom: 1rem;
+        
+        .MuiTypography-root {
+          padding-top: 1rem;
           color: white;
         }
-        
-        .MuiInput-root {
-
-          input {
-            color: white;
+      }
+      
+      .form {
+  
+        .MuiFormControl-root {
+          margin-bottom: 1.25rem;
+  
+          .MuiInputLabel-root {
+            color: #7F8384;
+          }
+          
+          .MuiInput-root {
+  
+            input {
+              color: white;
+            }
+  
+            &::after {
+              border-bottom: 1px solid #626667;
+            }
+            
+            &::before {
+              border-bottom: 1px solid #7F8384;
+  
+            }
           }
         }
       }
     }
+  }
+
+  .login-options {
+    color: $white;
+    text-align: center;
   }
 }
