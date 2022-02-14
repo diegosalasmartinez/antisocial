@@ -45,10 +45,10 @@ export default class Login extends Component {
               </Typography>
             </Box>
             <Box className='form'>
-              <TextField id='username' label='Username' value={username} fullWidth variant='standard' onChange={this.onChange('username')}/>
-              <TextField id='password' label='Password' value={password} fullWidth variant='standard' onChange={this.onChange('password')}/>
+              <TextField id='username' label='Username' value={username} fullWidth variant='outlined' onChange={this.onChange('username')}/>
+              <TextField id='password' label='Password' value={password} fullWidth variant='outlined' onChange={this.onChange('password')}/>
             </Box>
-            <Box className='myButton jc-c'>
+            <Box className='myButton jc-c' sx={{mb: 2}}>
               <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained'>
                 <Typography variant='body1' noWrap component="div">
                   Login
@@ -63,7 +63,7 @@ export default class Login extends Component {
               Don't have an account? <span className='textLink' onClick={this.onSignUp}>Sign Up</span>
             </Typography>
             <Typography className='textLink' variant='body1' noWrap component="div">
-              Forget your account?
+              Forgot your password?
             </Typography>
           </Container>
         </Box>
