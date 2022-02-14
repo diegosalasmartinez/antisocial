@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Box, Button, Container, TextField, Typography } from '@mui/material'
-import colors from './../../theme/colors'
+import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material'
 import UserModel from '../../services/models/UserModel'
 import MyTextField from '../../components/MyTextField';
 
-export default class Login extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,6 +12,7 @@ export default class Login extends Component {
   }
 
   onChange = (key, isNumeric = false) => (e = {}) => {
+    console.log(key);
     const { user } = this.state;
     let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
     let objectUpdated = { ...user };
@@ -26,13 +26,9 @@ export default class Login extends Component {
     this.setState({user: objectUpdated});
   }
 
-  onSignUp = () => {
-    this.props.navigate("sign-up");
-  }
-
   render() {
     const { user } = this.state;
-    const { username, password } = user;
+    const { username, password, name, lastName } = user;
 
     return (
       <Box className='login' sx={{ height: '100vh', pt: '120px'}}>
@@ -40,12 +36,24 @@ export default class Login extends Component {
           <Container maxWidth='xs'>
             <Box className='title jc-c'>
               <Typography variant='h5' noWrap component="div">
-                Sign In
+                Create your account
               </Typography>
             </Box>
             <Box className='form'>
-              <MyTextField param='username' label='Username' value={username} onChange={this.onChange}/>
-              <MyTextField param='password' label='Password' value={password} onChange={this.onChange}/>
+              <Grid container spacing={3} sx={{mt: 0, pt: 0}}>
+                <Grid item xs={6} sx={{display: { xs: 'none', md: 'flex' }}}>
+                  <MyTextField param='name' label='Name' value={name} onChange={this.onChange}/>
+                </Grid>
+                <Grid item xs={6} sx={{display: { xs: 'none', md: 'flex' }}}>
+                  <MyTextField param='lastName' label='Last Name' value={lastName} onChange={this.onChange}/>
+                </Grid>
+                <Grid item xs={6} sx={{display: { xs: 'none', md: 'flex' }}}>
+                  <MyTextField param='username' label='Username' value={username} onChange={this.onChange}/>
+                </Grid>
+                <Grid item xs={6} sx={{display: { xs: 'none', md: 'flex' }}}>
+                  <MyTextField param='password' label='Password' value={password} onChange={this.onChange}/>
+                </Grid>
+              </Grid>
             </Box>
             <Box className='myButton jc-c' sx={{mb: 2}}>
               <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained'>
