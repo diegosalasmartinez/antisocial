@@ -28,7 +28,7 @@
           .MuiInputLabel-root {
             color: #7F8384;
 
-            &.MuiInputLabel-shrink {
+            &.Mui-focused {
               color: $blue;
             }
           }
@@ -59,7 +59,7 @@
   }
 
   .myButton {
-    
+
     .MuiButton-root {
       margin-bottom: 1.5rem;
     }
