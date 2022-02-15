@@ -18,7 +18,7 @@ export default class A extends Component {
 
     return (
       <Wrapper loading={loading}>
-        <div>
+        <div style={{backgroundColor: 'red'}}>
           SOY EL COMPONENTE A
         </div>
       </Wrapper>

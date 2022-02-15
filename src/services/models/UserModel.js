@@ -5,7 +5,7 @@ export default class UserModel {
   email = "";
   username = "";
   password = "";
-  birthday = "";
+  birthday = new Date();
 }
 
 const validate = (user, validateCredentials) => {
