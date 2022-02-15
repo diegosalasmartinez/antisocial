@@ -5,7 +5,10 @@ import loading from './theme/loading'
 
 const Layout = React.lazy(() => import('./layout/Layout'))
 const Content = React.lazy(() => import('./layout/Content'))
+const Page = React.lazy(() => import('./layout/Page'))
+
 const Login = React.lazy(() => import('./pages/login/Login'))
+const Register = React.lazy(() => import('./pages/login/Register'))
 const A = React.lazy(() => import('./pages/A'))
 const B = React.lazy(() => import('./pages/B'))
 
@@ -15,12 +18,13 @@ export default class App extends Component {
       <BrowserRouter>
         <React.Suspense fallback={loading}>
           <Routes>
-            <Route path='/' element={<Login {...this.props}/>}/>
+            <Route path='/' element={<Page {...this.props} element={Login}/>}/>
             <Route path='/' element={<Layout {...this.props}/>}>
               <Route path='' element={<Content {...this.props} element={A}/>}/>
               <Route path='user' element={<Content {...this.props} element={B}/>}/>
               <Route path='*' element={<div>Not found</div>}/>
             </Route>
+            <Route path='/sign-up' element={<Page {...this.props} element={Register}/>}/>
           </Routes>
         </React.Suspense>
       </BrowserRouter>
