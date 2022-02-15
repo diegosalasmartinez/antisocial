@@ -60,8 +60,7 @@ export default class Register extends Component {
                   <MyTextField param='email' label='Email' value={email} type='email' onChange={this.onChange}/>
                 </Grid>
                 <Grid item xs={6} style={{paddingTop:0}} sx={{display: { xs: 'none', md: 'flex' }}}>
-                  <MyDateField param='birthday' label='Birthday' value={birthday} type='date' onChange={this.onChange}/>
-                  {/* <MyTextField param='birthday' label='Birthday' value={birthday} type='date' onChange={this.onChange}/> */}
+                  <MyDateField param='birthday' label='Birthday' value={birthday} onChange={this.onChange}/>
                 </Grid>
               </Grid>
             </Box>
