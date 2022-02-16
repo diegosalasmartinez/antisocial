@@ -42,7 +42,7 @@ export default class Register extends Component {
                 Create your account
               </Typography>
             </Box>
-            <Box className='form' component='form' autoComplete="off">
+            <Box className='form' component='form' autoComplete="off" method='post' action=''>
               <Grid container spacing={3} sx={{mt: 0, pt: 0}}>
                 <Grid item xs={6} style={{paddingTop:0}} sx={{display: { xs: 'none', md: 'flex' }}}>
                   <MyTextField param='name' label='Name' value={name} onChange={this.onChange}/>

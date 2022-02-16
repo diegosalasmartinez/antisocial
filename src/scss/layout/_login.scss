@@ -36,16 +36,21 @@
           .MuiOutlinedInput-root {
   
             input {
-              color: white;
-              padding: 14px;
+              color: white!important;
+              padding: 14px!important;
             }
-  
+            input:-webkit-autofill {
+              -webkit-text-fill-color: white;
+              -webkit-box-shadow: 0 0 0px 1000px #2B2F30 inset;
+              transition: background-color 5000s ease-in-out 0s;
+            }
+
             fieldset {
-              border-color: #7F8384;
+              border-color: #7F8384!important;
             }
 
             input.focus-visible + fieldset {
-              border-color: $blue;
+              border-color: $blue!important;
             }
           }
         }
