@@ -18,13 +18,13 @@ export default class App extends Component {
       <BrowserRouter>
         <React.Suspense fallback={loading}>
           <Routes>
-            <Route path='/' element={<Page {...this.props} element={Login}/>}/>
+            <Route path='/sign-in' element={<Page {...this.props} element={Login}/>}/>
+            <Route path='/sign-up' element={<Page {...this.props} element={Register}/>}/>
             <Route path='/' element={<Layout {...this.props}/>}>
               <Route path='' element={<Content {...this.props} element={A}/>}/>
               <Route path='user' element={<Content {...this.props} element={B}/>}/>
               <Route path='*' element={<div>Not found</div>}/>
             </Route>
-            <Route path='/sign-up' element={<Page {...this.props} element={Register}/>}/>
           </Routes>
         </React.Suspense>
       </BrowserRouter>

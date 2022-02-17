@@ -1,14 +1,24 @@
 import React, { Component } from 'react'
 import { Box, Button, Container, Grid, TextField, Typography } from '@mui/material'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as authActions from '../../services/redux/actions/authActions'
 import UserModel from '../../services/models/UserModel'
 import MyTextField from '../../components/MyTextField'
 import MyDateField from '../../components/MyDateField'
 
-export default class Register extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: new UserModel()
+    }
+  }
+
+  componentDidMount() { 
+    const { auth } = this.props;
+    if (auth.token) {
+      this.props.navigate("/");
     }
   }
 
@@ -26,7 +36,18 @@ export default class Register extends Component {
   }
 
   onSignIn = () => {
-    this.props.navigate("/");
+    this.props.navigate("/sign-in");
+  }
+
+  onRegister = async () => {
+    await this.props.register(this.state.user);
+    const { auth } = this.props;
+
+    if (auth.failed) {
+      this.props.showError(auth.error);
+    } else {
+      this.props.navigate("/");
+    }
   }
 
   render() {
@@ -65,7 +86,7 @@ export default class Register extends Component {
               </Grid>
             </Box>
             <Box className='myButton jc-c' sx={{mb: 2}}>
-              <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained'>
+              <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained' onClick={this.onRegister}>
                 <Typography variant='body1' noWrap component="div">
                   Create account
                 </Typography>
@@ -84,3 +105,17 @@ export default class Register extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    ...bindActionCreators(authActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

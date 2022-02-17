@@ -5,12 +5,20 @@ import reportWebVitals from './reportWebVitals'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
 import appTheme from './theme/appTheme'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './services/redux/store'
+import loading from './theme/loading'
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={appTheme}>
       <CssBaseline/>
-      <App/>
+      <Provider store={store}>
+        <PersistGate loaging={loading} persistor={persistor}>
+          <App/>
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

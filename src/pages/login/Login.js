@@ -12,6 +12,13 @@ export default class Login extends Component {
     }
   }
 
+  componentDidMount() { 
+    const { auth } = this.props;
+    if (auth.token) {
+      this.props.navigate("/");
+    }
+  }
+
   onChange = (key, isNumeric = false) => (e = {}) => {
     const { user } = this.state;
     let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
@@ -27,7 +34,7 @@ export default class Login extends Component {
   }
 
   onSignUp = () => {
-    this.props.navigate("sign-up");
+    this.props.navigate("/sign-up");
   }
 
   render() {
