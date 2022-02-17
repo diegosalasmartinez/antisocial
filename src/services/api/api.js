@@ -1,7 +1,5 @@
 import axios from 'axios'
 import { store } from '../redux/store'
-import dotenv from 'dotenv'
-dotenv.config();
 
 const apiUrl = process.env.REACT_APP_SERVER_URL;
 const baseUrl = "/api/v1/"
