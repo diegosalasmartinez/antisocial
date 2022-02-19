@@ -86,7 +86,7 @@ class Register extends Component {
                 </Grid>
               </Grid>
             </Box>
-            <Box className='myButton jc-c' sx={{mb: 2}}>
+            <Box className='jc-c' sx={{mb: 2}}>
               <MyButton text='Create account' onClick={this.onRegister}/>
             </Box>
           </Container>

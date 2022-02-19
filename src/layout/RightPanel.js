@@ -27,7 +27,6 @@ export default class RightPanel extends Component {
         { showPostForm ? 
           <CreatePost onCancel={this.onCancelPost}/>
           :
-          // <Box className='myButton jc-r'>
           <Box className='jc-r'>
             <MyButton text='Create a post' onClick={this.onCreatePost}/>
           </Box>
