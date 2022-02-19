@@ -1,15 +1,20 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { LOGOUT } from '../services/redux/actions/actionTypes/authActionTypes'
 import { AppBar, Container, Toolbar } from '@mui/material'
-import HeaderWeb from './headerComponents/HeaderWeb'
-import HeaderResponsive from './headerComponents/HeaderResponsive'
-import HeaderUserOptions from './headerComponents/HeaderUserOptions'
+import HeaderWeb from './components/HeaderWeb'
+import HeaderResponsive from './components/HeaderResponsive'
+import HeaderUserOptions from './components/HeaderUserOptions'
 import navOptions from './options/navOptions'
+
+const options = ["Profile", "Settings", "Logout"];
 
 export default function Header() {
   const [navMenu, setNavMenu] = React.useState(null);
   const [navUser, setNavUser] = React.useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleOpenNavMenu = (event) => {
     setNavMenu(event.currentTarget);
@@ -25,9 +30,12 @@ export default function Header() {
     setNavUser(event.currentTarget);
   }
   
-  const handleCloseNavUser = (e, path) => {
+  const handleCloseNavUser = (e, option) => {
     e.preventDefault();
     setNavUser(null);
+    if (option === 'Logout') {
+      dispatch({type: LOGOUT})
+    }
   }
 
   return (
@@ -36,7 +44,7 @@ export default function Header() {
         <Toolbar disableGutters>
           <HeaderWeb navMenu={navMenu} headerOptions={navOptions} handleOpenNavMenu={handleOpenNavMenu} handleCloseNavMenu={handleCloseNavMenu}/>
           <HeaderResponsive navMenu={navMenu} headerOptions={navOptions} handleOpenNavMenu={handleOpenNavMenu} handleCloseNavMenu={handleCloseNavMenu}/>
-          <HeaderUserOptions navUser={navUser} handleOpenNavUser={handleOpenNavUser} handleCloseNavUser={handleCloseNavUser}/>
+          <HeaderUserOptions options={options} navUser={navUser} handleOpenNavUser={handleOpenNavUser} handleCloseNavUser={handleCloseNavUser}/>
         </Toolbar>
       </Container>
     </AppBar>
