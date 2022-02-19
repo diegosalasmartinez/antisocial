@@ -45,7 +45,7 @@ class Register extends Component {
     const { auth } = this.props;
 
     if (auth.failed) {
-      this.props.showError(auth.error);
+      this.props.showNotification(auth.error);
     } else {
       this.props.navigate("/");
     }
