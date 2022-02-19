@@ -6,7 +6,7 @@ import * as authActions from '../../services/redux/actions/authActions'
 import UserModel from '../../services/models/UserModel'
 import MyTextField from '../../components/MyTextField'
 import MyDateField from '../../components/MyDateField'
-import MyButton from 'src/components/MyButton'
+import MyButton from '../../components/MyButton'
 
 class Register extends Component {
   constructor(props) {

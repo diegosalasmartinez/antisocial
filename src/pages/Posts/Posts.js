@@ -1,14 +1,17 @@
+import { Box } from '@mui/material'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Wrapper from '../../components/Wrapper'
 import * as postActions from '../../services/redux/actions/postActions'
+import Post from './Post'
 
 class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageLoading: true
+      posts: [],
+      loading: true
     }
   }
 
@@ -19,18 +22,19 @@ class Posts extends Component {
       this.props.showNotification(postReducer.error);
       await this.props.clearErrorPost();
     } else {
-      console.log(posts);
-      this.setState({pageLoading: false});
+      this.setState({posts, loading: false});
     }
   }
 
   render() {
-    const { pageLoading } = this.state;
+    const { loading, posts } = this.state;
 
     return (
-      // <Wrapper pageLoading={pageLoading}>
-        <div>Posts</div>
-      // </Wrapper>
+      <Wrapper loading={loading}>
+        <Box className='posts'>
+          { posts.map(p => <Post key={p._id} post={p}/>) }
+        </Box>
+      </Wrapper>
     )
   }
 }

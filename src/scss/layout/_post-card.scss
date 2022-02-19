@@ -1,0 +1,21 @@
+.post-card {
+  background-color: $primary-light !important;
+  margin-bottom: 1.5rem;
+
+  .title, .body {
+    color: $white;
+  }
+
+  .author, .date {
+    color: #7F8384;
+  }
+}
+
+.posts {
+  height: calc(100vh - 90px);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
