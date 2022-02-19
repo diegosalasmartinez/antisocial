@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Wrapper from '../../components/Wrapper'
-import * as authActions from '../../services/redux/actions/authActions'
+import * as postActions from '../../services/redux/actions/postActions'
 
 class Posts extends Component {
   constructor(props) {
@@ -12,30 +12,38 @@ class Posts extends Component {
     }
   }
 
-  componentDidMount() { 
-    this.setState({pageLoading: false});
+  async componentDidMount() { 
+    const posts = await this.props.getPosts();
+    const postReducer = this.props.post;
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    } else {
+      console.log(posts);
+      this.setState({pageLoading: false});
+    }
   }
 
   render() {
     const { pageLoading } = this.state;
 
     return (
-      <Wrapper pageLoading={pageLoading}>
+      // <Wrapper pageLoading={pageLoading}>
         <div>Posts</div>
-      </Wrapper>
+      // </Wrapper>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    post: state.post
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    ...bindActionCreators(authActions, dispatch)
+    ...bindActionCreators(postActions, dispatch)
   }
 }
 

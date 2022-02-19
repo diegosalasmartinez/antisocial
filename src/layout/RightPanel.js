@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as postActions from '../services/redux/actions/postActions'
 import { Box, Typography } from '@mui/material'
-import MyButton from '../components/MyButton';
-import CreatePost from '../pages/posts/CreatePost';
+import MyButton from '../components/MyButton'
+import CreatePost from '../pages/posts/CreatePost'
 
-export default class RightPanel extends Component {
+class RightPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPostForm: false
+      showPostForm: false,
+      btnCreatePostLoading: false 
     }
   }
 
@@ -18,18 +22,25 @@ export default class RightPanel extends Component {
   onCancelPost = () => {
     this.setState({showPostForm: false});
   }
-
-  onPost = (post) => {
-    console.log(post);
+  
+  onPost = async (post) => {
+    this.setState({btnCreatePostLoading: true});
+    await this.props.createPost(post);
+    const postReducer = this.props.post;
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    }
+    this.setState({btnCreatePostLoading: false});
   }
 
   render() {
-    const { showPostForm } = this.state
+    const { showPostForm, btnCreatePostLoading } = this.state
 
     return (
       <Box className='right-panel'>
         { showPostForm ? 
-          <CreatePost onCancel={this.onCancelPost} onPost={this.onPost}/>
+          <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} btnLoading={btnCreatePostLoading}/>
           :
           <Box className='jc-r'>
             <MyButton text='Create a post' onClick={this.onShowCreatePost}/>
@@ -51,3 +62,17 @@ export default class RightPanel extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    post: state.post
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    ...bindActionCreators(postActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RightPanel)

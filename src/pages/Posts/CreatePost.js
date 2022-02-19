@@ -27,6 +27,7 @@ export default class CreatePost extends Component {
   }
 
   render() {
+    const { btnLoading } = this.props;
     const { post } = this.state;
     const { title, body } = post;
 
@@ -35,13 +36,13 @@ export default class CreatePost extends Component {
         <Typography textAlign="left" variant='h6'>
           Post your idea
         </Typography>
-        <Box className='form' sx={{mt: '1.5rem'}}>
+        <Box className='form' sx={{mt: '1rem'}}>
           <MyTextField param='title' label='Title' value={title} onChange={this.onChange}/>
           <MyTextField param='body' label='Body' value={body} mb={0} onChange={this.onChange}/>
         </Box>
         <Box className='jc-r'>
           <MyButton text='Cancel' variant='secondary' onClick={this.props.onCancel}/>
-          <MyButton text='Post' onClick={() => this.props.onPost(post)}/>
+          <MyButton text='Post' loading={btnLoading} onClick={() => this.props.onPost(post)}/>
         </Box>
       </Box>
     )
