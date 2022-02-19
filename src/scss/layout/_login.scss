@@ -19,47 +19,46 @@
           color: $white;
         }
       }
-      
-      .form {
-  
-        .MuiFormControl-root {
-          margin-bottom: 1.25rem;
-  
-          .MuiInputLabel-root {
-            color: #7F8384;
-
-            &.Mui-focused {
-              color: $blue;
-            }
-          }
-          
-          .MuiOutlinedInput-root {
-  
-            input {
-              color: $white!important;
-              padding: 14px!important;
-            }
-            input:-webkit-autofill {
-              -webkit-text-fill-color: $white;
-              -webkit-box-shadow: 0 0 0px 1000px #2B2F30 inset;
-              transition: background-color 5000s ease-in-out 0s;
-            }
-
-            fieldset {
-              border-color: #7F8384!important;
-            }
-
-            input.focus-visible + fieldset {
-              border-color: $blue!important;
-            }
-          }
-        }
-      }
     }
   }
 
   .login-options {
     color: $white;
     text-align: center;
+  }
+}
+
+.form {
+  
+  .MuiFormControl-root {
+
+    .MuiInputLabel-root {
+      color: #7F8384;
+
+      &.Mui-focused {
+        color: $blue;
+      }
+    }
+    
+    .MuiOutlinedInput-root {
+
+      input {
+        color: $white!important;
+        padding: 14px!important;
+      }
+      input:-webkit-autofill {
+        -webkit-text-fill-color: $white;
+        -webkit-box-shadow: 0 0 0px 1000px #2B2F30 inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
+      fieldset {
+        border-color: #7F8384!important;
+      }
+
+      input.focus-visible + fieldset {
+        border-color: $blue!important;
+      }
+    }
   }
 }
