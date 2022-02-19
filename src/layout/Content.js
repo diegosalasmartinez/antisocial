@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Grid } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar'
+import RightPanel from './RightPanel'
 
 export default function Content(props) {
   const location = useLocation();
@@ -17,7 +18,7 @@ export default function Content(props) {
           <props.element location={location} navigate={navigate}/>
         </Grid>
         <Grid item xs={4} md={3} xl={3} sx={{pt: 0}}>
-          Panel Auxiliar
+          <RightPanel location={location} navigate={navigate}/>
         </Grid>
       </Grid>
     </Container>
