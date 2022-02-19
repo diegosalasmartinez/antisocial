@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Box, Button, Container, TextField, Typography } from '@mui/material'
-import colors from './../../theme/colors'
+import { Box, Button, Container, Typography } from '@mui/material'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as authActions from '../../services/redux/actions/authActions'
 import UserModel from '../../services/models/UserModel'
 import MyTextField from '../../components/MyTextField';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,6 +39,17 @@ export default class Login extends Component {
     this.props.navigate("/sign-up");
   }
 
+  onLogin = async () => {
+    await this.props.login(this.state.user);
+    const { auth } = this.props;
+
+    if (auth.failed) {
+      this.props.showError(auth.error);
+    } else {
+      this.props.navigate("/");
+    }
+  }
+
   render() {
     const { user } = this.state;
     const { username, password } = user;
@@ -55,7 +68,7 @@ export default class Login extends Component {
               <MyTextField param='password' label='Password' value={password} onChange={this.onChange}/>
             </Box>
             <Box className='myButton jc-c' sx={{mb: 2}}>
-              <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained'>
+              <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained' onClick={this.onLogin}>
                 <Typography variant='body1' noWrap component="div">
                   Login
                 </Typography>
@@ -77,3 +90,17 @@ export default class Login extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    ...bindActionCreators(authActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
