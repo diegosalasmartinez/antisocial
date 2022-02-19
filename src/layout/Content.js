@@ -3,6 +3,7 @@ import { Container, Grid } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import RightPanel from './RightPanel'
+import Page from './Page'
 
 export default function Content(props) {
   const location = useLocation();
@@ -15,10 +16,10 @@ export default function Content(props) {
           <Sidebar location={location} navigate={navigate}/>
         </Grid>
         <Grid item xs={8} md={6} xl={7} sx={{pt: 0}}>
-          <props.element location={location} navigate={navigate}/>
+          <Page {...props} />
         </Grid>
         <Grid item xs={4} md={3} xl={3} sx={{pt: 0}}>
-          <RightPanel location={location} navigate={navigate}/>
+          <Page element={RightPanel}/>
         </Grid>
       </Grid>
     </Container>
