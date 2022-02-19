@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { Box, Button, Container, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../../services/redux/actions/authActions'
 import UserModel from '../../services/models/UserModel'
-import MyTextField from '../../components/MyTextField';
+import MyTextField from '../../components/MyTextField'
+import MyButton from '../../components/MyButton'
 
 class Login extends Component {
   constructor(props) {
@@ -68,11 +69,7 @@ class Login extends Component {
               <MyTextField param='password' label='Password' value={password} onChange={this.onChange}/>
             </Box>
             <Box className='myButton jc-c' sx={{mb: 2}}>
-              <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained' onClick={this.onLogin}>
-                <Typography variant='body1' noWrap component="div">
-                  Login
-                </Typography>
-              </Button>
+              <MyButton text='Login' onClick={this.onLogin}/>
             </Box>
           </Container>
         </Box>

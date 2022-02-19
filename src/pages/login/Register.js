@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Box, Button, Container, Grid, Typography } from '@mui/material'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../../services/redux/actions/authActions'
 import UserModel from '../../services/models/UserModel'
 import MyTextField from '../../components/MyTextField'
 import MyDateField from '../../components/MyDateField'
+import MyButton from 'src/components/MyButton'
 
 class Register extends Component {
   constructor(props) {
@@ -86,11 +87,7 @@ class Register extends Component {
               </Grid>
             </Box>
             <Box className='myButton jc-c' sx={{mb: 2}}>
-              <Button sx={{ my: 2, color: 'white', display: 'block'}} variant='contained' onClick={this.onRegister}>
-                <Typography variant='body1' noWrap component="div">
-                  Create account
-                </Typography>
-              </Button>
+              <MyButton text='Create account' onClick={this.onRegister}/>
             </Box>
           </Container>
         </Box>
