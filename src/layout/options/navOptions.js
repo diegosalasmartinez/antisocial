@@ -8,7 +8,7 @@ const navOptions = [
   },
   {
     name: 'My Posts',
-    path: '/user',
+    path: '/profile',
     icon: <Newspaper/>
   },
 ]

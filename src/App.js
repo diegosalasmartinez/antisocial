@@ -9,6 +9,7 @@ const Page = React.lazy(() => import('./layout/Page'))
 
 const Login = React.lazy(() => import('./pages/login/Login'))
 const Register = React.lazy(() => import('./pages/login/Register'))
+const Posts = React.lazy(() => import('./pages/posts/Posts'))
 const A = React.lazy(() => import('./pages/A'))
 const B = React.lazy(() => import('./pages/B'))
 
@@ -21,8 +22,8 @@ export default class App extends Component {
             <Route path='/sign-in' element={<Page {...this.props} element={Login}/>}/>
             <Route path='/sign-up' element={<Page {...this.props} element={Register}/>}/>
             <Route path='/' element={<Layout {...this.props}/>}>
-              <Route path='' element={<Content {...this.props} element={A}/>}/>
-              <Route path='user' element={<Content {...this.props} element={B}/>}/>
+              <Route path='' element={<Content {...this.props} element={Posts}/>}/>
+              <Route path='profile' element={<Content {...this.props} element={B}/>}/>
               <Route path='*' element={<div>Not found</div>}/>
             </Route>
           </Routes>

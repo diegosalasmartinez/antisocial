@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 import navOptions from './options/navOptions'
+import colors from '../theme/colors'
 
 export default class Sidebar extends Component {
   selectOption = (e, path) => {
     e.preventDefault();
-    if (path) this.props.navigate(path)
+    if (path) this.props.navigate(path);
   }
 
   getVariantText = (h) => {
@@ -19,7 +20,7 @@ export default class Sidebar extends Component {
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         <Stack spacing={1} sx={{width: '100%'}}>
           { navOptions.map((h, index) => 
-            <Button key={index} sx={{ my: 0, pb: 0, color: 'white', display: 'block' }} variant={this.getVariantText(h)} onClick={e => this.selectOption(e, h.path)}>
+            <Button key={index} sx={{ my: 0, pb: 0, color: colors.WHITE, display: 'block' }} variant={this.getVariantText(h)} onClick={e => this.selectOption(e, h.path)}>
               <Grid container spacing={1}>
                 <Grid item xs={4}>
                   {h.icon}
