@@ -11,12 +11,16 @@ export default class RightPanel extends Component {
     }
   }
 
-  onCreatePost = () => {
+  onShowCreatePost = () => {
     this.setState({showPostForm: true});
   }
   
   onCancelPost = () => {
     this.setState({showPostForm: false});
+  }
+
+  onPost = (post) => {
+    console.log(post);
   }
 
   render() {
@@ -25,10 +29,10 @@ export default class RightPanel extends Component {
     return (
       <Box className='right-panel'>
         { showPostForm ? 
-          <CreatePost onCancel={this.onCancelPost}/>
+          <CreatePost onCancel={this.onCancelPost} onPost={this.onPost}/>
           :
           <Box className='jc-r'>
-            <MyButton text='Create a post' onClick={this.onCreatePost}/>
+            <MyButton text='Create a post' onClick={this.onShowCreatePost}/>
           </Box>
         }
         <Typography variant='body1' noWrap component="div">
@@ -39,6 +43,9 @@ export default class RightPanel extends Component {
         </Typography>
         <Typography variant='body1' noWrap component="div">
           Create a post
+        </Typography>
+        <Typography textAlign="left" variant='body1'>
+          Create your postegse segsegs hh
         </Typography>
       </Box>
     )
