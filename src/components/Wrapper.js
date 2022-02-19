@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 export default class Wrapper extends Component {
   render() {
-    const { loading } = this.props;
+    const { pageLoading } = this.props;
     
     return (
       <>
-        { loading ?
+        { pageLoading ?
           <div>Loading</div>
           :
           <>{this.props.children}</>
