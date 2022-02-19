@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
 
-const options = ["Profile", "Settings", "Logout"]
-
 export default class HeaderUserOptions extends Component {
   render() {
     return (
@@ -22,8 +20,8 @@ export default class HeaderUserOptions extends Component {
           open={Boolean(this.props.navUser)}
           onClose={this.props.handleCloseNavUser}
         >
-          { options.map((o, index) => 
-            <MenuItem key={index} onClick={this.props.handleCloseNavUser}>
+          { this.props.options.map((o, index) => 
+            <MenuItem key={index} onClick={(e) => this.props.handleCloseNavUser(e,o)}>
               <Typography textAlign="center">{o}</Typography>
             </MenuItem>
           )}
