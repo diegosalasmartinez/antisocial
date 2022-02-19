@@ -7,12 +7,12 @@ export default function Page(props) {
   const navigate = useNavigate();
   const [notification, setNotification] = React.useState(false);
   const [message, setMessage] = React.useState("");
-  const [severity, setSeverity] = React.useState("");
+  const [severity, setSeverity] = React.useState("error");
 
-  const showNotification = (msg, severity = 'error') => {
+  const showNotification = (msg, sev = 'error') => {
     setNotification(true);
     setMessage(msg);
-    setSeverity(severity);
+    setSeverity(sev);
   }
   
   const closeNotification = () => {
