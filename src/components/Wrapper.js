@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import { Box, CircularProgress } from '@mui/material';
 
 export default class Wrapper extends Component {
   render() {
-    const { pageLoading } = this.props;
-    
+    const { loading } = this.props;
+
     return (
       <>
-        { pageLoading ?
-          <div>Loading</div>
+        { loading ?
+          <Box className='jc-c'>
+            <CircularProgress size={40} color='info'/>
+          </Box>
           :
           <>{this.props.children}</>
         }
