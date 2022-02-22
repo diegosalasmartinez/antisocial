@@ -2,13 +2,37 @@
   background-color: $primary-light !important;
   margin-bottom: 1.5rem;
 
-  .title, .body {
-    color: $white;
+  .MuiCardContent-root {
+    padding-bottom: 0;
+
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      
+      .title {
+        color: $white;
+        font-weight: bold;
+      }
+
+      .author, .date {
+        margin-left: 5px;
+        color: $white-secondary;
+      }
+    }
+
+    .body {
+      color: $white;
+    }
   }
 
-  .author, .date {
-    color: #7F8384;
-  }
+  .MuiCardActions-root {
+    #like, #unlike, #fav {
+      svg{
+        color: $white-secondary;
+      }
+    }
+  }  
 }
 
 .posts {
