@@ -33,7 +33,7 @@
   .MuiFormControl-root {
 
     .MuiInputLabel-root {
-      color: #7F8384;
+      color: $white-secondary;
 
       &.Mui-focused {
         color: $blue;
@@ -53,7 +53,7 @@
       }
 
       fieldset {
-        border-color: #7F8384!important;
+        border-color: $white-secondary!important;
       }
 
       input.focus-visible + fieldset {
