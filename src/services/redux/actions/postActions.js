@@ -36,7 +36,7 @@ const getPosts = () => async (dispatch) => {
 
 const likePost = (p) => async (dispatch) => {
   try {
-    const res = await likePostAPI(p._id);
+    const res = await likePostAPI(p);
     return dispatch({
       type: LIKE_POST,
       playload: res

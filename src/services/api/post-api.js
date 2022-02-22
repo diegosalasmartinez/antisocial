@@ -9,8 +9,8 @@ const getPosts = async () => {
   return await apiGet(`${base}/`);
 }
 
-const likePost = async (postId) => {
-  return await apiPost(`${base}/like`, postId);
+const likePost = async (post) => {
+  return await apiPost(`${base}/like`, post);
 }
 
 export { getPosts, createPost, likePost }

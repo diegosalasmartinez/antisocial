@@ -19,14 +19,15 @@ export default class Post extends Component {
   }
 
   render() {
-    const { post } = this.props;
+    const { post, userId } = this.props;
     const date = moment(post.date).format('DD/MM/YYYY');
+    const likeClassName = post.likes.includes(userId) ? 'checked' : '';
 
     return (
       <Box className='jc-c'>
         <Card className='post' sx={{ minWidth: 250, width: '75%' }}>
           <CardContent>
-            <div className='header'>
+            <Box className='header'>
               <Typography className='title' sx={{ fontSize: 18 }} component="div">
                 {post.title}
               </Typography>
@@ -36,21 +37,36 @@ export default class Post extends Component {
               <Typography className='date' sx={{ fontSize: 15 }} component="div">
                 - {date}
               </Typography>
-            </div>
+            </Box>
             <Typography className='body' variant="body2">
               {post.body}
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton id='like' aria-label="like" onClick={this.onLike}>
-              <ThumbUpIcon />
-            </IconButton>
-            <IconButton id='unlike' aria-label="unlike" onClick={this.onUnlike}>
-              <ThumbDownIcon />
-            </IconButton>
-            <IconButton id='fav' aria-label="add to favorites" onClick={this.onFav}>
-              <FavoriteIcon />
-            </IconButton>
+            <Box id='like' className={`icon-section ${likeClassName}`} >
+              <Typography className='date' sx={{ fontSize: 15 }} component="div">
+                {post.likes.length}
+              </Typography>
+              <IconButton aria-label="like" onClick={this.onLike}>
+                <ThumbUpIcon fontSize='small'/>
+              </IconButton>
+            </Box>
+            <Box id='unlike' className='icon-section'>
+              <Typography className='date' sx={{ fontSize: 15 }} component="div">
+                - {date}
+              </Typography>
+              <IconButton aria-label="unlike" onClick={this.onUnlike}>
+                <ThumbDownIcon fontSize='small'/>
+              </IconButton>
+            </Box>
+            <Box id='fav' className='icon-section'>
+              <Typography className='date' sx={{ fontSize: 15 }} component="div">
+                - {date}
+              </Typography>
+              <IconButton aria-label="add to favorites" onClick={this.onFav}>
+                <FavoriteIcon fontSize='small'/>
+              </IconButton>
+            </Box>
           </CardActions>
           {/* <CardActions>
             <Box>

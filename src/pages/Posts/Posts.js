@@ -28,6 +28,23 @@ class Posts extends Component {
 
   onLike = async (p) => {
     await this.props.likePost(p);
+    const { auth, post } = this.props;
+
+    if (post.failed) {
+      this.props.showNotification(post.error);
+      await this.props.clearErrorPost();
+    } else {
+      let posts = [...this.state.posts];
+      const ind = posts.findIndex(post => post._id === p._id)
+      const post = {...posts[ind]}
+      if (post.likes.some(l => l === auth.user._id)) {
+        post.likes = post.likes.filter(l => l !== auth.user._id);
+      } else {
+        post.likes = [...post.likes, auth.user._id]
+      }
+      posts[ind] = post;
+      this.setState({posts})
+    }
   }
 
   onUnlike = (p) => {
@@ -39,11 +56,12 @@ class Posts extends Component {
 
   render() {
     const { loading, posts } = this.state;
+    const { auth } = this.props
 
     return (
       <Wrapper loading={loading}>
         <Box className='posts'>
-          { posts.map(p => <Post key={p._id} post={p} onLike={this.onLike} onUnlike={this.onUnlike} onFav={this.onFav}/>) }
+          { posts.map(p => <Post key={p._id} userId={auth.user._id} post={p} onLike={this.onLike} onUnlike={this.onUnlike} onFav={this.onFav}/>) }
         </Box>
       </Wrapper>
     )
@@ -52,6 +70,7 @@ class Posts extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    auth: state.auth,
     post: state.post
   }
 }
