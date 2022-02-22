@@ -12,7 +12,7 @@ export default class Post extends Component {
 
     return (
       <Box className='jc-c'>
-        <Card className='post-card' sx={{ minWidth: 250, width: '75%' }}>
+        <Card className='post' sx={{ minWidth: 250, width: '75%' }}>
           <CardContent>
             <div className='header'>
               <Typography className='title' sx={{ fontSize: 18 }} component="div">
