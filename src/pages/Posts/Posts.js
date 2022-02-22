@@ -26,13 +26,24 @@ class Posts extends Component {
     }
   }
 
+  onLike = async (p) => {
+    await this.props.likePost(p);
+  }
+
+  onUnlike = (p) => {
+
+  }
+  onFav = (p) => {
+
+  }
+
   render() {
     const { loading, posts } = this.state;
 
     return (
       <Wrapper loading={loading}>
         <Box className='posts'>
-          { posts.map(p => <Post key={p._id} post={p}/>) }
+          { posts.map(p => <Post key={p._id} post={p} onLike={this.onLike} onUnlike={this.onUnlike} onFav={this.onFav}/>) }
         </Box>
       </Wrapper>
     )

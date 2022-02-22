@@ -6,6 +6,18 @@ import FavoriteIcon from '@mui/icons-material/FavoriteBorderOutlined'
 import moment from 'moment'
 
 export default class Post extends Component {
+  onLike = () => {
+    this.props.onLike(this.props.post);
+  }
+
+  onUnlike = () => {
+    this.props.onUnlike(this.props.post);
+  }
+
+  onFav = () => {
+    this.props.onFav(this.props.post);
+  }
+
   render() {
     const { post } = this.props;
     const date = moment(post.date).format('DD/MM/YYYY');
@@ -30,13 +42,13 @@ export default class Post extends Component {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            <IconButton id='like' aria-label="like">
+            <IconButton id='like' aria-label="like" onClick={this.onLike}>
               <ThumbUpIcon />
             </IconButton>
-            <IconButton id='unlike' aria-label="unlike">
+            <IconButton id='unlike' aria-label="unlike" onClick={this.onUnlike}>
               <ThumbDownIcon />
             </IconButton>
-            <IconButton id='fav' aria-label="add to favorites">
+            <IconButton id='fav' aria-label="add to favorites" onClick={this.onFav}>
               <FavoriteIcon />
             </IconButton>
           </CardActions>
