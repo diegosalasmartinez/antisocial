@@ -13,4 +13,12 @@ const likePost = async (post) => {
   return await apiPost(`${base}/like`, post);
 }
 
-export { getPosts, createPost, likePost }
+const unlikePost = async (post) => {
+  return await apiPost(`${base}/unlike`, post);
+}
+
+const favPost = async (post) => {
+  return await apiPost(`${base}/fav`, post);
+}
+
+export { getPosts, createPost, likePost, unlikePost, favPost }

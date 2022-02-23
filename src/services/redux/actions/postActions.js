@@ -2,14 +2,18 @@ import {
   CREATE_POST,
   GET_POSTS,
   LIKE_POST,
+  UNLIKE_POST,
+  FAV_POST,
   ERROR_POST,
-  CLEAR_ERROR_POST
+  CLEAR_ERROR_POST,
 } from './actionTypes/postActionTypes'
 import getError from '../getError'
 import {
   getPosts as getPostsAPI,
   createPost as createPostAPI,
-  likePost as likePostAPI
+  likePost as likePostAPI,
+  unlikePost as unlikePostAPI,
+  favPost as favPostAPI,
 } from '../../api/post-api'
 
 const createPost = (post) => async (dispatch) => {
@@ -37,8 +41,28 @@ const getPosts = () => async (dispatch) => {
 const likePost = (p) => async (dispatch) => {
   try {
     const res = await likePostAPI(p);
+    return res;
+  } catch(e){
+    const actionType = getError(e, ERROR_POST);
+    return dispatch(actionType)
+  }
+}
+
+const unlikePost = (p) => async (dispatch) => {
+  try {
+    const res = await unlikePostAPI(p);
+    return res;
+  } catch(e){
+    const actionType = getError(e, ERROR_POST);
+    return dispatch(actionType)
+  }
+}
+
+const favPost = (p) => async (dispatch) => {
+  try {
+    const res = await favPostAPI(p);
     return dispatch({
-      type: LIKE_POST,
+      type: FAV_POST,
       playload: res
     })
   } catch(e){
@@ -77,4 +101,11 @@ const clearErrorPost = () => async (dispatch) => {
 //   })
 // }
 
-export { getPosts, createPost, likePost, clearErrorPost }
+export { 
+  getPosts, 
+  createPost, 
+  likePost, 
+  unlikePost, 
+  favPost,
+  clearErrorPost 
+}

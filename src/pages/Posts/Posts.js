@@ -27,8 +27,8 @@ class Posts extends Component {
   }
 
   onLike = async (p) => {
-    await this.props.likePost(p);
-    const { auth, post } = this.props;
+    const postUpdated = await this.props.likePost(p);
+    const { post } = this.props;
 
     if (post.failed) {
       this.props.showNotification(post.error);
@@ -36,21 +36,27 @@ class Posts extends Component {
     } else {
       let posts = [...this.state.posts];
       const ind = posts.findIndex(post => post._id === p._id)
-      const post = {...posts[ind]}
-      if (post.likes.some(l => l === auth.user._id)) {
-        post.likes = post.likes.filter(l => l !== auth.user._id);
-      } else {
-        post.likes = [...post.likes, auth.user._id]
-      }
-      posts[ind] = post;
+      posts[ind] = {...postUpdated};
       this.setState({posts})
     }
   }
 
-  onUnlike = (p) => {
+  onUnlike = async (p) => {
+    const postUpdated = await this.props.unlikePost(p);
+    const { post } = this.props;
 
+    if (post.failed) {
+      this.props.showNotification(post.error);
+      await this.props.clearErrorPost();
+    } else {
+      let posts = [...this.state.posts];
+      const ind = posts.findIndex(post => post._id === p._id)
+      posts[ind] = postUpdated;
+      this.setState({posts})
+    }
   }
-  onFav = (p) => {
+
+  onSave = (p) => {
 
   }
 
@@ -61,7 +67,7 @@ class Posts extends Component {
     return (
       <Wrapper loading={loading}>
         <Box className='posts'>
-          { posts.map(p => <Post key={p._id} userId={auth.user._id} post={p} onLike={this.onLike} onUnlike={this.onUnlike} onFav={this.onFav}/>) }
+          { posts.map(p => <Post key={p._id} userId={auth.user._id} post={p} onLike={this.onLike} onUnlike={this.onUnlike} onSave={this.onSave}/>) }
         </Box>
       </Wrapper>
     )
