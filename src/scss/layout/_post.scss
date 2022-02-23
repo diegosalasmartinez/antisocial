@@ -39,7 +39,7 @@
       }
     }
 
-    #like, #unlike, #fav {
+    #like, #unlike, #save {
       svg {
         color: $white-secondary;
       }
@@ -48,6 +48,12 @@
     #like.checked{
       .MuiTypography-root, svg {
         color: $blue;
+      }
+    }
+
+    #unlike.checked{
+      .MuiTypography-root, svg {
+        color: $red;
       }
     }
   }  

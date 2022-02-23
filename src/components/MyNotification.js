@@ -19,8 +19,9 @@ export default class MyNotification extends Component {
   }
 
   render() {
-    const { open, message, severity } = this.props
-    const { vertical, horizontal } = this.state
+    const { open, message, severity } = this.props;
+    const { vertical, horizontal } = this.state;
+    
     return (
       <Snackbar 
         anchorOrigin={{ vertical, horizontal }}
