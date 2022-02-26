@@ -1,41 +1,63 @@
 import React, { Component } from 'react'
-import { Box, Card, CardActions, CardContent, Fab, IconButton, Typography } from '@mui/material'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as postActions from '../../services/redux/actions/postActions'
+import { Box, Card, CardActions, CardContent, IconButton, Typography } from '@mui/material'
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownIcon from '@mui/icons-material/ThumbDownOutlined'
 import BookmarkIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import moment from 'moment'
 
-export default class Post extends Component {
-  onLike = () => {
-    this.props.onLike(this.props.post);
+class Post extends Component {
+  onLike = async () => {
+    const { post } = this.props;
+    const postUpdated = await this.props.likePost(post);
+    const { postReducer } = this.props;
+
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    } else {
+      this.props.updatePosts(postUpdated);
+    }
   }
 
-  onUnlike = () => {
-    this.props.onUnlike(this.props.post);
+  onUnlike = async () => {
+    const { post } = this.props;
+    const postUpdated = await this.props.unlikePost(post);
+    const { postReducer } = this.props;
+
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    } else {
+      this.props.updatePosts(postUpdated);
+    }
   }
 
   onSave = () => {
-    this.props.onSave(this.props.post);
+    const { post } = this.props;
   }
 
   render() {
-    const { post, userId } = this.props;
+    const { post, authReducer } = this.props;
+    const { user } = authReducer;
     const date = moment(post.date).format('DD/MM/YYYY');
-    const likeClassName = post.likes.includes(userId) ? 'checked' : '';
-    const unlikeClassName = post.unlikes.includes(userId) ? 'checked' : '';
+    const likeClassName = post.likes.includes(user._id) ? 'checked' : '';
+    const unlikeClassName = post.unlikes.includes(user._id) ? 'checked' : '';
 
     return (
       <Box className='jc-c'>
-        <Card className='post' sx={{ minWidth: 250, width: '75%' }}>
+        <Card className='post' sx={{ minWidth: 250, width: '95%' }}>
           <CardContent>
             <Box className='header'>
-              <Typography className='title' sx={{ fontSize: 18 }} component="div">
+              <Typography className='title' sx={{ fontSize: 18 }}>
                 {post.title}
               </Typography>
-              <Typography className='author' sx={{ fontSize: 15 }} component="div">
+              <Typography className='author' sx={{ fontSize: 15 }}>
                 @{post.author.username}
               </Typography>
-              <Typography className='date' sx={{ fontSize: 15 }} component="div">
+              <Typography className='date' sx={{ fontSize: 15 }}>
                 - {date}
               </Typography>
             </Box>
@@ -45,7 +67,7 @@ export default class Post extends Component {
           </CardContent>
           <CardActions disableSpacing>
             <Box id='like' className={`icon-section ${likeClassName}`}>
-              <Typography className='date' sx={{ fontSize: 15 }} component="div">
+              <Typography className='date' sx={{ fontSize: 15 }}>
                 {post.likes.length}
               </Typography>
               <IconButton aria-label="like" onClick={this.onLike}>
@@ -53,7 +75,7 @@ export default class Post extends Component {
               </IconButton>
             </Box>
             <Box id='unlike' className={`icon-section ${unlikeClassName}`}>
-              <Typography className='date' sx={{ fontSize: 15 }} component="div">
+              <Typography className='date' sx={{ fontSize: 15 }}>
                 {post.unlikes.length}
               </Typography>
               <IconButton aria-label="unlike" onClick={this.onUnlike}>
@@ -71,3 +93,18 @@ export default class Post extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    authReducer: state.auth,
+    postReducer: state.post
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    ...bindActionCreators(postActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
