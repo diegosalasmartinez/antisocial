@@ -1,4 +1,5 @@
-import { Home, Newspaper } from '@mui/icons-material'
+import { Home, Newspaper, Bookmark } from '@mui/icons-material'
+import { store } from '../../services/redux/store'
 
 const navOptions = [
   {
@@ -7,9 +8,14 @@ const navOptions = [
     icon: <Home/>
   },
   {
-    name: 'My Posts',
-    path: '/profile',
+    name: 'Profle',
+    path: `/${store.getState().auth.user.username}`,
     icon: <Newspaper/>
+  },
+  {
+    name: 'Saved',
+    path: '/saved',
+    icon: <Bookmark/>
   },
 ]
 
