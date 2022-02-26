@@ -10,6 +10,7 @@ import {
 import getError from '../getError'
 import {
   getPosts as getPostsAPI,
+  getMyPosts as getMyPostsAPI,
   createPost as createPostAPI,
   likePost as likePostAPI,
   unlikePost as unlikePostAPI,
@@ -37,6 +38,16 @@ const getPosts = () => async (dispatch) => {
     return dispatch(actionType)
   }
 }
+
+const getMyPosts = () => async (dispatch) => {
+  try {
+    return await getMyPostsAPI();
+  } catch(e){
+    const actionType = getError(e, ERROR_POST);
+    return dispatch(actionType)
+  }
+}
+
 
 const likePost = (p) => async (dispatch) => {
   try {
@@ -103,6 +114,7 @@ const clearErrorPost = () => async (dispatch) => {
 
 export { 
   getPosts, 
+  getMyPosts,
   createPost, 
   likePost, 
   unlikePost, 
