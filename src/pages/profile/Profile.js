@@ -1,21 +1,37 @@
-import { Box, Tab, Tabs } from '@mui/material'
 import React, { Component } from 'react'
-import MyTabPanel from '../../components/MyTabPanel'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Wrapper from '../../components/Wrapper'
+import * as postActions from '../../services/redux/actions/postActions'
+import { Box, Tab, Tabs } from '@mui/material'
+import MyTabPanel from '../../components/MyTabPanel'
 import { defineProps } from '../../utils/utils'
-import MyPosts from '../posts/MyPosts'
+import Posts from '../posts/Posts'
 
-export default class Profile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tab: 0
+      tab: 0,
+      posts: [],
+      postsLiked: [],
+      postsUnliked: []
     }
   }
 
-  componentDidMount() {
-    const a = this.props.location;
-    console.log(a);
+  async componentDidMount() { 
+    const { pathname = []} = this.props.location;
+    const username = pathname.slice(1);
+
+    const res = await this.props.getProfile(username);
+    console.log(res);
+    const postReducer = this.props.post;
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    } else {
+      // this.setState({posts, loading: false});
+    }
   }
 
   handleChange = (e, value) => {
@@ -23,30 +39,44 @@ export default class Profile extends Component {
   }
 
   render() {
-    const { tab } = this.state;
-    const a = this.props.location;
+    const { tab, posts, postsLiked, postsUnliked } = this.state;
 
     return (
       <Wrapper>
         <Box className='profile'>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tab} onChange={this.handleChange} aria-label="basic tabs example">
-              <Tab label="My Posts" {...defineProps(0)} />
+              <Tab label="Posts" {...defineProps(0)} />
               <Tab label="Liked" {...defineProps(1)} />
               <Tab label="Unliked" {...defineProps(2)} />
             </Tabs>
           </Box>
           <MyTabPanel value={tab} index={0}>
-            <MyPosts {...this.props}/>
+            <Posts posts={posts}/>
           </MyTabPanel>
           <MyTabPanel value={tab} index={1}>
-            Item Two
+            <Posts posts={posts}/>
           </MyTabPanel>
           <MyTabPanel value={tab} index={2}>
-            Item Three
+            <Posts posts={posts}/>
           </MyTabPanel>
         </Box>
       </Wrapper>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    post: state.post
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    ...bindActionCreators(postActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)
