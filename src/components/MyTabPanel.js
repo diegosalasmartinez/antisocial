@@ -16,7 +16,7 @@ export default class MyTabPanel extends Component {
       >
         {value === index && (
           <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+            <div>{children}</div>
           </Box>
         )}
       </div>

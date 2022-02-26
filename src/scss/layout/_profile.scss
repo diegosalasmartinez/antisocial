@@ -1,0 +1,19 @@
+.profile {
+  height: calc(100vh - 90px);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .MuiTabs-flexContainer {
+    button {
+      color: $white;
+      text-transform: none;
+    }
+  }
+
+  .MuiTabs-indicator {
+    background-color: $white
+  }
+}
