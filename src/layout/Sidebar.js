@@ -6,7 +6,13 @@ import colors from '../theme/colors'
 export default class Sidebar extends Component {
   selectOption = (e, path) => {
     e.preventDefault();
-    if (path) this.props.navigate(path);
+    if (path) {
+      if (path !== '/profile') {
+        this.props.navigate(path);
+      } else {
+        this.props.navigate("/"+this.props.username);
+      }
+    }
   }
 
   getVariantText = (h) => {
