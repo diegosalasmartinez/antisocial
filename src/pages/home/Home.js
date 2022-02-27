@@ -26,10 +26,12 @@ class Home extends Component {
   }
 
   updatePosts = (post) => {
-    let posts = [...this.state.posts];
-    const ind = posts.findIndex(p => p._id === post._id)
-    posts[ind] = {...post};
-    this.setState({posts: posts});
+    const ind = this.state.posts.findIndex(p => p._id === post._id)
+    if (ind >= 0) {
+      let posts = [...this.state.posts];
+      posts[ind] = {...post};
+      this.setState({posts: posts});
+    }
   }
 
   render() {

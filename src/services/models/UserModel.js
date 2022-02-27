@@ -5,6 +5,10 @@ export default class UserModel {
   email = "";
   username = "";
   password = "";
+  posts = [];
+  likes = [];
+  unlikes = [];
+  saves = [];
   birthday = new Date();
 }
 

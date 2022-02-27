@@ -17,3 +17,16 @@
     background-color: $white
   }
 }
+
+.profile-info {
+  margin-bottom: 10px;
+
+  .name {
+    color: $white;
+    font-weight: bold;
+  }
+
+  .username {
+    color: $white-secondary;
+  }
+}
