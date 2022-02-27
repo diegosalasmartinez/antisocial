@@ -9,10 +9,6 @@ const getPosts = async () => {
   return await apiGet(`${base}/`);
 }
 
-const getProfile = async (username) => {
-  return await apiGet(`${base}/${username}`);
-}
-
 const likePost = async (post) => {
   return await apiPost(`${base}/like`, post);
 }
@@ -21,8 +17,8 @@ const unlikePost = async (post) => {
   return await apiPost(`${base}/unlike`, post);
 }
 
-const favPost = async (post) => {
-  return await apiPost(`${base}/fav`, post);
+const savePost = async (post) => {
+  return await apiPost(`${base}/save`, post);
 }
 
-export { getPosts, getProfile, createPost, likePost, unlikePost, favPost }
+export { getPosts, createPost, likePost, unlikePost, savePost }

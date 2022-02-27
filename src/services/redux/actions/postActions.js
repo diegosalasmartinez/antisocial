@@ -3,18 +3,17 @@ import {
   GET_POSTS,
   LIKE_POST,
   UNLIKE_POST,
-  FAV_POST,
+  SAVE_POST,
   ERROR_POST,
   CLEAR_ERROR_POST,
 } from './actionTypes/postActionTypes'
 import getError from '../getError'
 import {
   getPosts as getPostsAPI,
-  getProfile as getProfileAPI,
   createPost as createPostAPI,
   likePost as likePostAPI,
   unlikePost as unlikePostAPI,
-  favPost as favPostAPI,
+  savePost as savePostAPI,
 } from '../../api/post-api'
 
 const createPost = (post) => async (dispatch) => {
@@ -33,15 +32,6 @@ const createPost = (post) => async (dispatch) => {
 const getPosts = () => async (dispatch) => {
   try {
     return await getPostsAPI();
-  } catch(e){
-    const actionType = getError(e, ERROR_POST);
-    return dispatch(actionType)
-  }
-}
-
-const getProfile = (username) => async (dispatch) => {
-  try {
-    return await getProfileAPI(username);
   } catch(e){
     const actionType = getError(e, ERROR_POST);
     return dispatch(actionType)
@@ -68,11 +58,11 @@ const unlikePost = (p) => async (dispatch) => {
   }
 }
 
-const favPost = (p) => async (dispatch) => {
+const savePost = (p) => async (dispatch) => {
   try {
-    const res = await favPostAPI(p);
+    const res = await savePostAPI(p);
     return dispatch({
-      type: FAV_POST,
+      type: SAVE_POST,
       playload: res
     })
   } catch(e){
@@ -87,36 +77,11 @@ const clearErrorPost = () => async (dispatch) => {
   })
 }
 
-// const createPost = (pagination, searchParams) => async (dispatch) => {
-//   let message = "There was a problem with the server. Sorry :("
-//   try {
-//       const res = await getAppointmentsAPI(pagination, searchParams);
-//       return dispatch({
-//           type: GET_APPOINTMENTS,
-//           playload: res
-//       })
-//   } catch(e){
-//       if (e.response && e.response.statusText === "Unauthorized") {
-//           return dispatch({
-//               type: UNAUTHORIZED
-//           })
-//       }
-//       if (e.response && e.response.data && e.response.data.message) {
-//           message = e.response.data.message;
-//       }
-//   }
-//   return dispatch({
-//       type: ERROR_APPOINTMENT,
-//       playload: message
-//   })
-// }
-
 export { 
   getPosts, 
-  getProfile,
   createPost, 
   likePost, 
   unlikePost, 
-  favPost,
+  savePost,
   clearErrorPost 
 }
