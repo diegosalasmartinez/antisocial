@@ -6,9 +6,18 @@ import { Box, Card, CardActions, CardContent, IconButton, Typography } from '@mu
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownIcon from '@mui/icons-material/ThumbDownOutlined'
 import BookmarkIcon from '@mui/icons-material/BookmarkBorderOutlined'
+import MyPopover from '../../components/MyPopover'
 import moment from 'moment'
+import ProfileInfo from '../profile/ProfileInfo'
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      authorView: null
+    }
+  }
+
   onLike = async () => {
     const { post } = this.props;
     const postUpdated = await this.props.likePost(post);
@@ -38,13 +47,29 @@ class Post extends Component {
   onSave = () => {
     const { post } = this.props;
   }
+  
+  onClickUsername = () => {
+    const { post } = this.props;
+    this.props.navigate(post.author.username);
+  }
+
+  handleAuthorViewOpen = (e) => {
+    this.setState({authorView: e.currentTarget});
+  }
+   
+  handleAuthorViewClose = () => {
+    this.setState({authorView: null});
+  }
 
   render() {
+    const { authorView } = this.state
     const { post, authReducer } = this.props;
     const { user } = authReducer;
     const date = moment(post.date).format('DD/MM/YYYY');
     const likeClassName = post.likes.includes(user._id) ? 'checked' : '';
     const unlikeClassName = post.unlikes.includes(user._id) ? 'checked' : '';
+    const openAuthorView = Boolean(authorView);
+    const idAuthorView = 'author-popover';
 
     return (
       <Box className='jc-c'>
@@ -54,9 +79,12 @@ class Post extends Component {
               <Typography className='title' sx={{ fontSize: 18 }}>
                 {post.title}
               </Typography>
-              <Typography className='author' sx={{ fontSize: 15 }}>
+              <Typography className='author' sx={{ fontSize: 15 }} aria-describedby={idAuthorView} onClick={this.handleAuthorViewOpen}>
                 @{post.author.username}
               </Typography>
+              <MyPopover id={idAuthorView} open={openAuthorView} anchorEl={authorView} onClose={this.handleAuthorViewClose}>
+                <ProfileInfo profile={post.author}/>
+              </MyPopover>
               <Typography className='date' sx={{ fontSize: 15 }}>
                 - {date}
               </Typography>

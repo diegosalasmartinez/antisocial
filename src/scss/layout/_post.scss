@@ -19,6 +19,13 @@
         margin-left: 5px;
         color: $white-secondary;
       }
+
+      .author {
+        &:hover {
+          cursor: pointer;
+          color: $white;
+        }
+      }
     }
 
     .body {
