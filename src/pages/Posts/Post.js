@@ -82,10 +82,10 @@ class Post extends Component {
 
     return (
       <Box className='jc-c'>
-        <Card className='post' sx={{ minWidth: 250, width: '95%' }}>
+        <Card className='post' sx={{ minWidth: 250, width: '100%' }}>
           <CardContent>
             <Box className='header'>
-              <Typography className='title' sx={{ fontSize: 18 }}>
+              <Typography className='title' sx={{ fontSize: 19 }}>
                 {post.title}
               </Typography>
               <Typography className='author' sx={{ fontSize: 15 }} aria-describedby={idAuthorView} onClick={this.handleAuthorViewOpen}>
@@ -94,11 +94,11 @@ class Post extends Component {
               <MyPopover id={idAuthorView} open={openAuthorView} anchorEl={authorView} onClose={this.handleAuthorViewClose}>
                 <ProfileInfo username={authReducer.user.username} profile={post.author} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow}/>
               </MyPopover>
-              <Typography className='date' sx={{ fontSize: 15 }}>
+              <Typography className='date' sx={{ fontSize: 14 }}>
                 - {date}
               </Typography>
             </Box>
-            <Typography className='body' variant="body2">
+            <Typography className='body' sx={{ fontSize: 16 }}>
               {post.body}
             </Typography>
           </CardContent>

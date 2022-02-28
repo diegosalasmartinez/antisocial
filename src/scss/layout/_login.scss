@@ -59,6 +59,10 @@
       input.focus-visible + fieldset {
         border-color: $blue!important;
       }
+      
+      textarea.focus-visible + textarea + fieldset {
+        border-color: $blue!important;
+      }
     }
   }
 }

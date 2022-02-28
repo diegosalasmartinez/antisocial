@@ -1,7 +1,8 @@
 .post {
   background-color: $primary-light !important;
-  margin-bottom: 1.5rem;
-
+  margin-bottom: 1rem;
+  border-radius: 12px !important;
+  
   .MuiCardContent-root {
     padding-bottom: 0;
 
@@ -72,5 +73,11 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+.create-post {
+  textarea{ 
+    color: $white;
   }
 }
