@@ -32,13 +32,13 @@ export default class CreatePost extends Component {
     const { title, body } = post;
 
     return (
-      <Box>
-        <Typography textAlign="left" variant='h6'>
+      <Box className='create-post'>
+        <Typography className='name' textAlign="left" sx={{ fontSize: 20, fontWeight: 'bold' }}>
           Post your idea
         </Typography>
         <Box className='form' sx={{mt: '1rem'}}>
           <MyTextField param='title' label='Title' value={title} onChange={this.onChange}/>
-          <MyTextField param='body' label='Body' value={body} mb={0} onChange={this.onChange}/>
+          <MyTextField param='body' label='Body' value={body} multiline={true} rows={4} mb={0} onChange={this.onChange}/>
         </Box>
         <Box className='jc-r'>
           <MyButton text='Cancel' variant='secondary' onClick={this.props.onCancel}/>

@@ -7,6 +7,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 
 import MyButton from '../components/MyButton'
 import CreatePost from '../pages/posts/CreatePost'
+import MyModal from 'src/components/MyModal'
 
 class RightPanel extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class RightPanel extends Component {
       this.props.showNotification(postReducer.error);
       await this.props.clearErrorPost();
     }
-    this.setState({btnCreatePostLoading: false});
+    this.setState({showPostForm:false, btnCreatePostLoading: false});
   }
 
   render() {
@@ -49,25 +50,9 @@ class RightPanel extends Component {
             </IconButton>
           </Tooltip>
         </Box>
-        { showPostForm ? 
+        <MyModal open={showPostForm} name='create-post' onClose={this.onCancelPost}>
           <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} btnLoading={btnCreatePostLoading}/>
-          :
-          <Box className='jc-r'>
-            <MyButton text='Create a post' onClick={this.onShowCreatePost}/>
-          </Box>
-        }
-        <Typography variant='body1' noWrap component="div">
-          Create a post
-        </Typography>
-        <Typography variant='body1' noWrap component="div">
-          Create a post
-        </Typography>
-        <Typography variant='body1' noWrap component="div">
-          Create a post
-        </Typography>
-        <Typography textAlign="left" variant='body1'>
-          Create your postegse segsegs hh
-        </Typography>
+        </MyModal>
       </Box>
     )
   }
