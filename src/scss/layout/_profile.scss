@@ -20,13 +20,30 @@
 
 .profile-info {
   margin-bottom: 10px;
+  min-width: 320px;
 
-  .name {
+  .profile-info-title {
+    display: flex;
+    justify-content: space-between;
+
+    .name {
+      color: $white;
+      font-weight: bold;
+    }
+    
+    .username {
+      color: $white-secondary;
+      margin-bottom: 15px;
+    }
+
+    .MuiButton-root {
+      margin: 0;
+    }
+  }
+
+  .info {
     color: $white;
-    font-weight: bold;
   }
 
-  .username {
-    color: $white-secondary;
-  }
+
 }

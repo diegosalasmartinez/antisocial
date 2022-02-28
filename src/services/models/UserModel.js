@@ -6,6 +6,7 @@ export default class UserModel {
   username = "";
   password = "";
   posts = [];
+  postsNumber = 0;
   likes = [];
   unlikes = [];
   saves = [];
