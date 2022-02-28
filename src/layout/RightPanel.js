@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../services/redux/actions/postActions'
-import { Box, Typography } from '@mui/material'
+import { Box, IconButton, Tooltip, Typography } from '@mui/material'
+import PostAddIcon from '@mui/icons-material/PostAdd';
+
 import MyButton from '../components/MyButton'
 import CreatePost from '../pages/posts/CreatePost'
 
@@ -39,6 +41,14 @@ class RightPanel extends Component {
 
     return (
       <Box className='right-panel'>
+        <Box className='post-options'>
+          <Typography className='info' textAlign="left" sx={{ fontSize: 15 }}>Do you have something to share?</Typography>
+          <Tooltip title='Write a post'placement="top">
+            <IconButton aria-label="post" onClick={this.onShowCreatePost}>
+              <PostAddIcon fontSize='small'/>
+            </IconButton>
+          </Tooltip>
+        </Box>
         { showPostForm ? 
           <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} btnLoading={btnCreatePostLoading}/>
           :

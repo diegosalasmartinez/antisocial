@@ -3,12 +3,9 @@ import { Box, Typography } from '@mui/material'
 import MyButton from 'src/components/MyButton';
 
 export default class ProfileInfo extends Component {
-  onFollow = () => {
-
-  }
-
   render() {
-    const { profile } = this.props
+    const { profile, username, profileView } = this.props
+    const showFollowButton = username !== profile.username;
 
     return (
       <Box className='profile-info'>
@@ -21,8 +18,17 @@ export default class ProfileInfo extends Component {
               @{profile.username}
             </Typography>
           </Box>
-          <Box>
-            <MyButton text='Follow' onClick={this.onFollow}/>
+          <Box className='buttons'>
+            { !profileView && 
+              <Box>
+                <MyButton text='See profile' variant='secondary' onClick={this.props.onSeeProfile}/>
+              </Box>
+            }
+            { showFollowButton && 
+              <Box>
+                <MyButton text='Follow' onClick={this.props.onFollow}/> 
+              </Box>
+            }
           </Box>
         </Box>
         <Typography className='info' textAlign="left" sx={{ fontSize: 15 }}>

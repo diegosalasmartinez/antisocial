@@ -87,13 +87,23 @@ class Profile extends Component {
     }
   }
 
+  onSeeProfile = () => {
+    const { profile } = this.state;
+    this.props.navigate(profile.username);
+  }
+
+  onFollow = () => {
+
+  }
+
   render() {
+    const { auth } = this.props
     const { loading, tab, profile, posts, postsLiked, postsUnliked } = this.state;
 
     return (
       <Wrapper loading={loading}>
         <Box className='profile'>
-          <ProfileInfo  profile={profile}/>
+          <ProfileInfo username={auth.user.username} profile={profile} profileView={true} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow}/>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tab} onChange={this.handleChange} aria-label="basic tabs example">
               <Tab label="Posts" {...defineProps(0)} />

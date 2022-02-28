@@ -61,6 +61,15 @@ class Post extends Component {
     this.setState({authorView: null});
   }
 
+  onSeeProfile = () => {
+    const { post } = this.props;
+    this.props.navigate("/"+post.author.username);
+  }
+
+  onFollow = () => {
+
+  }
+
   render() {
     const { authorView } = this.state
     const { post, authReducer } = this.props;
@@ -83,7 +92,7 @@ class Post extends Component {
                 @{post.author.username}
               </Typography>
               <MyPopover id={idAuthorView} open={openAuthorView} anchorEl={authorView} onClose={this.handleAuthorViewClose}>
-                <ProfileInfo profile={post.author}/>
+                <ProfileInfo username={authReducer.user.username} profile={post.author} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow}/>
               </MyPopover>
               <Typography className='date' sx={{ fontSize: 15 }}>
                 - {date}
