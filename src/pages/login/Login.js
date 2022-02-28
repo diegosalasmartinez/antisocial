@@ -66,7 +66,7 @@ class Login extends Component {
             </Box>
             <Box className='form'>
               <MyTextField param='username' label='Username' value={username} onChange={this.onChange}/>
-              <MyTextField param='password' label='Password' value={password} onChange={this.onChange}/>
+              <MyTextField param='password' label='Password' value={password} type='password' onChange={this.onChange}/>
             </Box>
             <Box className='jc-c' sx={{mb: 2}}>
               <MyButton text='Login' onClick={this.onLogin}/>
