@@ -1,0 +1,15 @@
+.modal {
+
+  .modal-content {
+    background-color: $primary-light;
+    color: $white;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400;
+    box-shadow: 24;
+    border-radius: 12px;
+    padding: 16px 20px;
+  }
+}
