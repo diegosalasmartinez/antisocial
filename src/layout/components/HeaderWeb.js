@@ -10,7 +10,7 @@ export default class HeaderWeb extends Component {
           sx={{mr: 2, display: { xs: 'none', md: 'flex' }, '&:hover': { cursor: 'pointer' } }} 
           onClick={e => this.props.handleCloseNavMenu(e, "/")}
         >
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{fontWeight: 'bold'}}>
             Antisocial
           </Typography>
         </Box>

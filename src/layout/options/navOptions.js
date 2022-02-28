@@ -7,7 +7,7 @@ const navOptions = [
     icon: <Home/>
   },
   {
-    name: 'Profle',
+    name: 'Profile',
     path: `/profile`,
     icon: <Newspaper/>
   },
