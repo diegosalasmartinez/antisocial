@@ -3,4 +3,17 @@
   background-color: $primary-light;
   border-radius: 4px;
   padding: 6px 14px;
+
+  .post-options {
+    display: flex;
+    align-items: center;
+
+    svg {
+      color: $white;
+      
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
 }

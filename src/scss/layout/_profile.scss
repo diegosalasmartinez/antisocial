@@ -20,7 +20,7 @@
 
 .profile-info {
   margin-bottom: 10px;
-  min-width: 320px;
+  min-width: 350px;
 
   .profile-info-title {
     display: flex;
@@ -36,8 +36,14 @@
       margin-bottom: 15px;
     }
 
-    .MuiButton-root {
-      margin: 0;
+    .buttons {
+      display: flex;
+      gap: 5px;
+      
+      .MuiButton-root {
+        margin: 0;
+        padding: 4px 12px;
+      }
     }
   }
 
