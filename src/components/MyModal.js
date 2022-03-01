@@ -1,4 +1,4 @@
-import { Box, Modal, Typography } from '@mui/material'
+import { Box, Modal } from '@mui/material'
 import React, { Component } from 'react'
 
 export default class MyModal extends Component {

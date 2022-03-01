@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material'
 import MyButton from '../../components/MyButton'
 import MyTextField from '../../components/MyTextField'
 import PostModel from '../../services/models/PostModel';
+import MySelectField from 'src/components/MySelectField';
 
 export default class CreatePost extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ export default class CreatePost extends Component {
         </Typography>
         <Box className='form' sx={{mt: '1rem'}}>
           <MyTextField param='title' label='Title' value={title} onChange={this.onChange}/>
+          <MySelectField id='category' label='Category' onChange={this.onChange}/>
           <MyTextField param='body' label='Body' value={body} multiline={true} rows={4} mb={0} onChange={this.onChange}/>
         </Box>
         <Box className='jc-r'>
