@@ -9,7 +9,6 @@
     .header {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
       
       .title {
         color: $white;
@@ -26,6 +25,15 @@
           cursor: pointer;
           color: $white;
         }
+      }
+    }
+
+    .category {
+      margin-bottom: 5px;
+
+      .MuiChip-root {
+        background-color: $blue;
+        height: 24px;
       }
     }
 

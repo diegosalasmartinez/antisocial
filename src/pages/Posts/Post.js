@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
-import { Box, Card, CardActions, CardContent, IconButton, Typography } from '@mui/material'
+import { Box, Card, CardActions, CardContent, Chip, IconButton, Typography } from '@mui/material'
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownIcon from '@mui/icons-material/ThumbDownOutlined'
 import BookmarkIcon from '@mui/icons-material/BookmarkBorderOutlined'
@@ -97,6 +97,11 @@ class Post extends Component {
               <Typography className='date' sx={{ fontSize: 14 }}>
                 - {date}
               </Typography>
+            </Box>
+            <Box className='category'>
+              <Chip label={post.category.name}>
+                {post.category.name}
+              </Chip>
             </Box>
             <Typography className='body' sx={{ fontSize: 16 }}>
               {post.body}
