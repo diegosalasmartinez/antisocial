@@ -99,9 +99,7 @@ class Post extends Component {
               </Typography>
             </Box>
             <Box className='category'>
-              <Chip label={post.category.name}>
-                {post.category.name}
-              </Chip>
+              <Chip label={post.category.name}/>
             </Box>
             <Typography className='body' sx={{ fontSize: 16 }}>
               {post.body}

@@ -5,7 +5,6 @@ import * as postActions from '../services/redux/actions/postActions'
 import { Box, IconButton, Tooltip, Typography } from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd';
 
-import MyButton from '../components/MyButton'
 import CreatePost from '../pages/posts/CreatePost'
 import MyModal from 'src/components/MyModal'
 
@@ -38,7 +37,8 @@ class RightPanel extends Component {
   }
 
   render() {
-    const { showPostForm, btnCreatePostLoading } = this.state
+    const { showPostForm, btnCreatePostLoading } = this.state;
+    const { category } = this.props;
 
     return (
       <Box className='right-panel'>
@@ -51,7 +51,7 @@ class RightPanel extends Component {
           </Tooltip>
         </Box>
         <MyModal open={showPostForm} name='create-post' onClose={this.onCancelPost}>
-          <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} btnLoading={btnCreatePostLoading}/>
+          <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} categories={category.categories} btnLoading={btnCreatePostLoading}/>
         </MyModal>
       </Box>
     )
@@ -60,7 +60,8 @@ class RightPanel extends Component {
 
 const mapStateToProps = state => {
   return {
-    post: state.post
+    post: state.post,
+    category: state.category,
   }
 }
 
