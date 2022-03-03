@@ -3,24 +3,13 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 
 export default class MySelectField extends Component {
   render() {
-    const { id, label = '', value = '' } = this.props
+    const { param, label = '', value = '', data = [] } = this.props
 
     return (
       <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth>
-        <InputLabel id={id}>{label}</InputLabel>
-        <Select
-          labelId={id}
-          id={id}
-          value={value}
-          label={label}
-          onChange={this.props.onChange}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+        <InputLabel id={param}>{label}</InputLabel>
+        <Select labelId={param} id={param} value={value} label={label} onChange={this.props.onChange(param)}>
+          { data.map(d => <MenuItem key={d.value} value={d.value}>{d.label}</MenuItem>) }
         </Select>
       </FormControl>
     )
