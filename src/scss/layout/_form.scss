@@ -1,0 +1,48 @@
+.form {
+  
+  .MuiFormControl-root {
+    margin: 0 0 1.25rem 0;
+
+    .MuiInputLabel-root {
+      color: $white-secondary;
+
+      &.Mui-focused {
+        color: $blue;
+      }
+    }
+    
+    .MuiOutlinedInput-root {
+
+      input.MuiInputBase-input, .MuiSelect-select {
+        color: $white!important;
+        padding: 14px!important;
+      }
+
+      input.MuiInputBase-input:-webkit-autofill{
+        -webkit-text-fill-color: $white;
+        -webkit-box-shadow: 0 0 0px 1000px #2B2F30 inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
+      fieldset {
+        border-color: $white-secondary!important;
+      }
+
+      input.focus-visible + fieldset {
+        border-color: $blue!important;
+      }
+      
+      textarea.focus-visible + textarea + fieldset {
+        border-color: $blue!important;
+      }
+
+      .MuiSelect-select[aria-expanded="true"] + input + svg {
+        color: white;
+
+        & + fieldset {
+          border-color: $blue!important;
+        }
+      }
+    }
+  }
+}
