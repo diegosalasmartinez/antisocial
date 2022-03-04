@@ -3,33 +3,63 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Box, Card, CardContent, Grid, Typography } from '@mui/material'
 import { getCategoryColors } from '../../theme/colors'
+import Wrapper from '../../components/Wrapper'
+import CategoriesOptions from './CategoriesOptions'
 
 class Categories extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categorySelected: '',
+      posts: [],
+      loading: true
+    }
+  }
+
+  componentDidMount() { 
+    const { pathname = []} = this.props.location;
+    const categoryId = pathname.slice(12);
+    if (categoryId !== '') {
+      this.getPosts(categoryId);
+    }
+
+    this.setState({loading: false})
+  }
+
+  componentDidUpdate(prevProps, prevState) { 
+    const prevPathname = prevProps.location.pathname;
+    const pathname = this.props.location.pathname;
+
+    if (prevPathname !== pathname && pathname === '/categories') {
+      this.setState({categorySelected: '', posts: [], loading: false})
+    }
+  } 
+
+  getPosts = async (categoryId) => {
+    this.setState({loading: true});
+
+    let posts = [];
+    this.setState({categorySelected: categoryId, posts, loading: false})
+  }
+
+  onClickCategory = (categoryId) => {
+    this.props.navigate("/categories/"+categoryId);
+    this.getPosts(categoryId);
+  }
+
   render() {
+    const { categorySelected, loading, posts } = this.state
     const { category } = this.props;
     const { categories } = category;
 
     return (
-      <Box className='categories'>
-        <Typography className='category-title' textAlign="left" sx={{ fontSize: 20 }}>
-          Categories for you
-        </Typography>
-        <Box>
-          <Grid container spacing={2}>
-            { categories.map(c => 
-              <Grid item xs={6}>
-                <Card className='category' sx={{backgroundColor: getCategoryColors(c.name)}}>
-                  <CardContent>
-                    <Typography className='title' sx={{ fontSize: 16 }}>
-                      {c.name}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ) }
-          </Grid>
-        </Box>
-      </Box>
+      <Wrapper loading={loading}>
+        { categorySelected === '' ? 
+          <CategoriesOptions categories={categories} onClickCategory={this.onClickCategory}/>
+          :
+          <div>HOLA</div>
+        }
+      </Wrapper>
     )
   }
 }

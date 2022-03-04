@@ -39,7 +39,8 @@ class Profile extends Component {
         posts: userProfile.posts, 
         postsLiked: userProfile.likes, 
         postsUnliked: userProfile.unlikes, 
-        loading: false});
+        loading: false
+      });
     }
   }
 
