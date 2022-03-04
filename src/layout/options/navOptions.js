@@ -1,4 +1,4 @@
-import { Home, Newspaper, Bookmark } from '@mui/icons-material'
+import { Home, Newspaper, Bookmark, Category } from '@mui/icons-material'
 
 const navOptions = [
   {
@@ -15,6 +15,11 @@ const navOptions = [
     name: 'Saved',
     path: '/saved',
     icon: <Bookmark/>
+  },
+  {
+    name: 'Categories',
+    path: '/categories',
+    icon: <Category/>
   },
 ]
 
