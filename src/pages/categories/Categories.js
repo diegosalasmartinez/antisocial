@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Box, Card, CardContent, Grid, Typography } from '@mui/material'
-import { getCategoryColors } from '../../theme/colors'
+import * as postActions from '../../services/redux/actions/postActions'
 import Wrapper from '../../components/Wrapper'
 import CategoriesOptions from './CategoriesOptions'
 
@@ -37,9 +36,15 @@ class Categories extends Component {
 
   getPosts = async (categoryId) => {
     this.setState({loading: true});
-
-    let posts = [];
-    this.setState({categorySelected: categoryId, posts, loading: false})
+    const posts = await this.props.getPosts(categoryId);
+    const postReducer = this.props.post;
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    } else {
+      console.log(posts);
+      this.setState({categorySelected: categoryId, posts, loading: false})
+    }
   }
 
   onClickCategory = (categoryId) => {
@@ -67,12 +72,13 @@ class Categories extends Component {
 const mapStateToProps = (state) => {
   return {
     category: state.category,
+    post: state.post,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    // ...bindActionCreators(userActions, dispatch)
+    ...bindActionCreators(postActions, dispatch)
   }
 }
 

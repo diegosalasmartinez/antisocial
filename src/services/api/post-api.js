@@ -5,8 +5,8 @@ const createPost = async (post) => {
   return await apiPost(`${base}/add`, post);
 }
 
-const getPosts = async () => {
-  return await apiGet(`${base}/`);
+const getPosts = async (category) => {
+  return await apiGet(`${base}?category=${category}`);
 }
 
 const likePost = async (post) => {

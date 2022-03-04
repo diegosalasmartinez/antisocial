@@ -29,9 +29,9 @@ const createPost = (post) => async (dispatch) => {
   }
 }
 
-const getPosts = () => async (dispatch) => {
+const getPosts = (categoryId) => async (dispatch) => {
   try {
-    return await getPostsAPI();
+    return await getPostsAPI(categoryId);
   } catch(e){
     const actionType = getError(e, ERROR_POST);
     return dispatch(actionType)
