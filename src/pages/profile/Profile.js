@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Wrapper from '../../components/Wrapper'
 import * as userActions from '../../services/redux/actions/userActions'
+import Wrapper from '../../components/Wrapper'
 import { Box, Tab, Tabs } from '@mui/material'
 import MyTabPanel from '../../components/MyTabPanel'
 import Posts from '../posts/Posts'
@@ -25,7 +25,7 @@ class Profile extends Component {
 
   async componentDidMount() { 
     const { pathname = []} = this.props.location;
-    const username = pathname.slice(1);
+    const username = pathname.slice(6);
 
     const res = await this.props.getProfile(username);
     const userReducer = this.props.user;

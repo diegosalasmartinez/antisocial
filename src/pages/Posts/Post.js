@@ -9,6 +9,7 @@ import BookmarkIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import MyPopover from '../../components/MyPopover'
 import moment from 'moment'
 import ProfileInfo from '../profile/ProfileInfo'
+import { getCategoryColors } from 'src/theme/colors'
 
 class Post extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class Post extends Component {
 
   onSeeProfile = () => {
     const { post } = this.props;
-    this.props.navigate("/"+post.author.username);
+    this.props.navigate("/user/"+post.author.username);
   }
 
   onFollow = () => {
@@ -99,7 +100,7 @@ class Post extends Component {
               </Typography>
             </Box>
             <Box className='category'>
-              <Chip label={post.category.name}/>
+              <Chip label={post.category.name} sx={{backgroundColor: getCategoryColors(post.category.name)}}/>
             </Box>
             <Typography className='body' sx={{ fontSize: 16 }}>
               {post.body}

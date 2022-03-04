@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 import navOptions from './options/navOptions'
-import colors from '../theme/colors'
+import { colors } from '../theme/colors'
 
 export default class Sidebar extends Component {
   selectOption = (e, path) => {
@@ -10,7 +10,7 @@ export default class Sidebar extends Component {
       if (path !== '/profile') {
         this.props.navigate(path);
       } else {
-        this.props.navigate("/"+this.props.username);
+        this.props.navigate("/user/"+this.props.username);
       }
     }
   }

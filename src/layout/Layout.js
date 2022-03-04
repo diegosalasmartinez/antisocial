@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCategories } from '../services/redux/actions/categoryActions'
 import { Box } from '@mui/material'
 import Header from './Header'
-import colors from '../theme/colors'
+import { colors } from '../theme/colors'
 
 export default function Layout(props) {
   const location = useLocation();
