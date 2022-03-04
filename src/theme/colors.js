@@ -9,4 +9,26 @@ const colors = {
   'WHITE': '#F4FEFD'
 }
 
-export default colors
+const categoryColors = {
+  'Math': 'red',
+  'Memes': '#005EF3',
+  'Programming': '#5F7ADB',
+}
+
+const getCategoryColors = (category) => {
+  switch(category) {
+    case 'Math': 
+      return 'red';
+    case 'Memes': 
+      return '#005EF3';
+    case 'Programming': 
+      return '#5F7ADB';
+    default:
+      return '#1B2223'; 
+  }
+}
+
+export {
+  colors,
+  getCategoryColors
+}
