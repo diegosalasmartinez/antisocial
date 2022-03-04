@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, CircularProgress, Typography } from '@mui/material'
-import colors from '../theme/colors'
+import { colors } from '../theme/colors'
 
 export default class MyButton extends Component {
   render() {

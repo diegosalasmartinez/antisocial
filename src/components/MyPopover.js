@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Popover } from '@mui/material'
-import colors from '../theme/colors';
 
 export default class MyPopover extends Component {
   render() {
@@ -12,7 +11,6 @@ export default class MyPopover extends Component {
         anchorEl={anchorEl}
         anchorOrigin={anchorOrigin}
         onClose={this.props.onClose}
-        // sx={{backgroundColor: colors.PRIMARY}}
       >
         {this.props.children}
       </Popover>
