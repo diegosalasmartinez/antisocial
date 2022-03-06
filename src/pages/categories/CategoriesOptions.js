@@ -14,7 +14,7 @@ export default class CategoriesOptions extends Component {
           <Grid container spacing={2}>
             { categories.map(c => 
               <Grid item key={c._id} xs={6}>
-                <Card className='category' sx={{backgroundColor: getCategoryColors(c.name)}} onClick={() => this.props.onClickCategory(c._id)}>
+                <Card className='category' sx={{backgroundColor: getCategoryColors(c.name)}} onClick={() => this.props.onClickCategory(c._id, c.name)}>
                   <CardContent>
                     <Typography className='title' sx={{ fontSize: 16 }}>
                       {c.name}

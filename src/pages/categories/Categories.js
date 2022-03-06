@@ -11,6 +11,7 @@ class Categories extends Component {
     super(props);
     this.state = {
       categorySelected: '',
+      categoryName: '',
       posts: [],
       loading: true
     }
@@ -31,11 +32,11 @@ class Categories extends Component {
     const pathname = this.props.location.pathname;
 
     if (prevPathname !== pathname && pathname === '/categories') {
-      this.setState({categorySelected: '', posts: [], loading: false})
+      this.setState({categorySelected: '', categoryName: '', posts: [], loading: false})
     }
   } 
 
-  getPosts = async (categoryId) => {
+  getPosts = async (categoryId, categoryName = '') => {
     this.setState({loading: true});
     const posts = await this.props.getPosts(categoryId);
     const postReducer = this.props.post;
@@ -43,17 +44,31 @@ class Categories extends Component {
       this.props.showNotification(postReducer.error);
       await this.props.clearErrorPost();
     } else {
-      this.setState({categorySelected: categoryId, posts, loading: false})
+      this.setState({categorySelected: categoryId, categoryName: categoryName, posts, loading: false})
     }
   }
 
-  onClickCategory = (categoryId) => {
+  onClickCategory = (categoryId, categoryName) => {
     this.props.navigate("/categories/"+categoryId);
-    this.getPosts(categoryId);
+    this.getPosts(categoryId, categoryName);
+  }
+
+  updatePosts = (post) => {
+    const ind = this.state.posts.findIndex(p => p._id === post._id)
+    if (ind >= 0) {
+      let posts = [...this.state.posts];
+      posts[ind] = {...post};
+      this.setState({posts: posts});
+    }
+  }
+
+  showCategories = () => {
+    this.props.navigate("/categories");
+    this.setState({categorySelected: '', categoryName: '', posts: [], loading: false});
   }
 
   render() {
-    const { categorySelected, loading, posts } = this.state
+    const { categorySelected, categoryName, loading, posts } = this.state;
     const { category } = this.props;
     const { categories } = category;
 
@@ -62,7 +77,7 @@ class Categories extends Component {
         { categorySelected === '' ? 
           <CategoriesOptions categories={categories} onClickCategory={this.onClickCategory}/>
           :
-          <CategoriesPosts/>
+          <CategoriesPosts {...this.props} posts={posts} categoryName={categoryName} updatePosts={this.updatePosts} showCategories={this.showCategories}/>
         }
       </Wrapper>
     )

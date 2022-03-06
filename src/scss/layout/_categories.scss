@@ -21,3 +21,25 @@
     }
   }
 }
+
+.category-posts {
+  color: $white;
+  border-radius: 12px;
+  padding: 6px 14px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+
+  svg {
+    color: $white;
+    
+    &:hover {
+      color: $blue;
+    }
+  }
+  
+  .title {
+    color: $white;
+    font-weight: bold;
+  }
+}
