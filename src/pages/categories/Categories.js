@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
 import Wrapper from '../../components/Wrapper'
 import CategoriesOptions from './CategoriesOptions'
+import CategoriesPosts from './CategoriesPosts'
 
 class Categories extends Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class Categories extends Component {
         { categorySelected === '' ? 
           <CategoriesOptions categories={categories} onClickCategory={this.onClickCategory}/>
           :
-          <div>HOLA</div>
+          <CategoriesPosts/>
         }
       </Wrapper>
     )
