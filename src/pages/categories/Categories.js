@@ -42,7 +42,6 @@ class Categories extends Component {
       this.props.showNotification(postReducer.error);
       await this.props.clearErrorPost();
     } else {
-      console.log(posts);
       this.setState({categorySelected: categoryId, posts, loading: false})
     }
   }
