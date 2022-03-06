@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Box, Container, Grid, Typography } from '@mui/material'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from '../../services/redux/actions/authActions'
-import UserModel from '../../services/models/UserModel'
+import { Box, Container, Grid, Typography } from '@mui/material'
 import MyTextField from '../../components/MyTextField'
 import MyDateField from '../../components/MyDateField'
 import MyButton from '../../components/MyButton'
+import UserModel from '../../services/models/UserModel'
 
 class Register extends Component {
   constructor(props) {

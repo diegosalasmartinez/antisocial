@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import { Box } from '@mui/material'
 import PropTypes from 'prop-types'
-import { Box, Typography } from '@mui/material'
 
 export default class MyTabPanel extends Component {
   render() {

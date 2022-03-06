@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import {  useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Container, Grid } from '@mui/material'
 import Sidebar from './Sidebar'
 import RightPanel from './RightPanel'

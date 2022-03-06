@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../services/redux/actions/postActions'
-
 import { Box, IconButton, Tooltip, Typography } from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd'
 import CreatePost from '../pages/posts/CreatePost'

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 import navOptions from './options/navOptions'
 import { colors } from '../theme/colors'

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { Box, IconButton, Typography } from '@mui/material'
 import ArrowBack from '@mui/icons-material/ArrowBack'
 import Posts from '../posts/Posts'

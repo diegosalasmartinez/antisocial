@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 import MyButton from '../../components/MyButton'
 import MyTextField from '../../components/MyTextField'
-import PostModel from '../../services/models/PostModel';
-import MySelectField from 'src/components/MySelectField';
+import MySelectField from '../../components/MySelectField'
+import PostModel from '../../services/models/PostModel'
 
 export default class CreatePost extends Component {
   constructor(props) {

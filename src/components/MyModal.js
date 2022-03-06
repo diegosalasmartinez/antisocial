@@ -1,5 +1,5 @@
-import { Box, Modal } from '@mui/material'
 import React, { Component } from 'react'
+import { Box, Modal } from '@mui/material'
 
 export default class MyModal extends Component {
   render() {

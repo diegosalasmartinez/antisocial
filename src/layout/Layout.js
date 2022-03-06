@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategories } from '../services/redux/actions/categoryActions'
 import { Box } from '@mui/material'

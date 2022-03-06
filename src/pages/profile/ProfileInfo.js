@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Box, Typography } from '@mui/material'
-import MyButton from 'src/components/MyButton';
+import MyButton from '../../components/MyButton'
 
 export default class ProfileInfo extends Component {
   render() {

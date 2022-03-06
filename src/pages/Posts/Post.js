@@ -7,9 +7,9 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownIcon from '@mui/icons-material/ThumbDownOutlined'
 import BookmarkIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import MyPopover from '../../components/MyPopover'
-import moment from 'moment'
 import ProfileInfo from '../profile/ProfileInfo'
-import { getCategoryColors } from 'src/theme/colors'
+import { getCategoryColors } from '../../theme/colors'
+import moment from 'moment'
 
 class Post extends Component {
   constructor(props) {
