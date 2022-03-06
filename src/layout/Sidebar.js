@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { Box, Button, Grid, Stack, Typography } from '@mui/material'
 import navOptions from './options/navOptions'
 import { colors } from '../theme/colors'
@@ -7,7 +8,7 @@ export default class Sidebar extends Component {
   selectOption = (e, path) => {
     e.preventDefault();
     if (path) {
-      if (path !== '/profile') {
+      if (path !== '/user') {
         this.props.navigate(path);
       } else {
         this.props.navigate("/user/"+this.props.username);
@@ -17,8 +18,12 @@ export default class Sidebar extends Component {
 
   getVariantText = (h) => {
     const { pathname } = this.props.location; 
-    const { path } = h; 
-    return pathname === path ? 'contained' : 'text';
+    const { path } = h;
+    if (path.length === 1) {
+      return pathname === path ? 'contained' : 'text';
+    } else {
+      return pathname.substring(1).includes(path.substring(1)) ? 'contained' : 'text';
+    }
   }
 
   render() {

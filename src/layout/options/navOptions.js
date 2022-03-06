@@ -8,7 +8,7 @@ const navOptions = [
   },
   {
     name: 'Profile',
-    path: `/profile`,
+    path: `/user`,
     icon: <Newspaper/>
   },
   {
