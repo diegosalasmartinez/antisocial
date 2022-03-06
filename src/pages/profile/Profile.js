@@ -113,13 +113,19 @@ class Profile extends Component {
             </Tabs>
           </Box>
           <MyTabPanel value={tab} index={0}>
-            <Posts {...this.props} posts={posts} updatePosts={this.updatePosts}/>
+            <Box className='profile-posts'>
+              <Posts {...this.props} posts={posts} updatePosts={this.updatePosts}/>
+            </Box>
           </MyTabPanel>
           <MyTabPanel value={tab} index={1}>
-            <Posts {...this.props} posts={postsLiked} updatePosts={this.updatePosts}/>
+            <Box className='profile-posts'>
+              <Posts {...this.props} posts={postsLiked} updatePosts={this.updatePosts}/>
+            </Box>
           </MyTabPanel>
           <MyTabPanel value={tab} index={2}>
-            <Posts {...this.props} posts={postsUnliked} updatePosts={this.updatePosts}/>
+            <Box className='profile-posts'>
+              <Posts {...this.props} posts={postsUnliked} updatePosts={this.updatePosts}/>
+            </Box>
           </MyTabPanel>
         </Box>
       </Wrapper>

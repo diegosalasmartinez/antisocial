@@ -9,8 +9,8 @@ export default class CategoriesPosts extends Component {
     const { posts, categoryName } = this.props;
 
     return (
-      <>
-        <Box className='category-posts' sx={{backgroundColor: getCategoryColors(categoryName)}}>
+      <Box className='categories'>
+        <Box className='categories-options' sx={{backgroundColor: getCategoryColors(categoryName)}}>
           <IconButton aria-label="back" onClick={this.props.showCategories}>
             <ArrowBack fontSize='small'/>
           </IconButton>
@@ -18,8 +18,10 @@ export default class CategoriesPosts extends Component {
             {categoryName}'s Posts
           </Typography>
         </Box>
-        <Posts {...this.props} posts={posts} updatePosts={this.props.updatePosts}/>
-      </>
+        <Box className='categories-posts'>
+          <Posts {...this.props} posts={posts} updatePosts={this.props.updatePosts}/>
+        </Box>
+      </Box>
     )
   }
 }

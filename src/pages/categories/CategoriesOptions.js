@@ -6,7 +6,7 @@ export default class CategoriesOptions extends Component {
   render() {
     const { categories } = this.props
     return (
-      <Box className='categories'>
+      <Box className='categories-selection'>
         <Typography className='category-title' textAlign="left" sx={{ fontSize: 20 }}>
           Categories for you
         </Typography>

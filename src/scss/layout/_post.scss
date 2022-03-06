@@ -75,15 +75,6 @@
   }  
 }
 
-.posts {
-  height: calc(100vh - 90px);
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
-
 .create-post {
   textarea{ 
     color: $white;

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
+import { Box } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
 import Posts from '../posts/Posts'
 
@@ -39,7 +40,9 @@ class Home extends Component {
 
     return (
       <Wrapper loading={loading}>
-        <Posts {...this.props} posts={posts} updatePosts={this.updatePosts}/>
+        <Box className='home'>
+          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts}/>
+        </Box>
       </Wrapper>
     )
   }
