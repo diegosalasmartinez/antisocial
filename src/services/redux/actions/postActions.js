@@ -61,10 +61,7 @@ const unlikePost = (p) => async (dispatch) => {
 const savePost = (p) => async (dispatch) => {
   try {
     const res = await savePostAPI(p);
-    return dispatch({
-      type: SAVE_POST,
-      playload: res
-    })
+    return res;
   } catch(e){
     const actionType = getError(e, ERROR_POST);
     return dispatch(actionType)

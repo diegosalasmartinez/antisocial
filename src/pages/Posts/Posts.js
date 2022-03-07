@@ -9,12 +9,6 @@ export default class Posts extends Component {
     return (
       <Box className='posts'>
         { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
-        { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
-        { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
-        { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
-        { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
-        { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
-        { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
       </Box>
     )
   }

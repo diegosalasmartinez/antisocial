@@ -29,7 +29,7 @@
     }
 
     .category {
-      margin-bottom: 5px;
+      margin-bottom: 10px;
 
       .MuiChip-root {
         color: $white;
@@ -70,6 +70,12 @@
     #unlike.checked{
       .MuiTypography-root, svg {
         color: $red;
+      }
+    }
+    
+    #save.checked{
+      .MuiTypography-root, svg {
+        color: $purple;
       }
     }
   }  

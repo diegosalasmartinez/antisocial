@@ -6,6 +6,7 @@ import { Box, Card, CardActions, CardContent, Chip, IconButton, Typography } fro
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownIcon from '@mui/icons-material/ThumbDownOutlined'
 import BookmarkIcon from '@mui/icons-material/BookmarkBorderOutlined'
+import BookmarkFullIcon from '@mui/icons-material/Bookmark'
 import MyPopover from '../../components/MyPopover'
 import ProfileInfo from '../profile/ProfileInfo'
 import { getCategoryColors } from '../../theme/colors'
@@ -45,8 +46,17 @@ class Post extends Component {
     }
   }
 
-  onSave = () => {
+  onSave = async () => {
     const { post } = this.props;
+    const postUpdated = await this.props.savePost(post);
+    const { postReducer } = this.props;
+
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    } else {
+      this.props.updatePosts(postUpdated);
+    }
   }
   
   onClickUsername = () => {
@@ -78,6 +88,7 @@ class Post extends Component {
     const date = moment(post.date).format('DD/MM/YYYY');
     const likeClassName = post.likes.includes(user._id) ? 'checked' : '';
     const unlikeClassName = post.unlikes.includes(user._id) ? 'checked' : '';
+    const saveClassName = post.saves.includes(user._id) ? 'checked' : '';
     const openAuthorView = Boolean(authorView);
     const idAuthorView = 'author-popover';
 
@@ -123,9 +134,13 @@ class Post extends Component {
                 <ThumbDownIcon fontSize='small'/>
               </IconButton>
             </Box>
-            <Box id='save' className='icon-section'>
-              <IconButton aria-label="save" onClick={this.onFav}>
-                <BookmarkIcon fontSize='small'/>
+            <Box id='save' className={`icon-section ${saveClassName}`}>
+              <IconButton aria-label="save" onClick={this.onSave}>
+                { saveClassName === 'checked' ?
+                  <BookmarkFullIcon fontSize='small'/>
+                  :  
+                  <BookmarkIcon fontSize='small'/>
+                }
               </IconButton>
             </Box>
           </CardActions>
