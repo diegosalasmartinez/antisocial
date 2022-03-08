@@ -10,6 +10,7 @@ import {
 import getError from '../getError'
 import {
   getPosts as getPostsAPI,
+  getSavedPosts as getSavedPostsAPI,
   createPost as createPostAPI,
   likePost as likePostAPI,
   unlikePost as unlikePostAPI,
@@ -32,6 +33,15 @@ const createPost = (post) => async (dispatch) => {
 const getPosts = (categoryId) => async (dispatch) => {
   try {
     return await getPostsAPI(categoryId);
+  } catch(e){
+    const actionType = getError(e, ERROR_POST);
+    return dispatch(actionType)
+  }
+}
+
+const getSavedPosts = () => async (dispatch) => {
+  try {
+    return await getSavedPostsAPI();
   } catch(e){
     const actionType = getError(e, ERROR_POST);
     return dispatch(actionType)
@@ -76,6 +86,7 @@ const clearErrorPost = () => async (dispatch) => {
 
 export { 
   getPosts, 
+  getSavedPosts,
   createPost, 
   likePost, 
   unlikePost, 

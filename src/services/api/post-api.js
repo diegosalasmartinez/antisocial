@@ -9,6 +9,10 @@ const getPosts = async (category) => {
   return await apiGet(`${base}?category=${category}`);
 }
 
+const getSavedPosts = async () => {
+  return await apiGet(`${base}/saved`);
+}
+
 const likePost = async (post) => {
   return await apiPost(`${base}/like`, post);
 }
@@ -21,4 +25,4 @@ const savePost = async (post) => {
   return await apiPost(`${base}/save`, post);
 }
 
-export { getPosts, createPost, likePost, unlikePost, savePost }
+export { getPosts, getSavedPosts, createPost, likePost, unlikePost, savePost }

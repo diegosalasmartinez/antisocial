@@ -12,8 +12,7 @@ const Register = React.lazy(() => import('./pages/login/Register'))
 const Home = React.lazy(() => import('./pages/home/Home'))
 const Profile = React.lazy(() => import('./pages/profile/Profile'))
 const Categories = React.lazy(() => import('./pages/categories/Categories'))
-const A = React.lazy(() => import('./pages/A'))
-const B = React.lazy(() => import('./pages/B'))
+const Saves = React.lazy(() => import('./pages/saves/Saves'))
 
 export default class App extends Component {
   render() {
@@ -26,7 +25,7 @@ export default class App extends Component {
             <Route path='/' element={<Layout {...this.props}/>}>
               <Route path='' element={<Content {...this.props} element={Home}/>}/>
               <Route path='user/:username' element={<Content {...this.props} element={Profile}/>}/>
-              <Route path='saved' element={<Content {...this.props} element={B}/>}/>
+              <Route path='saved' element={<Content {...this.props} element={Saves}/>}/>
               <Route path='categories' element={<Content {...this.props} element={Categories}/>}/>
               <Route path='*' element={<Content {...this.props} element={Categories}/>}/>
             </Route>
