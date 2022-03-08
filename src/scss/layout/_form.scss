@@ -9,6 +9,10 @@
       &.Mui-focused {
         color: $blue;
       }
+
+      &.Mui-error {
+        color: $red!important;
+      }
     }
     
     .MuiOutlinedInput-root {
@@ -36,11 +40,40 @@
         border-color: $blue!important;
       }
 
+      .MuiSelect-select + input + svg {
+        color: $white-secondary;
+      }
+
       .MuiSelect-select[aria-expanded="true"] + input + svg {
-        color: white;
+        color: $blue;
 
         & + fieldset {
           border-color: $blue!important;
+        }
+      }
+
+      &.Mui-error {
+        fieldset {
+          border-color: $red!important;
+        }
+        
+        input.focus-visible + fieldset {
+          border-color: $red!important;
+        }
+        
+        textarea.focus-visible + textarea + fieldset {
+          border-color: $red!important;
+        }
+        
+        .MuiSelect-select+ input + svg {
+          color: $red!important;
+        }
+
+        .MuiSelect-select[aria-expanded="true"] + input + svg {
+          
+          & + fieldset {
+            border-color: $red!important;
+          }
         }
       }
     }
