@@ -9,30 +9,20 @@ export default class PostModel {
   category = new CategoryModel();
 }
 
-const validate = (user) => {
+const validate = (post) => {
   let errors = {
-    DNI: null,
-    name: null,
-    lastName: null,
-    email: null,
-    phone: null,
-    username: null,
-    password: null
+    title: null,
+    body: null,
+    "category._id": null
   }
-  if (!user.personInfo.DNI) {
-    errors.DNI = "DNI is mandatory";
+  if (!post.title) {
+    errors.title = "Title can't be empty";
   }
-  if (!user.personInfo.name) {
-    errors.name = "Name is mandatory";
+  if (!post.body) {
+    errors.body = "Body can't be empty";
   }
-  if (!user.personInfo.lastName) {
-    errors.lastName = "Last name is mandatory";
-  }
-  if (!user.personInfo.email) {
-    errors.email = "Email is mandatory";
-  }
-  if (!user.personInfo.phone) {
-    errors.phone = "Phone is mandatory";
+  if (!post.category._id) {
+    errors["category._id"] = "You must choose one category";
   }
   return errors;
 }
