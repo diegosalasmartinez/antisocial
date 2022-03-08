@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './scss/style.scss'
-import loading from './theme/loading'
+import { loadingFallback } from './theme/loading'
 
 const Layout = React.lazy(() => import('./layout/Layout'))
 const Content = React.lazy(() => import('./layout/Content'))
@@ -18,7 +18,7 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <React.Suspense fallback={loading}>
+        <React.Suspense fallback={loadingFallback}>
           <Routes>
             <Route path='/sign-in' element={<Page {...this.props} element={Login}/>}/>
             <Route path='/sign-up' element={<Page {...this.props} element={Register}/>}/>

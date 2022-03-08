@@ -1,3 +1,5 @@
+import { colors } from './colors'
+
 const loading = <div className='loading'>
   <ul>
     <li></li>
@@ -12,4 +14,9 @@ const loading = <div className='loading'>
   </ul>
 </div>
 
-export default loading
+const loadingFallback = <div style={{height: '100vh', backgroundColor: colors.PRIMARY}}></div>
+
+export {
+  loading,
+  loadingFallback
+}

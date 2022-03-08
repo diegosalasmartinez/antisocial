@@ -8,14 +8,13 @@ import appTheme from './theme/appTheme'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './services/redux/store'
-import loading from './theme/loading'
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={appTheme}>
       <CssBaseline/>
       <Provider store={store}>
-        <PersistGate loaging={loading} persistor={persistor}>
+        <PersistGate loaging={null} persistor={persistor}>
           <App/>
         </PersistGate>
       </Provider>

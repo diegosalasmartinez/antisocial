@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Box, CircularProgress } from '@mui/material'
+import { Box } from '@mui/material'
+import {loading as loadingSprite} from '../theme/loading'
 
 export default class Wrapper extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class Wrapper extends Component {
       <>
         { loading ?
           <Box className='jc-c'>
-            <CircularProgress size={40} color='info'/>
+            {loadingSprite}
           </Box>
           :
           <>{this.props.children}</>
