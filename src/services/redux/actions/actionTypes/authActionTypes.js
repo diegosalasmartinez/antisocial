@@ -1,5 +1,7 @@
 export const LOGIN = "LOGIN"
 export const REGISTER = "REGISTER"
 export const LOGOUT = "LOGOUT"
+export const FOLLOW_USER = "FOLLOW_USER"
 export const UNAUTHORIZED = "UNAUTHORIZED"
+export const CLEAR_ERROR_AUTH = "CLEAR_ERROR_AUTH"
 export const ERROR_AUTH = "ERROR_AUTH"

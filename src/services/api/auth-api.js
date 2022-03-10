@@ -1,4 +1,4 @@
-import { apiPost } from './api'
+import { apiGet, apiPost } from './api'
 const base = 'auth'
 
 const login = async (user) => {
@@ -9,4 +9,8 @@ const register = async (user) => {
     return await apiPost(`${base}/register`, user);
 }
 
-export { login, register }
+const followUser = async (username) => {
+  return await apiGet(`${base}/follow/${username}`);
+}
+
+export { login, register, followUser }
