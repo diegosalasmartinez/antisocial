@@ -5,12 +5,16 @@ import {
   UNAUTHORIZED,
   ERROR_AUTH
 } from '../actions/actionTypes/authActionTypes'
+import {
+  FOLLOW_USER
+} from '../actions/actionTypes/userActionTypes'
 
 const initialState = {
   user: {
     name: "",
     lastName: ""
   },
+  following: [], 
   token: "",
   error: "",
   loaded: false,
@@ -25,6 +29,8 @@ const auth = (state = initialState, action) => {
     case REGISTER:
     case LOGIN:
       return {...state, user: {...action.playload.user}, token: action.playload.token, error: "", loaded: true, failed: false};
+    case FOLLOW_USER:
+      return {...state, following: [...action.playload], error: "", loaded: true, failed: false};
     case ERROR_AUTH:
       return {...initialState, error: action.playload, loaded: true, failed: true};
     default:

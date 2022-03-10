@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
+import * as userActions from '../../services/redux/actions/userActions'
 import { Box, Card, CardActions, CardContent, Chip, IconButton, Typography } from '@mui/material'
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbDownIcon from '@mui/icons-material/ThumbDownOutlined'
@@ -77,8 +78,15 @@ class Post extends Component {
     this.props.navigate("/user/"+post.author.username);
   }
 
-  onFollow = () => {
+  onFollow = async () => {
+    const { post } = this.props;
+    await this.props.followUser(post.author._id);
+    const { userReducer } = this.props;
 
+    if (userReducer.failed) {
+      this.props.showNotification(userReducer.error);
+      await this.props.clearErrorUser();
+    }
   }
 
   render() {
@@ -91,7 +99,8 @@ class Post extends Component {
     const saveClassName = post.saves.includes(user._id) ? 'checked' : '';
     const openAuthorView = Boolean(authorView);
     const idAuthorView = 'author-popover';
-
+    const isFollowed = authReducer.following.includes(post.author._id);
+    
     return (
       <Box className='jc-c'>
         <Card className='post' sx={{ minWidth: 250, width: '100%' }}>
@@ -104,7 +113,7 @@ class Post extends Component {
                 @{post.author.username}
               </Typography>
               <MyPopover id={idAuthorView} open={openAuthorView} anchorEl={authorView} onClose={this.handleAuthorViewClose}>
-                <ProfileInfo username={authReducer.user.username} profile={post.author} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow}/>
+                <ProfileInfo username={authReducer.user.username} profile={post.author} isFollowed={isFollowed} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow}/>
               </MyPopover>
               <Typography className='date' sx={{ fontSize: 14 }}>
                 - {date}
@@ -153,13 +162,14 @@ class Post extends Component {
 const mapStateToProps = (state) => {
   return {
     authReducer: state.auth,
-    postReducer: state.post
+    postReducer: state.post,
+    userReducer: state.user,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    ...bindActionCreators(postActions, dispatch)
+    ...bindActionCreators(Object.assign({}, postActions, userActions), dispatch)
   }
 }
 

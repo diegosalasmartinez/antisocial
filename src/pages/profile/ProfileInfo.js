@@ -4,9 +4,10 @@ import MyButton from '../../components/MyButton'
 
 export default class ProfileInfo extends Component {
   render() {
-    const { profile, username, profileView } = this.props
+    const { profile, username, profileView, isFollowed } = this.props;
     const showFollowButton = username !== profile.username;
-
+    console.log(isFollowed);
+    
     return (
       <Box className='profile-info'>
         <Box className='profile-info-title'>
