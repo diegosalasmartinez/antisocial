@@ -45,6 +45,10 @@
       .MuiButton-root {
         margin: 0;
         padding: 4px 12px;
+
+        .MuiTypography-root {
+          font-size: 15px;
+        }
       }
     }
   }
