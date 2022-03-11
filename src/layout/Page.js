@@ -1,6 +1,8 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import MyNotification from '../components/MyNotification'
+import { getNotificationColor } from '../theme/colors'
+
 
 export default function Page(props) {
   const location = useLocation();
@@ -9,10 +11,10 @@ export default function Page(props) {
   const [message, setMessage] = React.useState("");
   const [severity, setSeverity] = React.useState("error");
 
-  const showNotification = (msg, sev = 'error') => {
+  const showNotification = (msg, sev = 'ERROR') => {
     setNotification(true);
     setMessage(msg);
-    setSeverity(sev);
+    setSeverity(getNotificationColor(sev));
   }
   
   const closeNotification = () => {

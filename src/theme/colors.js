@@ -28,7 +28,23 @@ const getCategoryColors = (category) => {
   }
 }
 
+const getNotificationColor = (sev) => {
+  switch(sev) {
+    case 'ERROR': 
+      return 'error';
+    case 'WARNING': 
+      return 'warning';
+    case 'INFO': 
+      return'info';
+    case 'SUCCESS': 
+      return 'success';
+    default: 
+      return 'info';
+  }
+}
+
 export {
   colors,
-  getCategoryColors
+  getCategoryColors,
+  getNotificationColor
 }

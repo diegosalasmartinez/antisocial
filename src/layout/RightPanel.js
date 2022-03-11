@@ -31,6 +31,8 @@ class RightPanel extends Component {
     if (postReducer.failed) {
       this.props.showNotification(postReducer.error);
       await this.props.clearErrorPost();
+    } else {
+      this.props.showNotification('Your post was published', 'SUCCESS');
     }
     this.setState({showPostForm:false, btnCreatePostLoading: false});
   }
