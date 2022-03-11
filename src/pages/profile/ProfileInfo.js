@@ -6,7 +6,6 @@ export default class ProfileInfo extends Component {
   render() {
     const { profile, username, profileView, isFollowed } = this.props;
     const showFollowButton = username !== profile.username;
-    console.log(isFollowed);
 
     return (
       <Box className='profile-info'>
@@ -27,7 +26,11 @@ export default class ProfileInfo extends Component {
             }
             { showFollowButton && 
               <Box>
-                <MyButton text='Follow' onClick={this.props.onFollow}/> 
+                { isFollowed ? 
+                  <MyButton text='Unfollow' variant='secondary' onClick={this.props.onUnfollow}/> 
+                  :
+                  <MyButton text='Follow' onClick={this.props.onFollow}/> 
+                }
               </Box>
             }
           </Box>
@@ -37,10 +40,10 @@ export default class ProfileInfo extends Component {
             {profile.postsNumber} Posts
           </Typography>
           <Typography className='info' textAlign="left" sx={{ fontSize: 15 }}>
-            {profile.followers.length} Followers
+            {profile.followersNumber} Followers
           </Typography>
           <Typography className='info' textAlign="left" sx={{ fontSize: 15 }}>
-            {profile.following.length} Following
+            {profile.followingNumber} Following
           </Typography>
         </Box>
       </Box>

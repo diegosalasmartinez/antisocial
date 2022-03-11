@@ -86,6 +86,21 @@ class Post extends Component {
     if (userReducer.failed) {
       this.props.showNotification(userReducer.error);
       await this.props.clearErrorUser();
+    } else {
+      this.props.updateAuthor(post.author._id, post.author.followersNumber + 1);
+    }
+  }
+
+  onUnfollow = async () => {
+    const { post } = this.props;
+    await this.props.unfollowUser(post.author._id);
+    const { userReducer } = this.props;
+
+    if (userReducer.failed) {
+      this.props.showNotification(userReducer.error);
+      await this.props.clearErrorUser();
+    } else {
+      this.props.updateAuthor(post.author._id, post.author.followersNumber - 1);
     }
   }
 
@@ -113,7 +128,7 @@ class Post extends Component {
                 @{post.author.username}
               </Typography>
               <MyPopover id={idAuthorView} open={openAuthorView} anchorEl={authorView} onClose={this.handleAuthorViewClose}>
-                <ProfileInfo username={authReducer.user.username} profile={post.author} isFollowed={isFollowed} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow}/>
+                <ProfileInfo username={authReducer.user.username} profile={post.author} isFollowed={isFollowed} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
               </MyPopover>
               <Typography className='date' sx={{ fontSize: 14 }}>
                 - {date}

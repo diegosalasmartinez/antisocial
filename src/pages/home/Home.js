@@ -34,6 +34,18 @@ class Home extends Component {
       this.setState({posts: posts});
     }
   }
+  
+  updateAuthor = (authorId, numFollowers) => {
+    let posts = [...this.state.posts];
+    for (let i=0; i<this.state.posts.length; i++) {
+      if (this.state.posts[i].author._id === authorId) {
+        let post = {...this.state.posts[i]};
+        post.author.followersNumber = numFollowers;
+        posts[i] = post;
+      }
+    }
+    this.setState({posts: posts});    
+  }
 
   render() {
     const { loading, posts } = this.state;
@@ -41,7 +53,7 @@ class Home extends Component {
     return (
       <Wrapper loading={loading}>
         <Box className='home'>
-          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts}/>
+          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
         </Box>
       </Wrapper>
     )
