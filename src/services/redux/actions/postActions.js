@@ -9,7 +9,8 @@ import {
 } from './actionTypes/postActionTypes'
 import getError from '../getError'
 import {
-  getPosts as getPostsAPI,
+  getPostsByFollowingUsers as getPostsByFollowingUsersAPI,
+  getPostsByCategory as getPostsByCategoryAPI,
   getSavedPosts as getSavedPostsAPI,
   createPost as createPostAPI,
   likePost as likePostAPI,
@@ -30,9 +31,18 @@ const createPost = (post) => async (dispatch) => {
   }
 }
 
-const getPosts = (categoryId) => async (dispatch) => {
+const getPostsByFollowingUsers = () => async (dispatch) => {
   try {
-    return await getPostsAPI(categoryId);
+    return await getPostsByFollowingUsersAPI();
+  } catch(e){
+    const actionType = getError(e, ERROR_POST);
+    return dispatch(actionType)
+  }
+}
+
+const getPostsByCategory = (categoryId) => async (dispatch) => {
+  try {
+    return await getPostsByCategoryAPI(categoryId);
   } catch(e){
     const actionType = getError(e, ERROR_POST);
     return dispatch(actionType)
@@ -85,7 +95,8 @@ const clearErrorPost = () => async (dispatch) => {
 }
 
 export { 
-  getPosts, 
+  getPostsByFollowingUsers,
+  getPostsByCategory, 
   getSavedPosts,
   createPost, 
   likePost, 

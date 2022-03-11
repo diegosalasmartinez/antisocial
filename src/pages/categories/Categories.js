@@ -38,7 +38,7 @@ class Categories extends Component {
 
   getPosts = async (categoryId, categoryName = '') => {
     this.setState({loading: true});
-    const posts = await this.props.getPosts(categoryId);
+    const posts = await this.props.getPostsByCategory(categoryId);
     const postReducer = this.props.post;
     if (postReducer.failed) {
       this.props.showNotification(postReducer.error);

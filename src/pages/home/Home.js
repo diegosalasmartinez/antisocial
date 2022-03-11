@@ -16,7 +16,7 @@ class Home extends Component {
   }
 
   async componentDidMount() { 
-    const posts = await this.props.getPosts();
+    const posts = await this.props.getPostsByFollowingUsers();
     const postReducer = this.props.post;
     if (postReducer.failed) {
       this.props.showNotification(postReducer.error);
