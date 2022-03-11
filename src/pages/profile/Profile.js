@@ -88,6 +88,36 @@ class Profile extends Component {
     }
   }
 
+  updateAuthor = (authorId, numFollowers) => {
+    let posts = [...this.state.posts];
+    for (let i=0; i<this.state.posts.length; i++) {
+      if (this.state.posts[i].author._id === authorId) {
+        let post = {...this.state.posts[i]};
+        post.author.followersNumber = numFollowers;
+        posts[i] = post;
+      }
+    }
+    let postsLiked = [...this.state.postsLiked];
+    for (let i=0; i<this.state.postsLiked.length; i++) {
+      if (this.state.postsLiked[i].author._id === authorId) {
+        let post = {...this.state.postsLiked[i]};
+        post.author.followersNumber = numFollowers;
+        postsLiked[i] = post;
+      }
+    }
+    let postsUnliked = [...this.state.postsUnliked];
+    for (let i=0; i<this.state.postsUnliked.length; i++) {
+      if (this.state.postsUnliked[i].author._id === authorId) {
+        let post = {...this.state.postsUnliked[i]};
+        post.author.followersNumber = numFollowers;
+        postsUnliked[i] = post;
+      }
+    }
+
+    this.setState({posts, postsLiked, postsUnliked});    
+  }
+
+
   onSeeProfile = () => {
     const { profile } = this.state;
     this.props.navigate(profile.username);
@@ -114,17 +144,17 @@ class Profile extends Component {
           </Box>
           <MyTabPanel value={tab} index={0}>
             <Box className='profile-posts'>
-              <Posts {...this.props} posts={posts} updatePosts={this.updatePosts}/>
+              <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
             </Box>
           </MyTabPanel>
           <MyTabPanel value={tab} index={1}>
             <Box className='profile-posts'>
-              <Posts {...this.props} posts={postsLiked} updatePosts={this.updatePosts}/>
+              <Posts {...this.props} posts={postsLiked} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
             </Box>
           </MyTabPanel>
           <MyTabPanel value={tab} index={2}>
             <Box className='profile-posts'>
-              <Posts {...this.props} posts={postsUnliked} updatePosts={this.updatePosts}/>
+              <Posts {...this.props} posts={postsUnliked} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
             </Box>
           </MyTabPanel>
         </Box>

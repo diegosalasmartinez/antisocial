@@ -35,6 +35,18 @@ export class Saves extends Component {
     }
   }
 
+  updateAuthor = (authorId, numFollowers) => {
+    let posts = [...this.state.posts];
+    for (let i=0; i<this.state.posts.length; i++) {
+      if (this.state.posts[i].author._id === authorId) {
+        let post = {...this.state.posts[i]};
+        post.author.followersNumber = numFollowers;
+        posts[i] = post;
+      }
+    }
+    this.setState({posts: posts});    
+  }
+
   render() {
     const { loading, posts } = this.state;
 
@@ -44,7 +56,7 @@ export class Saves extends Component {
           <Typography className='saves-title' textAlign="left" sx={{ fontSize: 20 }}>
             Posts you saved
           </Typography>
-          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts}/>
+          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
         </Box>
       </Wrapper>
     )

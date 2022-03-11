@@ -19,7 +19,7 @@ export default class CategoriesPosts extends Component {
           </Typography>
         </Box>
         <Box className='categories-posts'>
-          <Posts {...this.props} posts={posts} updatePosts={this.props.updatePosts}/>
+          <Posts {...this.props} posts={posts} updatePosts={this.props.updatePosts} updateAuthor={this.props.updateAuthor}/>
         </Box>
       </Box>
     )

@@ -62,6 +62,18 @@ class Categories extends Component {
     }
   }
 
+  updateAuthor = (authorId, numFollowers) => {
+    let posts = [...this.state.posts];
+    for (let i=0; i<this.state.posts.length; i++) {
+      if (this.state.posts[i].author._id === authorId) {
+        let post = {...this.state.posts[i]};
+        post.author.followersNumber = numFollowers;
+        posts[i] = post;
+      }
+    }
+    this.setState({posts: posts});    
+  }
+
   showCategories = () => {
     this.props.navigate("/categories");
     this.setState({categorySelected: '', categoryName: '', posts: [], loading: false});
@@ -77,7 +89,7 @@ class Categories extends Component {
         { categorySelected === '' ? 
           <CategoriesOptions categories={categories} onClickCategory={this.onClickCategory}/>
           :
-          <CategoriesPosts {...this.props} posts={posts} categoryName={categoryName} updatePosts={this.updatePosts} showCategories={this.showCategories}/>
+          <CategoriesPosts {...this.props} posts={posts} categoryName={categoryName} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor} showCategories={this.showCategories}/>
         }
       </Wrapper>
     )
