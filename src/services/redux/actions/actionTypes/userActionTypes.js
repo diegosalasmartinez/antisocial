@@ -1,4 +1,6 @@
 export const GET_USER = "GET_USER"
 export const ERROR_USER = "ERROR_USER"
+export const FOLLOWING_USERS = "FOLLOWING_USERS"
 export const FOLLOW_USER = "FOLLOW_USER"
+export const UNFOLLOW_USER = "UNFOLLOW_USER"
 export const CLEAR_ERROR_USER = "CLEAR_ERROR_USER"
