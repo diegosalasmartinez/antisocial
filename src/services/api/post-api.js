@@ -21,8 +21,8 @@ const likePost = async (post) => {
   return await apiPost(`${base}/like`, post);
 }
 
-const unlikePost = async (post) => {
-  return await apiPost(`${base}/unlike`, post);
+const dislikePost = async (post) => {
+  return await apiPost(`${base}/dislike`, post);
 }
 
 const savePost = async (post) => {
@@ -35,6 +35,6 @@ export {
   getSavedPosts, 
   createPost, 
   likePost, 
-  unlikePost, 
+  dislikePost, 
   savePost 
 }

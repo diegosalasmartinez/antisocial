@@ -19,7 +19,7 @@ class Profile extends Component {
       profile: new UserModel(),
       posts: [],
       postsLiked: [],
-      postsUnliked: []
+      postsDisliked: []
     }
   }
 
@@ -38,7 +38,7 @@ class Profile extends Component {
         profile: userProfile, 
         posts: userProfile.posts, 
         postsLiked: userProfile.likes, 
-        postsUnliked: userProfile.unlikes, 
+        postsDisliked: userProfile.dislikes, 
         loading: false
       });
     }
@@ -66,24 +66,24 @@ class Profile extends Component {
           let postsLiked = [post, ...this.state.postsLiked];
           this.setState({postsLiked: postsLiked});
         }
-        let postsUnliked = this.state.postsUnliked.filter(p => p._id !== post._id);
-        this.setState({postsUnliked: postsUnliked});
-      } else if (post.unlikes.includes(userId)) {
-        const indUnlike = this.state.postsUnliked.findIndex(p => p._id === post._id);
-        if (indUnlike >= 0) {
-          let postsUnliked = [...this.state.postsUnliked];
-          postsUnliked[indUnlike] = {...postsUnliked};
-          this.setState({postsUnliked: postsUnliked});
+        let postsDisliked = this.state.postsDisliked.filter(p => p._id !== post._id);
+        this.setState({postsDisliked: postsDisliked});
+      } else if (post.dislikes.includes(userId)) {
+        const indDislike = this.state.postsDisliked.findIndex(p => p._id === post._id);
+        if (indDislike >= 0) {
+          let postsDisliked = [...this.state.postsDisliked];
+          postsDisliked[indDislike] = {...postsDisliked};
+          this.setState({postsDisliked: postsDisliked});
         } else {
-          let postsUnliked = [post, ...this.state.postsUnliked];
-          this.setState({postsUnliked: postsUnliked});
+          let postsDisliked = [post, ...this.state.postsDisliked];
+          this.setState({postsDisliked: postsDisliked});
         }
         let postsLiked = this.state.postsLiked.filter(p => p._id !== post._id);
         this.setState({postsLiked: postsLiked});
       } else {
-        let postsUnliked = this.state.postsUnliked.filter(p => p._id !== post._id);
+        let postsDisliked = this.state.postsDisliked.filter(p => p._id !== post._id);
         let postsLiked = this.state.postsLiked.filter(p => p._id !== post._id);
-        this.setState({postsUnliked: postsUnliked, postsLiked: postsLiked});
+        this.setState({postsDisliked: postsDisliked, postsLiked: postsLiked});
       }
     }
   }
@@ -105,18 +105,18 @@ class Profile extends Component {
         postsLiked[i] = post;
       }
     }
-    let postsUnliked = [...this.state.postsUnliked];
-    for (let i=0; i<this.state.postsUnliked.length; i++) {
-      if (this.state.postsUnliked[i].author._id === authorId) {
-        let post = {...this.state.postsUnliked[i]};
+    let postsDisliked = [...this.state.postsDisliked];
+    for (let i=0; i<this.state.postsDisliked.length; i++) {
+      if (this.state.postsDisliked[i].author._id === authorId) {
+        let post = {...this.state.postsDisliked[i]};
         post.author.followersNumber = numFollowers;
-        postsUnliked[i] = post;
+        postsDisliked[i] = post;
       }
     }
     let profile = {...this.state.profile};
     profile.followersNumber = numFollowers;
 
-    this.setState({profile, posts, postsLiked, postsUnliked});    
+    this.setState({profile, posts, postsLiked, postsDisliked});    
   }
 
   onFollow = async () => {
@@ -147,7 +147,7 @@ class Profile extends Component {
 
   render() {
     const { auth } = this.props
-    const { loading, tab, profile, posts, postsLiked, postsUnliked } = this.state;
+    const { loading, tab, profile, posts, postsLiked, postsDisliked } = this.state;
     const isFollowed = auth.following.includes(profile._id);
 
     return (
@@ -158,7 +158,7 @@ class Profile extends Component {
             <Tabs value={tab} onChange={this.handleChange} aria-label="basic tabs example">
               <Tab label="Posts" {...defineProps(0)} />
               <Tab label="Liked" {...defineProps(1)} />
-              <Tab label="Unliked" {...defineProps(2)} />
+              <Tab label="Disliked" {...defineProps(2)} />
             </Tabs>
           </Box>
           <MyTabPanel value={tab} index={0}>
@@ -173,7 +173,7 @@ class Profile extends Component {
           </MyTabPanel>
           <MyTabPanel value={tab} index={2}>
             <Box className='profile-posts'>
-              <Posts {...this.props} posts={postsUnliked} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
+              <Posts {...this.props} posts={postsDisliked} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
             </Box>
           </MyTabPanel>
         </Box>

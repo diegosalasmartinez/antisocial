@@ -34,9 +34,9 @@ class Post extends Component {
     }
   }
 
-  onUnlike = async () => {
+  onDislike = async () => {
     const { post } = this.props;
-    const postUpdated = await this.props.unlikePost(post);
+    const postUpdated = await this.props.dislikePost(post);
     const { postReducer } = this.props;
 
     if (postReducer.failed) {
@@ -110,7 +110,7 @@ class Post extends Component {
     const { user } = authReducer;
     const date = moment(post.date).format('DD/MM/YYYY');
     const likeClassName = post.likes.includes(user._id) ? 'checked' : '';
-    const unlikeClassName = post.unlikes.includes(user._id) ? 'checked' : '';
+    const dislikeClassName = post.dislikes.includes(user._id) ? 'checked' : '';
     const saveClassName = post.saves.includes(user._id) ? 'checked' : '';
     const openAuthorView = Boolean(authorView);
     const idAuthorView = 'author-popover';
@@ -150,11 +150,11 @@ class Post extends Component {
                 <ThumbUpIcon fontSize='small'/>
               </IconButton>
             </Box>
-            <Box id='unlike' className={`icon-section ${unlikeClassName}`}>
+            <Box id='dislike' className={`icon-section ${dislikeClassName}`}>
               <Typography className='date' sx={{ fontSize: 15 }}>
-                {post.unlikes.length}
+                {post.dislikes.length}
               </Typography>
-              <IconButton aria-label="unlike" onClick={this.onUnlike}>
+              <IconButton aria-label="dislike" onClick={this.onDislike}>
                 <ThumbDownIcon fontSize='small'/>
               </IconButton>
             </Box>

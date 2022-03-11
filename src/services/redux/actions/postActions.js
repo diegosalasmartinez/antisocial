@@ -2,7 +2,7 @@ import {
   CREATE_POST,
   GET_POSTS,
   LIKE_POST,
-  UNLIKE_POST,
+  DISLIKE_POST,
   SAVE_POST,
   ERROR_POST,
   CLEAR_ERROR_POST,
@@ -14,7 +14,7 @@ import {
   getSavedPosts as getSavedPostsAPI,
   createPost as createPostAPI,
   likePost as likePostAPI,
-  unlikePost as unlikePostAPI,
+  dislikePost as dislikePostAPI,
   savePost as savePostAPI,
 } from '../../api/post-api'
 
@@ -68,9 +68,9 @@ const likePost = (p) => async (dispatch) => {
   }
 }
 
-const unlikePost = (p) => async (dispatch) => {
+const dislikePost = (p) => async (dispatch) => {
   try {
-    const res = await unlikePostAPI(p);
+    const res = await dislikePostAPI(p);
     return res;
   } catch(e){
     const actionType = getError(e, ERROR_POST);
@@ -100,7 +100,7 @@ export {
   getSavedPosts,
   createPost, 
   likePost, 
-  unlikePost, 
+  dislikePost, 
   savePost,
   clearErrorPost 
 }

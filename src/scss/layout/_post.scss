@@ -55,7 +55,7 @@
       }
     }
 
-    #like, #unlike, #save {
+    #like, #dislike, #save {
       svg {
         color: $white-secondary;
       }
@@ -67,7 +67,7 @@
       }
     }
 
-    #unlike.checked{
+    #dislike.checked{
       .MuiTypography-root, svg {
         color: $red;
       }

@@ -12,7 +12,7 @@ export default class UserModel {
   following = [];
   followingNumber = 0;
   likes = [];
-  unlikes = [];
+  dislikes = [];
   saves = [];
   birthday = new Date();
 }
