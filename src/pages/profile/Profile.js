@@ -113,28 +113,47 @@ class Profile extends Component {
         postsUnliked[i] = post;
       }
     }
+    let profile = {...this.state.profile};
+    profile.followersNumber = numFollowers;
 
-    this.setState({posts, postsLiked, postsUnliked});    
+    this.setState({profile, posts, postsLiked, postsUnliked});    
   }
 
-
-  onSeeProfile = () => {
+  onFollow = async () => {
     const { profile } = this.state;
-    this.props.navigate(profile.username);
+    await this.props.followUser(profile._id);
+    const { user } = this.props;
+
+    if (user.failed) {
+      this.props.showNotification(user.error);
+      await this.props.clearErrorUser();
+    } else {
+      this.updateAuthor(profile._id, profile.followersNumber + 1);
+    }
   }
 
-  onFollow = () => {
+  onUnfollow = async () => {
+    const { profile } = this.state;
+    await this.props.unfollowUser(profile._id);
+    const { user } = this.props;
 
+    if (user.failed) {
+      this.props.showNotification(user.error);
+      await this.props.clearErrorUser();
+    } else {
+      this.updateAuthor(profile._id, profile.followersNumber - 1);
+    }
   }
 
   render() {
     const { auth } = this.props
     const { loading, tab, profile, posts, postsLiked, postsUnliked } = this.state;
+    const isFollowed = auth.following.includes(profile._id);
 
     return (
       <Wrapper loading={loading}>
         <Box className='profile'>
-          <ProfileInfo username={auth.user.username} profile={profile} profileView={true} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow}/>
+          <ProfileInfo username={auth.user.username} profile={profile} profileView={true} isFollowed={isFollowed} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tab} onChange={this.handleChange} aria-label="basic tabs example">
               <Tab label="Posts" {...defineProps(0)} />
