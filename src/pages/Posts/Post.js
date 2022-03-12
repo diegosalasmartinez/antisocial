@@ -115,14 +115,14 @@ class Post extends Component {
     const openAuthorView = Boolean(authorView);
     const idAuthorView = 'author-popover';
     const isFollowed = authReducer.following.includes(post.author._id);
-    
+
     return (
       <Box className='jc-c'>
         <Card className='post' sx={{ minWidth: 250, width: '100%' }}>
           <CardContent>
             <Box className='header'>
               <Typography className='title' sx={{ fontSize: 19 }}>
-                {post.title}
+                {post.title} 
               </Typography>
               <Typography className='author' sx={{ fontSize: 15 }} aria-describedby={idAuthorView} onClick={this.handleAuthorViewOpen}>
                 @{post.author.username}
@@ -131,7 +131,7 @@ class Post extends Component {
                 <ProfileInfo username={authReducer.user.username} profile={post.author} isFollowed={isFollowed} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
               </MyPopover>
               <Typography className='date' sx={{ fontSize: 14 }}>
-                - {date}
+                - {new Date(post.date).toLocaleString()}
               </Typography>
             </Box>
             <Box className='category'>
