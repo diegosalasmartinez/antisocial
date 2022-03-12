@@ -9,6 +9,7 @@ import {
 import getError from '../getError'
 import {
   getProfile as getProfileAPI,
+  getRecommendedUsers as getRecommendedUsersAPI,
   following as followingAPI,
   followUser as followUserAPI,
   unfollowUser as unfollowUserAPI,
@@ -30,6 +31,15 @@ const following = () => async (dispatch) => {
       type: FOLLOWING_USERS,
       playload: res.following
     })
+  } catch(e){
+    const actionType = getError(e, ERROR_USER);
+    return dispatch(actionType)
+  }
+}
+
+const getRecommendedUsers = () => async (dispatch) => {
+  try {
+    return await getRecommendedUsersAPI();
   } catch(e){
     const actionType = getError(e, ERROR_USER);
     return dispatch(actionType)
@@ -70,6 +80,7 @@ const clearErrorUser = () => async (dispatch) => {
 
 export { 
   getProfile,
+  getRecommendedUsers,
   following,
   followUser,
   unfollowUser,
