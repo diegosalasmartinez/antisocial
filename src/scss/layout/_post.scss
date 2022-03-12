@@ -1,3 +1,12 @@
+.posts {
+
+  .no-posts {
+    color: $white;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+}
+
 .post {
   background-color: $primary-light !important;
   margin-bottom: 1rem;

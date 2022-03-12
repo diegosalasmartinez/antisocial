@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Post from './Post'
 
 export default class Posts extends Component {
@@ -8,7 +8,15 @@ export default class Posts extends Component {
 
     return (
       <Box className='posts'>
-        { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
+        { posts.length > 0 ? 
+          <>
+            { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
+          </>
+          :
+          <Typography className='no-posts' textAlign="center" sx={{ fontSize: 20 }}>
+            There aren't posts yet. Try posting one rigth now!
+          </Typography>
+        }
       </Box>
     )
   }
