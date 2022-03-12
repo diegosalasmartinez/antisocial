@@ -1,9 +1,5 @@
 import {
   CREATE_POST,
-  GET_POSTS,
-  LIKE_POST,
-  DISLIKE_POST,
-  SAVE_POST,
   ERROR_POST,
   CLEAR_ERROR_POST,
 } from './actionTypes/postActionTypes'
@@ -12,6 +8,7 @@ import {
   getPostsByFollowingUsers as getPostsByFollowingUsersAPI,
   getPostsByCategory as getPostsByCategoryAPI,
   getSavedPosts as getSavedPostsAPI,
+  getMostLikedPosts as getMostLikedPostsAPI,
   createPost as createPostAPI,
   likePost as likePostAPI,
   dislikePost as dislikePostAPI,
@@ -58,6 +55,15 @@ const getSavedPosts = () => async (dispatch) => {
   }
 }
 
+const getMostLikedPosts = () => async (dispatch) => {
+  try {
+    return await getMostLikedPostsAPI();
+  } catch(e){
+    const actionType = getError(e, ERROR_POST);
+    return dispatch(actionType)
+  }
+}
+
 const likePost = (p) => async (dispatch) => {
   try {
     const res = await likePostAPI(p);
@@ -98,6 +104,7 @@ export {
   getPostsByFollowingUsers,
   getPostsByCategory, 
   getSavedPosts,
+  getMostLikedPosts,
   createPost, 
   likePost, 
   dislikePost, 

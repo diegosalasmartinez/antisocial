@@ -17,6 +17,10 @@ const getSavedPosts = async () => {
   return await apiGet(`${base}/saved`);
 }
 
+const getMostLikedPosts = async () => {
+  return await apiGet(`${base}/mostLiked`);
+}
+
 const likePost = async (post) => {
   return await apiPost(`${base}/like`, post);
 }
@@ -33,6 +37,7 @@ export {
   getPostsByFollowingUsers, 
   getPostsByCategory,
   getSavedPosts, 
+  getMostLikedPosts,
   createPost, 
   likePost, 
   dislikePost, 
