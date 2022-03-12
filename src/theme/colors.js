@@ -9,12 +9,6 @@ const colors = {
   'WHITE': '#F4FEFD'
 }
 
-const categoryColors = {
-  'Math': 'red',
-  'Memes': '#005EF3',
-  'Programming': '#5F7ADB',
-}
-
 const getCategoryColors = (category) => {
   switch(category) {
     case 'Math': 

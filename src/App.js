@@ -13,6 +13,7 @@ const Home = React.lazy(() => import('./pages/home/Home'))
 const Profile = React.lazy(() => import('./pages/profile/Profile'))
 const Categories = React.lazy(() => import('./pages/categories/Categories'))
 const Saves = React.lazy(() => import('./pages/saves/Saves'))
+const MostLiked = React.lazy(() => import('./pages/mostLiked/MostLiked'))
 
 export default class App extends Component {
   render() {
@@ -27,6 +28,7 @@ export default class App extends Component {
               <Route path='user/:username' element={<Content {...this.props} element={Profile}/>}/>
               <Route path='saved' element={<Content {...this.props} element={Saves}/>}/>
               <Route path='categories' element={<Content {...this.props} element={Categories}/>}/>
+              <Route path='trending' element={<Content {...this.props} element={MostLiked}/>}/>
               <Route path='*' element={<Content {...this.props} element={Categories}/>}/>
             </Route>
           </Routes>
