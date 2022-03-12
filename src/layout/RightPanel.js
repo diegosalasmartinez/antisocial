@@ -6,6 +6,7 @@ import { Box, IconButton, Tooltip, Typography } from '@mui/material'
 import PostAddIcon from '@mui/icons-material/PostAdd'
 import CreatePost from '../pages/posts/CreatePost'
 import MyModal from '../components/MyModal'
+import RecommendedUsers from '../pages/users/RecommendedUsers'
 
 class RightPanel extends Component {
   constructor(props) {
@@ -51,6 +52,7 @@ class RightPanel extends Component {
             </IconButton>
           </Tooltip>
         </Box>
+        <RecommendedUsers/>
         <MyModal open={showPostForm} name='create-post' onClose={this.onCancelPost}>
           <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} categories={category.categories} btnLoading={btnCreatePostLoading}/>
         </MyModal>
