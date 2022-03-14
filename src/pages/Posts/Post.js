@@ -11,7 +11,6 @@ import BookmarkFullIcon from '@mui/icons-material/Bookmark'
 import MyPopover from '../../components/MyPopover'
 import ProfileInfo from '../profile/ProfileInfo'
 import { getCategoryColors } from '../../theme/colors'
-import moment from 'moment'
 
 class Post extends Component {
   constructor(props) {
@@ -108,7 +107,6 @@ class Post extends Component {
     const { authorView } = this.state
     const { post, authReducer } = this.props;
     const { user } = authReducer;
-    const date = moment(post.date).format('DD/MM/YYYY');
     const likeClassName = post.likes.includes(user._id) ? 'checked' : '';
     const dislikeClassName = post.dislikes.includes(user._id) ? 'checked' : '';
     const saveClassName = post.saves.includes(user._id) ? 'checked' : '';
