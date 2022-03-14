@@ -25,6 +25,23 @@
     .title {
       margin-top: 15px;
       font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .users {
+
+      .user {
+        padding: 7px;
+        
+        &:hover {
+          border-radius: 12px;
+          background-color: lighten($color: $primary-light, $amount: 15);
+        }
+
+        .profile-info-title {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }

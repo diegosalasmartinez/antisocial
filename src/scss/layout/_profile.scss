@@ -24,9 +24,19 @@
   margin-bottom: 10px;
   min-width: 350px;
 
-  .profile-info-title {
+  .info {
+    color: $white;
+  }
+}
+
+.profile-info-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  .image {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
 
     .name {
       color: $white;
@@ -47,25 +57,18 @@
     
     .username {
       color: $white-secondary;
-      margin-bottom: 15px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 5px;
-      
-      .MuiButton-root {
-        margin: 0;
-        padding: 4px 12px;
-
-        .MuiTypography-root {
-          font-size: 15px;
-        }
-      }
     }
   }
 
-  .info {
-    color: $white;
+  .buttons {
+    
+    .MuiButton-root {
+      margin: 0;
+      padding: 4px 12px;
+
+      .MuiTypography-root {
+        font-size: 15px;
+      }
+    }
   }
 }
