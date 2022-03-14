@@ -16,4 +16,15 @@
       }
     }
   }
+
+  .recommended-users {
+    .loading {
+      background-color: $primary-light;
+    }
+
+    .title {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  }
 }

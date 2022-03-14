@@ -52,7 +52,9 @@ class RightPanel extends Component {
             </IconButton>
           </Tooltip>
         </Box>
-        <RecommendedUsers/>
+        <Box className='recommended-users'>
+          <RecommendedUsers {...this.props}/>
+        </Box>
         <MyModal open={showPostForm} name='create-post' onClose={this.onCancelPost}>
           <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} categories={category.categories} btnLoading={btnCreatePostLoading}/>
         </MyModal>

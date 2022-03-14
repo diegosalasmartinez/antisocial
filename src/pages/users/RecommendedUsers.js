@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from '../../services/redux/actions/userActions'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
-import Posts from '../posts/Posts'
+import Users from '../users/Users'
 
 class RecommendedUsers extends Component {
   constructor(props) {
@@ -28,11 +28,12 @@ class RecommendedUsers extends Component {
 
   render() {
     const { loading, users } = this.state
+
     return (
       <Wrapper loading={loading}>
-        <Box className='recommended-users'>
-          ...
-          {/* <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/> */}
+        <Box className=''>
+          <Typography className='title' textAlign="left" sx={{ fontSize: 19 }}>Users to follow</Typography>
+          <Users {...this.props} users={users}/>
         </Box>
       </Wrapper>
     )
