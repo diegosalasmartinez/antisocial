@@ -27,13 +27,16 @@ class RecommendedUsers extends Component {
   }
 
   render() {
-    const { loading, users } = this.state
+    const { auth } = this.props
+    const { loading, users } = this.state;
+    const username = auth.user.username;
+    const following = auth.following;
 
     return (
       <Wrapper loading={loading}>
         <Box className=''>
           <Typography className='title' textAlign="left" sx={{ fontSize: 19 }}>Users to follow</Typography>
-          <Users {...this.props} users={users}/>
+          <Users {...this.props} users={users} username={username} following={following}/>
         </Box>
       </Wrapper>
     )
@@ -42,7 +45,8 @@ class RecommendedUsers extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    auth: state.auth,
   }
 }
 

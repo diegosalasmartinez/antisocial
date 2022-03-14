@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
+import ProfileBasicInfo from '../profile/ProfileBasicInfo';
 
 export default class User extends Component {
   render() {
-    const { user } = this.props
+    const { user, username, following } = this.props
+    const isFollowed = following.includes(user._id);
 
     return (
       <Box className='user'>
-        <Typography className='name' sx={{ fontSize: 19 }}>
-          {user.name} 
-        </Typography>
-        <Typography className='username' sx={{ fontSize: 15 }} aria-describedby={'idAuthorView'} onClick={this.handleAuthorViewOpen}>
-          @{user.username}
-        </Typography>
+        <ProfileBasicInfo profile={user} username={username} isFollowed={isFollowed} onSeeProfile={this.props.onSeeProfile} onFollow={this.props.onFollow} onUnfollow={this.props.onUnfollow}/>
       </Box>
     )
   }
