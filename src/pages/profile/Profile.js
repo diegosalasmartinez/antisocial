@@ -23,9 +23,25 @@ class Profile extends Component {
     }
   }
 
-  async componentDidMount() { 
+  componentDidMount() { 
     const { pathname = []} = this.props.location;
     const username = pathname.slice(6);
+
+    this.fetchProfile(username);
+  }
+
+  componentDidUpdate(prevProps, prevState) { 
+    const prevPathname = prevProps.location.pathname;
+    const pathname = this.props.location.pathname;
+
+    if (prevPathname !== pathname) {
+      const username = pathname.slice(6);
+      this.fetchProfile(username);
+    }
+  } 
+
+  fetchProfile = async (username) => {
+    this.setState({loading: true});
 
     const res = await this.props.getProfile(username);
     const userReducer = this.props.user;
@@ -146,10 +162,10 @@ class Profile extends Component {
   }
 
   render() {
-    const { auth } = this.props
+    const { auth } = this.props;
     const { loading, tab, profile, posts, postsLiked, postsDisliked } = this.state;
     const isFollowed = auth.following.includes(profile._id);
-
+    
     return (
       <Wrapper loading={loading}>
         <Box className='profile'>
