@@ -39,7 +39,8 @@ const following = () => async (dispatch) => {
 
 const getRecommendedUsers = () => async (dispatch) => {
   try {
-    return await getRecommendedUsersAPI();
+    const res = await getRecommendedUsersAPI();
+    return res.map(r => r.author);
   } catch(e){
     const actionType = getError(e, ERROR_USER);
     return dispatch(actionType)
