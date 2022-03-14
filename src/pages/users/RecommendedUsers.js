@@ -26,6 +26,46 @@ class RecommendedUsers extends Component {
     }
   }
 
+  onSeeProfile = (user) => {
+    this.props.navigate("/user/"+user.username);
+  }
+
+  onFollow = async (user) => {
+    await this.props.followUser(user._id);
+    const userReducer = this.props.user;
+
+    if (userReducer.failed) {
+      this.props.showNotification(userReducer.error);
+      await this.props.clearErrorUser();
+    } else {
+      this.updateAuthor(user._id, user.followersNumber + 1);
+    }
+  }
+
+  onUnfollow = async (user) => {
+    await this.props.unfollowUser(user._id);
+    const userReducer = this.props.user;
+
+    if (userReducer.failed) {
+      this.props.showNotification(userReducer.error);
+      await this.props.clearErrorUser();
+    } else {
+      this.updateAuthor(user._id, user.followersNumber - 1);
+    }
+  }
+
+  updateAuthor = (userId, numFollowers) => {
+    let users = [...this.state.users];
+    for (let i=0; i<this.state.users.length; i++) {
+      if (this.state.users[i]._id === userId) {
+        let user = {...this.state.users[i]};
+        user.followersNumber = numFollowers;
+        users[i] = user;
+      }
+    }
+    this.setState({users});    
+  }
+
   render() {
     const { auth } = this.props
     const { loading, users } = this.state;
@@ -36,7 +76,7 @@ class RecommendedUsers extends Component {
       <Wrapper loading={loading}>
         <Box className=''>
           <Typography className='title' textAlign="left" sx={{ fontSize: 19 }}>Users to follow</Typography>
-          <Users {...this.props} users={users} username={username} following={following}/>
+          <Users {...this.props} users={users} username={username} following={following} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
         </Box>
       </Wrapper>
     )
