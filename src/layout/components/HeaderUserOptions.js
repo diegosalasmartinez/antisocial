@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Avatar, Box, IconButton, Menu, MenuItem, Tooltip, Typography } from '@mui/material'
+import userPhoto from '../../assets/img/1.jpg' 
 
 export default class HeaderUserOptions extends Component {
   render() {
@@ -7,7 +8,7 @@ export default class HeaderUserOptions extends Component {
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title='User settings'>
           <IconButton onClick={this.props.handleOpenNavUser} sx={{ p: 0}}>
-            <Avatar alt='User' src='./images/avatar/1.jpg'/>
+            <Avatar alt='User' src={userPhoto}/>
           </IconButton>
         </Tooltip>
         <Menu
