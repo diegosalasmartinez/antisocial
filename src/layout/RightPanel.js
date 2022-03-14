@@ -7,6 +7,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd'
 import CreatePost from '../pages/posts/CreatePost'
 import MyModal from '../components/MyModal'
 import RecommendedUsers from '../pages/users/RecommendedUsers'
+import MyButton from 'src/components/MyButton'
 
 class RightPanel extends Component {
   constructor(props) {
@@ -45,12 +46,7 @@ class RightPanel extends Component {
     return (
       <Box className='right-panel'>
         <Box className='post-options'>
-          <Typography className='info' textAlign="left" sx={{ fontSize: 15 }}>Do you have something to share?</Typography>
-          <Tooltip title='Write a post'placement="top">
-            <IconButton aria-label="post" onClick={this.onShowCreatePost}>
-              <PostAddIcon fontSize='small'/>
-            </IconButton>
-          </Tooltip>
+          <MyButton text='Post' onClick={this.onShowCreatePost}/>
         </Box>
         <Box className='recommended-users'>
           <RecommendedUsers {...this.props}/>

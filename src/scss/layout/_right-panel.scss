@@ -1,31 +1,29 @@
 .right-panel {
-  background-color: $primary-light;
-  color: $white;
-  border-radius: 12px;
-  padding: 6px 14px;
-
+  
   .post-options {
-    display: flex;
-    align-items: center;
-
-    svg {
-      color: $white;
-      
-      &:hover {
-        color: $blue;
-      }
+    display: block;
+    
+    .MuiButton-root {
+      display: flex;
+      width: 100%;
+      margin-top: 0;
     }
   }
 
   .recommended-users {
+    background-color: $primary-light;
+    color: $white;
+    border-radius: 12px;
+    padding: 6px 14px;
+
     .loading {
       background-color: $primary-light;
     }
 
     .title {
-      margin-top: 15px;
-      font-weight: bold;
+      margin-top: 5px;
       margin-bottom: 5px;
+      font-weight: bold;
     }
 
     .users {
