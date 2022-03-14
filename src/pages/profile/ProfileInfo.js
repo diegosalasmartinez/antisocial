@@ -3,15 +3,24 @@ import { Box, Typography } from '@mui/material'
 import MyButton from '../../components/MyButton'
 
 export default class ProfileInfo extends Component {
+  onSeeProfile = () => {
+    const { profileView } = this.props
+
+    if (!profileView) {
+      this.props.onSeeProfile();
+    }
+  }
+
   render() {
     const { profile, username, profileView, isFollowed } = this.props;
     const showFollowButton = username !== profile.username;
+    const highlight = profileView ? 'dont-underline' : ''; 
 
     return (
       <Box className='profile-info'>
         <Box className='profile-info-title'>
           <Box>
-            <Typography className='name' textAlign="left" sx={{ fontSize: 20 }}>
+            <Typography className={'name ' + highlight} textAlign="left" sx={{ fontSize: 20 }} onClick={this.onSeeProfile}>
               {profile.name} {profile.lastName}
             </Typography>
             <Typography className='username' textAlign="left" sx={{ fontSize: 15 }}>
@@ -19,11 +28,6 @@ export default class ProfileInfo extends Component {
             </Typography>
           </Box>
           <Box className='buttons'>
-            { !profileView && 
-              <Box>
-                <MyButton text='See profile' variant='secondary' onClick={this.props.onSeeProfile}/>
-              </Box>
-            }
             { showFollowButton && 
               <Box>
                 { isFollowed ? 
