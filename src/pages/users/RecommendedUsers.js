@@ -74,7 +74,7 @@ class RecommendedUsers extends Component {
 
     return (
       <Wrapper loading={loading}>
-        <Box className=''>
+        <Box>
           <Typography className='title' textAlign="left" sx={{ fontSize: 19 }}>Users to follow</Typography>
           <Users {...this.props} users={users} username={username} following={following} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
         </Box>
