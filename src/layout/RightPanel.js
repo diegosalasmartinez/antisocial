@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../services/redux/actions/postActions'
-import { Box, IconButton, Tooltip, Typography } from '@mui/material'
-import PostAddIcon from '@mui/icons-material/PostAdd'
+import { Box } from '@mui/material'
 import CreatePost from '../pages/posts/CreatePost'
 import MyModal from '../components/MyModal'
 import RecommendedUsers from '../pages/users/RecommendedUsers'
-import MyButton from 'src/components/MyButton'
+import MyButton from '../components/MyButton'
 
 class RightPanel extends Component {
   constructor(props) {
