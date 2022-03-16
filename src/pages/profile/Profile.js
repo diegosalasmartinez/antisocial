@@ -5,6 +5,7 @@ import * as userActions from '../../services/redux/actions/userActions'
 import { Box, Tab, Tabs } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
 import MyTabPanel from '../../components/MyTabPanel'
+import MyModal from '../../components/MyModal'
 import Posts from '../posts/Posts'
 import ProfileInfo from './ProfileInfo'
 import UserModel from '../../services/models/UserModel'
@@ -19,7 +20,8 @@ class Profile extends Component {
       profile: new UserModel(),
       posts: [],
       postsLiked: [],
-      postsDisliked: []
+      postsDisliked: [],
+      showProfileInfo: false
     }
   }
 
@@ -161,15 +163,23 @@ class Profile extends Component {
     }
   }
 
+  onEditInfo = () => {
+    this.setState({showProfileInfo: true});
+  }
+  
+  onCancelEditInfo = () => {
+    this.setState({showProfileInfo: false});
+  }
+
   render() {
     const { auth } = this.props;
-    const { loading, tab, profile, posts, postsLiked, postsDisliked } = this.state;
+    const { loading, tab, profile, posts, postsLiked, postsDisliked, showProfileInfo } = this.state;
     const isFollowed = auth.following.includes(profile._id);
     
     return (
       <Wrapper loading={loading}>
         <Box className='profile'>
-          <ProfileInfo username={auth.user.username} profile={profile} profileView={true} isFollowed={isFollowed} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
+          <ProfileInfo username={auth.user.username} profile={profile} profileView={true} isFollowed={isFollowed} onFollow={this.onFollow} onUnfollow={this.onUnfollow} onEditInfo={this.onEditInfo}/>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tab} onChange={this.handleChange} aria-label="basic tabs example">
               <Tab label="Posts" {...defineProps(0)} />
@@ -193,6 +203,9 @@ class Profile extends Component {
             </Box>
           </MyTabPanel>
         </Box>
+        <MyModal open={showProfileInfo} name='edit-info' onClose={this.onCancelEditInfo}>
+          {/* <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} categories={category.categories} btnLoading={btnCreatePostLoading}/> */}
+        </MyModal>
       </Wrapper>
     )
   }

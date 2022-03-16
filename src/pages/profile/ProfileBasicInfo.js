@@ -25,7 +25,7 @@ export default class ProfileBasicInfo extends Component {
           </Box>
         </Box>
         <Box className='buttons'>
-          { showFollowButton && 
+          { showFollowButton ?
             <Box>
               { isFollowed ? 
                 <MyButton text='Unfollow' variant='secondary' onClick={this.props.onUnfollow}/> 
@@ -33,6 +33,10 @@ export default class ProfileBasicInfo extends Component {
                 <MyButton text='Follow' onClick={this.props.onFollow}/> 
               }
             </Box>
+            :
+            <>
+              { profileView && <MyButton text='Edit profile' variant='secondary' onClick={this.props.onEditInfo}/> }
+            </>
           }
         </Box>
       </Box>
