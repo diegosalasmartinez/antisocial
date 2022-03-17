@@ -35,7 +35,7 @@ class RightPanel extends Component {
     } else {
       this.props.showNotification('Your post was published', 'SUCCESS');
     }
-    this.setState({showPostForm:false, btnCreatePostLoading: false});
+    this.setState({showPostForm: false, btnCreatePostLoading: false});
   }
 
   render() {

@@ -70,7 +70,7 @@ class Register extends Component {
                   <MyTextField param='name' label='Name' value={name} onChange={this.onChange}/>
                 </Grid>
                 <Grid item xs={6} style={{paddingTop:0}} sx={{display: { xs: 'none', md: 'flex' }}}>
-                  <MyTextField param='lastName' label='Last Name' value={lastName} onChange={this.onChange}/>
+                  <MyTextField param='lastName' label='Last name' value={lastName} onChange={this.onChange}/>
                 </Grid>
                 <Grid item xs={6} style={{paddingTop:0}} sx={{display: { xs: 'none', md: 'flex' }}}>
                   <MyTextField param='username' label='Username' value={username} onChange={this.onChange}/>
