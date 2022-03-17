@@ -10,6 +10,7 @@ import Posts from '../posts/Posts'
 import ProfileInfo from './ProfileInfo'
 import UserModel from '../../services/models/UserModel'
 import { defineProps } from '../../utils/utils'
+import ProfileEditInfo from './ProfileEditInfo'
 
 class Profile extends Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class Profile extends Component {
       posts: [],
       postsLiked: [],
       postsDisliked: [],
-      showProfileInfo: false
+      showProfileInfo: false,
+      btnEditInfoLoading: false
     }
   }
 
@@ -171,9 +173,25 @@ class Profile extends Component {
     this.setState({showProfileInfo: false});
   }
 
+  onEdit = async (user) => {
+    this.setState({btnEditInfoLoading: true});
+    let updatedUser = {...this.state.profile};
+
+    await this.props.updateUserInfo(user);
+    const userReducer = this.props.user;
+    if (userReducer.failed) {
+      this.props.showNotification(userReducer.error);
+      await this.props.clearErrorUser();
+    } else {
+      this.props.showNotification('Your info was update', 'SUCCESS');
+      updatedUser = {...user};
+    }
+    this.setState({showProfileInfo: false, btnEditInfoLoading: false, profile: updatedUser});
+  }
+
   render() {
     const { auth } = this.props;
-    const { loading, tab, profile, posts, postsLiked, postsDisliked, showProfileInfo } = this.state;
+    const { loading, tab, profile, posts, postsLiked, postsDisliked, showProfileInfo, btnEditInfoLoading } = this.state;
     const isFollowed = auth.following.includes(profile._id);
     
     return (
@@ -204,7 +222,7 @@ class Profile extends Component {
           </MyTabPanel>
         </Box>
         <MyModal open={showProfileInfo} name='edit-info' onClose={this.onCancelEditInfo}>
-          {/* <CreatePost onCancel={this.onCancelPost} onPost={this.onPost} categories={category.categories} btnLoading={btnCreatePostLoading}/> */}
+          <ProfileEditInfo onCancel={this.onCancelEditInfo} onEdit={this.onEdit} profile={profile} btnLoading={btnEditInfoLoading}/>
         </MyModal>
       </Wrapper>
     )
