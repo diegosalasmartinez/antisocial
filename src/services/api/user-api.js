@@ -1,8 +1,12 @@
-import { apiGet } from './api'
+import { apiGet, apiPatch } from './api'
 const base = 'users'
 
 const getProfile = async (username) => {
   return await apiGet(`${base}/${username}`);
+}
+
+const updateUserInfo = async (user) => {
+  return await apiPatch(`${base}/${user._id}`, user);
 }
 
 const following = async () => {
@@ -21,4 +25,4 @@ const unfollowUser = async (username) => {
   return await apiGet(`${base}/unfollow/${username}`);
 }
 
-export { getProfile, getRecommendedUsers, following, followUser, unfollowUser }
+export { getProfile, updateUserInfo, getRecommendedUsers, following, followUser, unfollowUser }

@@ -5,6 +5,7 @@ export default class UserModel {
   email = "";
   username = "";
   password = "";
+  description = "";
   posts = [];
   postsNumber = 0;
   followers = [];
@@ -48,4 +49,19 @@ const validate = (user, validateCredentials) => {
   return errors;
 }
 
-export { validate }
+const validateEditInfo = (user) => {
+  let errors = {
+    name: null,
+    lastName: null,
+  }
+
+  if (!user.name) {
+    errors.name = "Name is mandatory";
+  }
+  if (!user.lastName) {
+    errors.lastName = "Last name is mandatory";
+  }
+  return errors;
+}
+
+export { validate, validateEditInfo }
