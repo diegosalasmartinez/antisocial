@@ -1,4 +1,11 @@
 .profile {
+  height: calc(100vh - 90px);
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .profile-posts {
     height: calc(100vh - 280px);
     overflow-y: scroll;

@@ -85,7 +85,6 @@ class MostLiked extends Component {
             <div></div>
             <MySelectField param='timeOption' data={data} value={options.timeOption} onChange={this.onChange}/>
           </Box>
-
           <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
         </Box>
       </Wrapper>
