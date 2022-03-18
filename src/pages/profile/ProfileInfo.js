@@ -17,6 +17,9 @@ export default class ProfileInfo extends Component {
     return (
       <Box className='profile-info'>
         <ProfileBasicInfo profile={profile} username={username} profileView={profileView} isFollowed={isFollowed} onSeeProfile={this.onSeeProfile} onFollow={this.props.onFollow} onUnfollow={this.props.onUnfollow} onEditInfo={this.props.onEditInfo}/>
+        <Typography className='info' textAlign="left" sx={{ fontSize: 15, marginBottom: '5px' }}>
+          {profile.description}
+        </Typography>
         <Box sx={{display: 'flex', gap: '15px'}}>
           <Typography className='info' textAlign="left" sx={{ fontSize: 15 }}>
             {profile.postsNumber} Posts

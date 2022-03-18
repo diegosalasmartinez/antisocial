@@ -183,7 +183,7 @@ class Profile extends Component {
       this.props.showNotification(userReducer.error);
       await this.props.clearErrorUser();
     } else {
-      this.props.showNotification('Your info was update', 'SUCCESS');
+      this.props.showNotification('Your info was updated successfully', 'SUCCESS');
       updatedUser = {...user};
     }
     this.setState({showProfileInfo: false, btnEditInfoLoading: false, profile: updatedUser});
