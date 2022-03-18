@@ -5,12 +5,16 @@ import * as postActions from '../../services/redux/actions/postActions'
 import { Box, Typography } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
 import Posts from '../posts/Posts'
+import MySelectField from '../../components/MySelectField'
 
 export class Saves extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
+      options: {
+        categorySelected: "all",
+      },
       loading: true
     }
   }
@@ -24,6 +28,21 @@ export class Saves extends Component {
     } else {
       this.setState({posts, loading: false});
     }
+  }
+
+  onChange = (key, isNumeric = false) => (e = {}) => {
+    const { options } = this.state;
+    let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
+    let objectUpdated = { ...options };
+
+    const keys = key.split(".");
+    if (keys.length > 1) {
+      objectUpdated[keys[0]][keys[1]] = val;
+    } else {
+      objectUpdated[key] = val;
+    }
+
+    this.setState({options: objectUpdated});
   }
 
   updatePosts = (post) => {
@@ -48,15 +67,22 @@ export class Saves extends Component {
   }
 
   render() {
-    const { loading, posts } = this.state;
+    const { loading, posts, options } = this.state;
+    const { categorySelected } = options;
+    const { categories } = this.props;
+    const data = [{value: 'all', label: 'All'}, ...categories.map(c => ({value: c._id, label: c.name}))];
+    const postsSelected = categorySelected === "all" ? posts : posts.filter(p => p.category._id === categorySelected);
 
     return (
       <Wrapper loading={loading}>
         <Box className='saves'>
-          <Typography className='saves-title' textAlign="left" sx={{ fontSize: 20 }}>
-            Posts you saved
-          </Typography>
-          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
+          <Box className='form timeOption'>
+            <Typography className='saves-title' textAlign="left" sx={{ fontSize: 20 }}>
+              Posts you saved
+            </Typography>
+            <MySelectField param='categorySelected' data={data} value={categorySelected} onChange={this.onChange}/>
+          </Box>
+          <Posts {...this.props} posts={postsSelected} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
         </Box>
       </Wrapper>
     )
@@ -65,7 +91,8 @@ export class Saves extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    post: state.post
+    post: state.post,
+    categories: state.category.categories,
   }
 }
 
