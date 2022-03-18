@@ -17,8 +17,8 @@ const getSavedPosts = async () => {
   return await apiGet(`${base}/saved`);
 }
 
-const getMostLikedPosts = async () => {
-  return await apiGet(`${base}/mostLiked`);
+const getMostLikedPosts = async (timeOption) => {
+  return await apiGet(`${base}/mostLiked?timeOption=${timeOption}`);
 }
 
 const likePost = async (post) => {

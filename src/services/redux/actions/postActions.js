@@ -55,9 +55,9 @@ const getSavedPosts = () => async (dispatch) => {
   }
 }
 
-const getMostLikedPosts = () => async (dispatch) => {
+const getMostLikedPosts = (timeOption) => async (dispatch) => {
   try {
-    return await getMostLikedPostsAPI();
+    return await getMostLikedPostsAPI(timeOption);
   } catch(e){
     const actionType = getError(e, ERROR_POST);
     return dispatch(actionType)
