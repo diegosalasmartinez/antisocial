@@ -1,4 +1,4 @@
-import { apiGet, apiPost } from './api'
+import { apiGet } from './api'
 const base = 'categories'
 
 const getCategories = async () => {
