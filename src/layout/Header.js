@@ -10,7 +10,7 @@ import navOptions from './options/navOptions'
 
 const options = ["Profile", "Settings", "Logout"];
 
-export default function Header() {
+export default function Header(props) {
   const [navMenu, setNavMenu] = React.useState(null);
   const [navUser, setNavUser] = React.useState(null);
   const navigate = useNavigate();
@@ -33,8 +33,13 @@ export default function Header() {
   const handleCloseNavUser = (e, option) => {
     e.preventDefault();
     setNavUser(null);
-    if (option === 'Logout') {
-      dispatch({type: LOGOUT})
+
+    if (option === 'Profile') {
+      props.navigate('/user/'+props.username);
+    } else if (option === 'Settings') {
+
+    } else if (option === 'Logout') {
+      dispatch({type: LOGOUT});
     }
   }
 
