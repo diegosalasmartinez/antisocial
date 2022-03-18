@@ -3,13 +3,13 @@ import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/
 
 export default class MySelectField extends Component {
   render() {
-    const { param, label = '', value = '', errors = {}, data = [] } = this.props
+    const { param, label, value = '', errors = {}, data = [] } = this.props
     const error = errors[param] != null;
     const errorMessage = error ? errors[param] : '';
 
     return (
       <FormControl sx={{ m: 1, minWidth: 120 }} fullWidth error={error}>
-        <InputLabel id={param}>{label}</InputLabel>
+        { label && <InputLabel id={param}>{label}</InputLabel> }
         <Select labelId={param} id={param} value={value} label={label} onChange={this.props.onChange(param)}>
           { data.map(d => <MenuItem key={d.value} value={d.value}>{d.label}</MenuItem>) }
         </Select>
