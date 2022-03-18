@@ -1,6 +1,7 @@
 import {
   GET_USER,
   FOLLOW_USER,
+  UPDATE_USER,
   UNFOLLOW_USER,
   FOLLOWING_USERS,
   CLEAR_ERROR_USER,
@@ -27,7 +28,10 @@ const getProfile = (username) => async (dispatch) => {
 
 const updateUserInfo = (user) => async (dispatch) => {
   try {
-    return await updateUserInfoAPI(user);
+    await updateUserInfoAPI(user);
+    return dispatch({
+      type: UPDATE_USER
+    })
   } catch(e){
     const actionType = getError(e, ERROR_USER);
     return dispatch(actionType)

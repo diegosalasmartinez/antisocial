@@ -1,5 +1,6 @@
 import {
   GET_USER,
+  UPDATE_USER,
   CLEAR_ERROR_USER,
   ERROR_USER
 } from '../actions/actionTypes/userActionTypes'
@@ -16,6 +17,7 @@ const user = (state = initialState, action) => {
       return {...state, loaded: true, failed: false};
     case ERROR_USER:
       return {...state, loaded: true, failed: true, error: action.playload};
+    case UPDATE_USER:
     case CLEAR_ERROR_USER:
       return {...state, loaded: true, failed: false, error: ''};
     default:
