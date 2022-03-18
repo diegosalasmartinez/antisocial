@@ -5,4 +5,19 @@
   &::-webkit-scrollbar {
     display: none;
   }
+
+  .timeOption {
+    display: flex;
+    justify-content: space-between;
+
+    .MuiFormControl-root {
+      width: 150px;
+      margin-bottom: 16px!important;
+
+      & .MuiOutlinedInput-root .MuiSelect-select {
+        padding-top: 7px!important;
+        padding-bottom: 7px!important;
+      }
+    }
+  }
 }
