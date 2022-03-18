@@ -78,4 +78,19 @@
       }
     }
   }
+
+  &.timeOption {
+    display: flex!important;
+    justify-content: space-between!important;
+  
+    .MuiFormControl-root {
+      width: 150px!important;
+      margin-bottom: 16px!important;
+  
+      & .MuiOutlinedInput-root .MuiSelect-select {
+        padding-top: 7px!important;
+        padding-bottom: 7px!important;
+      }
+    }
+  }
 }
