@@ -9,7 +9,7 @@ export default class MyDateField extends Component {
     const { param = '', label = '', value } = this.props;
     return (
       <LocalizationProvider dateAdapter={DateAdapter}>
-        <MobileDatePicker inputFormat='DD/MM/yyyy' label={label} value={value} onChange={this.props.onChange(param, false, true)} renderInput={(params) => <TextField {...params} />}/>
+        <MobileDatePicker inputFormat='DD/MM/yyyy' label={label} value={value} onChange={this.props.onChange(param, false, true)} renderInput={(params) => <TextField {...params} size='small'/>}/>
       </LocalizationProvider>
     )
   }

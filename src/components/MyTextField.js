@@ -22,6 +22,7 @@ export default class MyTextField extends Component {
         autoComplete='new-password'
         error={error}
         helperText={errorMessage}
+        size='small'
       />
     )
   }
