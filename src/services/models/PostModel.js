@@ -7,6 +7,7 @@ export default class PostModel {
   author = "";
   date = new Date();
   category = new CategoryModel();
+  replies = [];
 }
 
 const validate = (post) => {
