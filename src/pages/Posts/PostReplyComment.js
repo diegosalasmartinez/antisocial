@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Box, Typography } from '@mui/material'
-import MessageModel from '../../services/models/MessageModel'
+import { Box } from '@mui/material'
+import MessageModel, { validate } from '../../services/models/MessageModel'
 import MyTextField from '../../components/MyTextField'
-import MyButton from 'src/components/MyButton';
+import MyButton from '../../components/MyButton'
+import { objIsNull } from '../../utils/utils'
 
 export default class PostReplyComment extends Component {
   constructor(props) {
@@ -28,13 +29,22 @@ export default class PostReplyComment extends Component {
     this.setState({message: objectUpdated});
   }
 
+  onReply = () => {
+    const { message } = this.state;
+    const errors = validate(message);
+    if (objIsNull(errors)) {
+      this.props.onReply(message);
+    }
+    this.setState({errors: errors});
+  }
+
   render() {
     const { message, errors } = this.state;
 
     return (
       <Box className='form'>
         <MyTextField param='message' label='Message' value={message.message} errors={errors} onChange={this.onChange}/>
-        <MyButton text='Reply'/>
+        <MyButton text='Reply' onClick={this.onReply}/>
       </Box>
     )
   }

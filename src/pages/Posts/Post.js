@@ -78,6 +78,19 @@ class Post extends Component {
     }
   }
 
+  onReply = async (message) => {
+    const { post } = this.props;
+    const postUpdated = await this.props.replyPost(post._id, message);
+    const { postReducer } = this.props;
+
+    if (postReducer.failed) {
+      this.props.showNotification(postReducer.error);
+      await this.props.clearErrorPost();
+    } else {
+      this.props.updatePosts(postUpdated);
+    }
+  }
+
   render() {
     const { post, authReducer } = this.props;
     const { user } = authReducer;
@@ -86,7 +99,7 @@ class Post extends Component {
       <Box className='jc-c'>
         <Card className='post' sx={{ minWidth: 250, width: '100%' }}>
           <PostContent post={post} authReducer={authReducer} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
-          <PostActionsComments post={post} user={user} onLike={this.onLike} onDislike={this.onDislike} onSave={this.onSave}/>
+          <PostActionsComments {...this.props} post={post} user={user} onLike={this.onLike} onDislike={this.onDislike} onSave={this.onSave} onReply={this.onReply}/>
         </Card>
       </Box>
     )
