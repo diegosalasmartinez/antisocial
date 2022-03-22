@@ -75,7 +75,7 @@ export class Saves extends Component {
 
     return (
       <Wrapper loading={loading}>
-        <Box className='saves'>
+        <Box className='home saves'>
           <Box className='form timeOption'>
             <Typography className='saves-title' textAlign="left" sx={{ fontSize: 20 }}>
               Posts you saved
