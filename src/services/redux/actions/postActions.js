@@ -97,7 +97,7 @@ const savePost = (p) => async (dispatch) => {
 
 const replyPost = (postId, message) => async (dispatch) => {
   try {
-    const res = await replyPostAPI({postId, message});
+    const res = await replyPostAPI(postId, message);
     return res;
   } catch(e){
     const actionType = getError(e, ERROR_POST);

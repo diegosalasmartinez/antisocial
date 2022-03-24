@@ -25,8 +25,8 @@ const likePost = async (post) => {
   return await apiPost(`${base}/like`, post);
 }
 
-const replyPost = async (obj) => {
-  return await apiPost(`${base}/reply`, obj);
+const replyPost = async (postId, message) => {
+  return await apiPost(`${base}/reply/${postId}`, message);
 }
 
 const dislikePost = async (post) => {
