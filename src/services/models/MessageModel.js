@@ -1,6 +1,7 @@
 export default class MessageModel {
   _id = "";
   message = "";
+  date = new Date();
 }
 
 
