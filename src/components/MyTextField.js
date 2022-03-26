@@ -3,9 +3,9 @@ import { TextField } from '@mui/material'
 
 export default class MyTextField extends Component {
   render() {
-    const { param = '', label = '', value = '', errors = {}, type = 'text', mb = '1.25rem', multiline, rows } = this.props;
+    const { param = '', label = '', value = '', errors = {}, hideText = false, type = 'text', mb = '1.25rem', multiline, rows } = this.props;
     const error = errors[param] != null;
-    const errorMessage = error ? errors[param] : '';
+    const errorMessage = (error && !hideText) ? errors[param] : '';
 
     return (
       <TextField 
