@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
 import Posts from '../posts/Posts'
-import MySelectField from 'src/components/MySelectField'
+import MySelectField from '../../components/MySelectField'
+import { getInputValue } from '../../utils/utils'
 
 class MostLiked extends Component {
   constructor(props) {
@@ -38,17 +39,8 @@ class MostLiked extends Component {
 
   onChange = (key, isNumeric = false) => (e = {}) => {
     const { options } = this.state;
-    let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
-    let objectUpdated = { ...options };
-
-    const keys = key.split(".");
-    if (keys.length > 1) {
-      objectUpdated[keys[0]][keys[1]] = val;
-    } else {
-      objectUpdated[key] = val;
-    }
-
-    this.setState({options: objectUpdated}, () => {
+    const optionsUpdated = getInputValue(options, e, key, isNumeric);
+    this.setState({options: optionsUpdated}, () => {
       this.fetchPosts();
     });
   }

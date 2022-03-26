@@ -7,6 +7,7 @@ import MyTextField from '../../components/MyTextField'
 import MyDateField from '../../components/MyDateField'
 import MyButton from '../../components/MyButton'
 import UserModel from '../../services/models/UserModel'
+import { getInputValue } from 'src/utils/utils'
 
 class Register extends Component {
   constructor(props) {
@@ -25,15 +26,8 @@ class Register extends Component {
 
   onChange = (key, isNumeric = false, isDate = false) => (e = {}) => {
     const { user } = this.state;
-    let val = isNumeric ? parseInt(e.target.value || '0') : isDate ? e : e.target.value;
-    let objectUpdated = { ...user };
-    const keys = key.split(".");
-    if (keys.length > 1) {
-      objectUpdated[keys[0]][keys[1]] = val;
-    } else {
-      objectUpdated[key] = val;
-    }
-    this.setState({user: objectUpdated});
+    const userUpdated = getInputValue(user, e, key, isNumeric, isDate);
+    this.setState({user: userUpdated});
   }
 
   onSignIn = () => {

@@ -6,6 +6,7 @@ import { Box, Typography } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
 import Posts from '../posts/Posts'
 import MySelectField from '../../components/MySelectField'
+import { getInputValue } from '../../utils/utils'
 
 export class Saves extends Component {
   constructor(props) {
@@ -32,17 +33,8 @@ export class Saves extends Component {
 
   onChange = (key, isNumeric = false) => (e = {}) => {
     const { options } = this.state;
-    let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
-    let objectUpdated = { ...options };
-
-    const keys = key.split(".");
-    if (keys.length > 1) {
-      objectUpdated[keys[0]][keys[1]] = val;
-    } else {
-      objectUpdated[key] = val;
-    }
-
-    this.setState({options: objectUpdated});
+    const optionsUpdated = getInputValue(options, e, key, isNumeric);
+    this.setState({options: optionsUpdated});
   }
 
   updatePosts = (post) => {

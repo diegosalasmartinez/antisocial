@@ -4,7 +4,7 @@ import MyButton from '../../components/MyButton'
 import MyTextField from '../../components/MyTextField'
 import MySelectField from '../../components/MySelectField'
 import PostModel, { validate } from '../../services/models/PostModel'
-import { objIsNull } from '../../utils/utils'
+import { getInputValue, objIsNull } from '../../utils/utils'
 
 export default class CreatePost extends Component {
   constructor(props) {
@@ -17,17 +17,8 @@ export default class CreatePost extends Component {
 
   onChange = (key, isNumeric = false) => (e = {}) => {
     const { post } = this.state;
-    let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
-    let objectUpdated = { ...post };
-
-    const keys = key.split(".");
-    if (keys.length > 1) {
-      objectUpdated[keys[0]][keys[1]] = val;
-    } else {
-      objectUpdated[key] = val;
-    }
-
-    this.setState({post: objectUpdated});
+    const postUpdated = getInputValue(post, e, key, isNumeric);
+    this.setState({post: postUpdated});
   }
 
   onPost = () => {
