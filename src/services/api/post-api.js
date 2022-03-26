@@ -5,6 +5,10 @@ const createPost = async (post) => {
   return await apiPost(`${base}/add`, post);
 }
 
+const getPost = async (postId) => {
+  return await apiGet(`${base}/${postId}`);
+}
+
 const getPostsByFollowingUsers = async () => {
   return await apiGet(`${base}/following`);
 }
@@ -43,6 +47,7 @@ export {
   getSavedPosts, 
   getMostLikedPosts,
   createPost, 
+  getPost,
   replyPost,
   likePost, 
   dislikePost, 

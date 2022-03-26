@@ -10,6 +10,7 @@ import {
   getSavedPosts as getSavedPostsAPI,
   getMostLikedPosts as getMostLikedPostsAPI,
   createPost as createPostAPI,
+  getPost as getPostAPI,
   replyPost as replyPostAPI,
   likePost as likePostAPI,
   dislikePost as dislikePostAPI,
@@ -23,6 +24,15 @@ const createPost = (post) => async (dispatch) => {
       type: CREATE_POST,
       playload: res
     })
+  } catch(e){
+    const actionType = getError(e, ERROR_POST);
+    return dispatch(actionType)
+  }
+}
+
+const getPost = (postId) => async (dispatch) => {
+  try {
+    return await getPostAPI(postId);
   } catch(e){
     const actionType = getError(e, ERROR_POST);
     return dispatch(actionType)
@@ -117,6 +127,7 @@ export {
   getSavedPosts,
   getMostLikedPosts,
   createPost, 
+  getPost,
   replyPost,
   likePost, 
   dislikePost, 
