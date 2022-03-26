@@ -86,8 +86,11 @@ class Post extends Component {
     if (postReducer.failed) {
       this.props.showNotification(postReducer.error);
       await this.props.clearErrorPost();
+      return false;
     } else {
+      this.props.showNotification('Your sfges was published', 'SUCCESS');
       this.props.updatePosts(postUpdated);
+      return true;
     }
   }
 

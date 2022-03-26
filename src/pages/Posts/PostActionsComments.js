@@ -66,7 +66,7 @@ export default class PostActionsComments extends Component {
         </CardActions>
         <Collapse in={expandedCommentSection} timeout="auto" unmountOnExit>
           <CardContent className='reply'>
-            <PostReplyComment/>
+            <PostReplyComment onReply={this.props.onReply}/>
           </CardContent>
         </Collapse>
       </>

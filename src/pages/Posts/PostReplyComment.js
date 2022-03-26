@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import MessageModel, { validate } from '../../services/models/MessageModel'
 import MyTextField from '../../components/MyTextField'
 import MyButton from '../../components/MyButton'
-import { objIsNull } from '../../utils/utils'
+import { getInputValue, objIsNull } from '../../utils/utils'
 
 export default class PostReplyComment extends Component {
   constructor(props) {
@@ -16,26 +16,23 @@ export default class PostReplyComment extends Component {
 
   onChange = (key, isNumeric = false) => (e = {}) => {
     const { message } = this.state;
-    let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
-    let objectUpdated = { ...message };
-
-    const keys = key.split(".");
-    if (keys.length > 1) {
-      objectUpdated[keys[0]][keys[1]] = val;
-    } else {
-      objectUpdated[key] = val;
-    }
-
-    this.setState({message: objectUpdated});
+    const messageUpdated = getInputValue(message, e, key, isNumeric);
+    this.setState({message: messageUpdated});
   }
 
   onReply = () => {
     const { message } = this.state;
+    let messageUpdated = {...message};
     const errors = validate(message);
+
     if (objIsNull(errors)) {
-      this.props.onReply(message);
+      const isReplyPosted = this.props.onReply(message);
+      if (isReplyPosted) {
+        messageUpdated = new MessageModel();
+      }
     }
-    this.setState({errors: errors});
+
+    this.setState({errors: errors, message: messageUpdated});
   }
 
   render() {
@@ -43,7 +40,7 @@ export default class PostReplyComment extends Component {
 
     return (
       <Box className='form'>
-        <MyTextField param='message' label='Message' value={message.message} errors={errors} onChange={this.onChange}/>
+        <MyTextField param='message' label='Message' value={message.message} errors={errors} hideText={true} onChange={this.onChange}/>
         <MyButton text='Reply' onClick={this.onReply}/>
       </Box>
     )
