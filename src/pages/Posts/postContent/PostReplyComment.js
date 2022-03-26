@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Box } from '@mui/material'
-import MessageModel, { validate } from '../../services/models/MessageModel'
-import MyTextField from '../../components/MyTextField'
-import MyButton from '../../components/MyButton'
-import { getInputValue, objIsNull } from '../../utils/utils'
+import MessageModel, { validate } from '../../../services/models/MessageModel'
+import MyTextField from '../../../components/MyTextField'
+import MyButton from '../../../components/MyButton'
+import { getInputValue, objIsNull } from '../../../utils/utils'
 
 export default class PostReplyComment extends Component {
   constructor(props) {
