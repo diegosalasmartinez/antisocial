@@ -34,7 +34,6 @@ class PostDetails extends Component {
 
   fetchPost = async (postId) => {
     this.setState({loading: true});
-
     const post = await this.props.getPost(postId);
     const postReducer = this.props.post;
     if (postReducer.failed) {

@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
 import * as userActions from '../../services/redux/actions/userActions'
 import { Box, Card } from '@mui/material'
-import PostContent from './PostContent'
-import PostActionsComments from './PostActionsComments'
+import PostContent from './postContent/PostContent'
+import PostActionsComments from './postContent/PostActionsComments'
 
 class Post extends Component {
   onLike = async () => {
@@ -45,11 +45,6 @@ class Post extends Component {
     } else {
       this.props.updatePosts(postUpdated);
     }
-  }
-
-  onSeeProfile = () => {
-    const { post } = this.props;
-    this.props.navigate("/user/"+post.author.username);
   }
 
   onFollow = async () => {
@@ -101,7 +96,7 @@ class Post extends Component {
     return (
       <Box className='jc-c'>
         <Card className='post' sx={{ minWidth: 250, width: '100%' }}>
-          <PostContent post={post} authReducer={authReducer} onSeeProfile={this.onSeeProfile} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
+          <PostContent {...this.props} post={post} authReducer={authReducer} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
           <PostActionsComments {...this.props} post={post} user={user} onLike={this.onLike} onDislike={this.onDislike} onSave={this.onSave} onReply={this.onReply}/>
         </Card>
       </Box>
