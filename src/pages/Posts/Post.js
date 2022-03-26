@@ -88,7 +88,7 @@ class Post extends Component {
       await this.props.clearErrorPost();
       return false;
     } else {
-      this.props.showNotification('Your sfges was published', 'SUCCESS');
+      this.props.showNotification('Your reply was published', 'SUCCESS');
       this.props.updatePosts(postUpdated);
       return true;
     }

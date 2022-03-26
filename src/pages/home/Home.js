@@ -27,7 +27,7 @@ class Home extends Component {
   }
 
   updatePosts = (post) => {
-    const ind = this.state.posts.findIndex(p => p._id === post._id)
+    const ind = this.state.posts.findIndex(p => p._id === post._id);
     if (ind >= 0) {
       let posts = [...this.state.posts];
       posts[ind] = {...post};
