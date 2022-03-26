@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 import MyTextField from '../../components/MyTextField'
 import MyButton from '../../components/MyButton'
-import { objIsNull } from '../../utils/utils'
+import { getInputValue, objIsNull } from '../../utils/utils'
 import UserModel, { validateEditInfo } from '../../services/models/UserModel'
 
 export default class ProfileEditInfo extends Component {
@@ -20,17 +20,8 @@ export default class ProfileEditInfo extends Component {
 
   onChange = (key, isNumeric = false) => (e = {}) => {
     const { newProfile } = this.state;
-    let val = isNumeric ? parseInt(e.target.value || '0') : e.target.value;
-    let objectUpdated = { ...newProfile };
-
-    const keys = key.split(".");
-    if (keys.length > 1) {
-      objectUpdated[keys[0]][keys[1]] = val;
-    } else {
-      objectUpdated[key] = val;
-    }
-
-    this.setState({newProfile: objectUpdated});
+    const profileUpdated = getInputValue(newProfile, e, key, isNumeric);
+    this.setState({newProfile: profileUpdated});
   }
 
   onEdit = () => {
