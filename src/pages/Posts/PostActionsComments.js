@@ -34,6 +34,7 @@ export default class PostActionsComments extends Component {
       <>
         <CardActions disableSpacing>
           <Box id='comment' className={`icon-section ${commentClassName}`}>
+            <Typography sx={{ fontSize: 15 }}>{post.numReplies}</Typography>
             <Tooltip title="Comment">
               <IconButton aria-label="comment" onClick={this.onComment}>
                 { commentClassName === 'checked' ? <CommentFullIcon fontSize='small'/> : <CommentIcon fontSize='small'/> }
@@ -41,7 +42,7 @@ export default class PostActionsComments extends Component {
             </Tooltip>
           </Box>
           <Box id='like' className={`icon-section ${likeClassName}`}>
-            <Typography className='date' sx={{ fontSize: 15 }}>{post.likes.length}</Typography>
+            <Typography sx={{ fontSize: 15 }}>{post.likes.length}</Typography>
             <Tooltip title="Like">
               <IconButton aria-label="like" onClick={this.props.onLike}>
                 { likeClassName === 'checked' ? <ThumbUpFullIcon fontSize='small'/> : <ThumbUpIcon fontSize='small'/> }
@@ -49,7 +50,7 @@ export default class PostActionsComments extends Component {
             </Tooltip>
           </Box>
           <Box id='dislike' className={`icon-section ${dislikeClassName}`}>
-            <Typography className='date' sx={{ fontSize: 15 }}>{post.dislikes.length}</Typography>
+            <Typography sx={{ fontSize: 15 }}>{post.dislikes.length}</Typography>
             <Tooltip title="Like">
               <IconButton aria-label="dislike" onClick={this.props.onDislike}>
                 { dislikeClassName === 'checked' ? <ThumbDownFullIcon fontSize='small'/> : <ThumbDownIcon fontSize='small'/> }
