@@ -59,8 +59,10 @@ class MostLiked extends Component {
     for (let i=0; i<this.state.posts.length; i++) {
       if (this.state.posts[i].author._id === authorId) {
         let post = {...this.state.posts[i]};
-        post.author.followersNumber = numFollowers;
-        posts[i] = post;
+        let author = {...post.author};
+        author.followersNumber = numFollowers;
+        post.author = {...author};
+        posts[i] = {...post};
       }
     }
     this.setState({posts: posts});    

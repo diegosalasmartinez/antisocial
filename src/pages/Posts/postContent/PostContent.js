@@ -31,11 +31,10 @@ export default class PostContent extends Component {
   }
   
   render() {
-    const { post, authReducer } = this.props;
+    const { post } = this.props;
     const { authorView } = this.state;
     const openAuthorView = Boolean(authorView);
     const idAuthorView = 'author-popover';
-    const isFollowed = authReducer.following.includes(post.author._id);
 
     return (
       <CardContent>
@@ -46,9 +45,6 @@ export default class PostContent extends Component {
           <Typography className='author' sx={{ fontSize: 15 }} aria-describedby={idAuthorView} onClick={this.handleAuthorViewOpen}>
             @{post.author.username}
           </Typography>
-          <MyPopover id={idAuthorView} open={openAuthorView} anchorEl={authorView} onClose={this.handleAuthorViewClose}>
-            <ProfileInfo username={authReducer.user.username} profile={post.author} isFollowed={isFollowed} onSeeProfile={this.onSeeProfile} onFollow={this.props.onFollow} onUnfollow={this.props.onUnfollow}/>
-          </MyPopover>
           <Typography className='date' sx={{ fontSize: 14 }}>
             - {new Date(post.date).toLocaleString()}
           </Typography>
@@ -59,6 +55,9 @@ export default class PostContent extends Component {
         <Typography className='body' sx={{ fontSize: 16 }}>
           {post.body}
         </Typography>
+        <MyPopover id={idAuthorView} open={openAuthorView} anchorEl={authorView} onClose={this.handleAuthorViewClose}>
+          <ProfileInfo profile={post.author} onSeeProfile={this.onSeeProfile} onFollow={this.props.onFollow} onUnfollow={this.props.onUnfollow}/>
+        </MyPopover>
       </CardContent>
     )
   }
