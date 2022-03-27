@@ -10,11 +10,11 @@ export default class Posts extends Component {
       <Box className='posts'>
         { posts.length > 0 ? 
           <>
-            { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts}/>) }
+            { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts} updateAuthor={this.props.updateAuthor}/>) }
           </>
           :
           <Typography className='no-posts' textAlign="center" sx={{ fontSize: 20 }}>
-            There aren't posts yet. Try posting one rigth now!
+            There aren't posts yet.
           </Typography>
         }
       </Box>
