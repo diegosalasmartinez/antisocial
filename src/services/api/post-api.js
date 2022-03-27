@@ -6,7 +6,7 @@ const createPost = async (post) => {
 }
 
 const getPost = async (postId) => {
-  return await apiGet(`${base}/${postId}`);
+  return await apiGet(`${base}/details/${postId}`);
 }
 
 const getPostsByFollowingUsers = async () => {
