@@ -1,0 +1,48 @@
+.reply {
+  background-color: $primary-light !important;
+  margin-bottom: 1rem;
+  border-radius: 12px !important;
+  
+  .MuiCardContent-root {
+    padding-bottom: 0!important;
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 7px;
+
+      .author {
+        display: flex;
+        align-items: center;
+
+        .name {
+          color: $white;
+          font-weight: bold;
+        }
+  
+        .username, .date {
+          margin-left: 5px;
+          color: $white-secondary;
+        }
+
+        .username {
+          &:hover {
+            cursor: pointer;
+            color: $white;
+          }
+        }
+      }
+
+      .author-info {
+        .username {
+          color: $white-secondary;
+        }
+      }
+    }
+
+    .content {
+      color: $white;
+    }
+  }
+}
