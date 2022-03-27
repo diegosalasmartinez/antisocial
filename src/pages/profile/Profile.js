@@ -113,7 +113,9 @@ class Profile extends Component {
     for (let i=0; i<this.state.posts.length; i++) {
       if (this.state.posts[i].author._id === authorId) {
         let post = {...this.state.posts[i]};
-        post.author.followersNumber = numFollowers;
+        let author = {...post.author};
+        author.followersNumber = numFollowers;
+        post.author = {...author};
         posts[i] = post;
       }
     }
@@ -121,7 +123,9 @@ class Profile extends Component {
     for (let i=0; i<this.state.postsLiked.length; i++) {
       if (this.state.postsLiked[i].author._id === authorId) {
         let post = {...this.state.postsLiked[i]};
-        post.author.followersNumber = numFollowers;
+        let author = {...post.author};
+        author.followersNumber = numFollowers;
+        post.author = {...author};
         postsLiked[i] = post;
       }
     }
@@ -129,13 +133,14 @@ class Profile extends Component {
     for (let i=0; i<this.state.postsDisliked.length; i++) {
       if (this.state.postsDisliked[i].author._id === authorId) {
         let post = {...this.state.postsDisliked[i]};
-        post.author.followersNumber = numFollowers;
+        let author = {...post.author};
+        author.followersNumber = numFollowers;
+        post.author = {...author};
         postsDisliked[i] = post;
       }
     }
     let profile = {...this.state.profile};
     profile.followersNumber = numFollowers;
-
     this.setState({profile, posts, postsLiked, postsDisliked});    
   }
 
@@ -190,14 +195,12 @@ class Profile extends Component {
   }
 
   render() {
-    const { auth } = this.props;
     const { loading, tab, profile, posts, postsLiked, postsDisliked, showProfileInfo, btnEditInfoLoading } = this.state;
-    const isFollowed = auth.following.includes(profile._id);
-    
+
     return (
       <Wrapper loading={loading}>
         <Box className='profile'>
-          <ProfileInfo username={auth.user.username} profile={profile} profileView={true} isFollowed={isFollowed} onFollow={this.onFollow} onUnfollow={this.onUnfollow} onEditInfo={this.onEditInfo}/>
+          <ProfileInfo profile={profile} profileView={true} onFollow={this.onFollow} onUnfollow={this.onUnfollow} onEditInfo={this.onEditInfo}/>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tab} onChange={this.handleChange} aria-label="basic tabs example">
               <Tab label="Posts" {...defineProps(0)} />
@@ -231,7 +234,6 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
     user: state.user
   }
 }
