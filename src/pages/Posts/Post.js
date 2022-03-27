@@ -92,11 +92,11 @@ class Post extends Component {
   render() {
     const { post, authReducer } = this.props;
     const { user } = authReducer;
-
+    
     return (
       <Box className='jc-c'>
         <Card className='post' sx={{ minWidth: 250, width: '100%' }}>
-          <PostContent {...this.props} post={post} authReducer={authReducer} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
+          <PostContent {...this.props} post={post} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
           <PostActionsComments {...this.props} post={post} user={user} onLike={this.onLike} onDislike={this.onDislike} onSave={this.onSave} onReply={this.onReply}/>
         </Card>
       </Box>
