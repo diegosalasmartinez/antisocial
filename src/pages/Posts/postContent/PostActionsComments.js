@@ -23,7 +23,7 @@ export default class PostActionsComments extends Component {
   }
 
   render() {
-    const { expandedCommentSection } = this.state
+    const { expandedCommentSection } = this.state;
     const { post, user } = this.props;
     const likeClassName = post.likes.includes(user._id) ? 'checked' : '';
     const dislikeClassName = post.dislikes.includes(user._id) ? 'checked' : '';
@@ -66,7 +66,7 @@ export default class PostActionsComments extends Component {
           </Box>
         </CardActions>
         <Collapse in={expandedCommentSection} timeout="auto" unmountOnExit>
-          <CardContent className='reply'>
+          <CardContent className='reply-form'>
             <PostReplyComment onReply={this.props.onReply}/>
           </CardContent>
         </Collapse>

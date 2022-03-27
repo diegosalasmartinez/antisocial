@@ -99,22 +99,9 @@
         color: $blue;
       }
     }
-  }  
-}
-
-.create-post {
-  textarea{ 
-    color: $white;
   }
 
-  .MuiButton-root {
-    margin-top: 0;
-  }
-}
-
-.post {
-
-  .reply {
+  .reply-form {
     padding-top: 0!important;
 
     .form {
@@ -131,6 +118,15 @@
         width: 80px;
       }
     }
-    
+  }
+}
+
+.create-post {
+  textarea{ 
+    color: $white;
+  }
+
+  .MuiButton-root {
+    margin-top: 0;
   }
 }
