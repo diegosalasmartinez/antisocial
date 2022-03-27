@@ -5,6 +5,8 @@ import * as postActions from '../../services/redux/actions/postActions'
 import { Box } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
 import PostModel from '../../services/models/PostModel'
+import Post from './Post'
+import Replies from '../replies/Replies'
 
 class PostDetails extends Component {
   constructor(props) {
@@ -44,7 +46,6 @@ class PostDetails extends Component {
     }
   }
 
-
   updatePosts = (post) => {
     const ind = this.state.posts.findIndex(p => p._id === post._id);
     if (ind >= 0) {
@@ -68,11 +69,12 @@ class PostDetails extends Component {
 
   render() {
     const { loading, post } = this.state;
-    console.log(post);
+
     return (
       <Wrapper loading={loading}>
         <Box className='home'>
-          {/* <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/> */}
+          <Post {...this.props} key={post._id} post={post} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
+          <Replies replies={post.replies}/>
         </Box>
       </Wrapper>
     )
