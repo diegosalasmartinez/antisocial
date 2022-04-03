@@ -47,24 +47,46 @@ class PostDetails extends Component {
   }
 
   updatePosts = (post) => {
-    const ind = this.state.posts.findIndex(p => p._id === post._id);
-    if (ind >= 0) {
-      let posts = [...this.state.posts];
-      posts[ind] = {...post};
-      this.setState({posts: posts});
-    }
+    this.setState({post: {...post}});
   }
   
   updateAuthor = (authorId, numFollowers) => {
-    let posts = [...this.state.posts];
-    for (let i=0; i<this.state.posts.length; i++) {
-      if (this.state.posts[i].author._id === authorId) {
-        let post = {...this.state.posts[i]};
-        post.author.followersNumber = numFollowers;
-        posts[i] = post;
+    let post = {...this.state.post};
+    let author = {...post.author};
+    author.followersNumber = numFollowers;
+    post.author = {...author};
+
+    this.setState({post: post});
+    this.updateAuthorReply(authorId, numFollowers, false);
+  }
+
+  updateReplies = (reply) => {
+    const ind = this.state.post.replies.findIndex(r => r._id === reply._id);
+    if (ind >= 0) {
+      let post = {...this.state.post};
+      let replies = [...post.replies];
+      replies[ind] = {...reply};
+      post.replies = replies;
+
+      this.setState({post: post});
+    } 
+  }
+
+  updateAuthorReply = (authorId, numFollowers, updateAuthorToo = true) => {
+    let post = {...this.state.post};
+    let replies = [...post.replies];
+    for (let i=0; i<this.state.post.replies.length; i++) {
+      if (this.state.post.replies[i].author._id === authorId) {
+        let reply = {...this.state.post.replies[i]};
+        let author = {...reply.author};
+        author.followersNumber = numFollowers;
+        reply.author = {...author};
+        replies[i] = {...reply};
       }
     }
-    this.setState({posts: posts});    
+    post.replies = replies;
+    this.setState({post: post});    
+    if (updateAuthorToo) this.updateAuthor(authorId, numFollowers);
   }
 
   render() {
@@ -74,7 +96,7 @@ class PostDetails extends Component {
       <Wrapper loading={loading}>
         <Box className='home'>
           <Post {...this.props} post={post} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
-          <Replies replies={post.replies}/>
+          <Replies {...this.props} replies={post.replies} updateReplies={this.updateReplies} updateAuthorReply={this.updateAuthorReply}/>
         </Box>
       </Wrapper>
     )
