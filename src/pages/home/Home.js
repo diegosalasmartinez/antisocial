@@ -46,7 +46,7 @@ class Home extends Component {
         posts[i] = {...post};
       }
     }
-    this.setState({posts: posts});    
+    this.setState({posts: posts});
   }
 
   render() {

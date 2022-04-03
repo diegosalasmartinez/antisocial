@@ -51,7 +51,7 @@ export default class PostActionsComments extends Component {
           </Box>
           <Box id='dislike' className={`icon-section ${dislikeClassName}`}>
             <Typography sx={{ fontSize: 15 }}>{post.dislikes.length}</Typography>
-            <Tooltip title="Like">
+            <Tooltip title="Dislike">
               <IconButton aria-label="dislike" onClick={this.props.onDislike}>
                 { dislikeClassName === 'checked' ? <ThumbDownFullIcon fontSize='small'/> : <ThumbDownIcon fontSize='small'/> }
               </IconButton>
