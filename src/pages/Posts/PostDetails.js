@@ -73,7 +73,7 @@ class PostDetails extends Component {
     return (
       <Wrapper loading={loading}>
         <Box className='home'>
-          <Post {...this.props} key={post._id} post={post} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
+          <Post {...this.props} post={post} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
           <Replies replies={post.replies}/>
         </Box>
       </Wrapper>
