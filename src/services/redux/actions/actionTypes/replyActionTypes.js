@@ -1,0 +1,4 @@
+export const LIKE_REPLY = "LIKE_REPLY"
+export const DISLIKE_REPLY = "DISLIKE_REPLY"
+export const ERROR_REPLY = "ERROR_REPLY"
+export const CLEAR_ERROR_REPLY = "CLEAR_ERROR_REPLY"
