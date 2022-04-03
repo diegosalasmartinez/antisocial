@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Wrapper from '../../components/Wrapper'
 import PostModel from '../../services/models/PostModel'
 import Post from './Post'
@@ -94,8 +94,9 @@ class PostDetails extends Component {
 
     return (
       <Wrapper loading={loading}>
-        <Box className='home'>
+        <Box className='home post-details'>
           <Post {...this.props} post={post} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
+          <Typography className='title' textAlign="left" sx={{ fontSize: 19 }}>Replies</Typography>
           <Replies {...this.props} replies={post.replies} updateReplies={this.updateReplies} updateAuthorReply={this.updateAuthorReply}/>
         </Box>
       </Wrapper>
