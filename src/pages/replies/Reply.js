@@ -5,6 +5,7 @@ import * as postActions from '../../services/redux/actions/postActions'
 import * as userActions from '../../services/redux/actions/userActions'
 import { Box, Card } from '@mui/material'
 import ReplyContent from './replyContent/ReplyContent'
+import ReplyActions from './replyContent/ReplyActions'
 
 class Reply extends Component {
   onLike = async () => {
@@ -60,17 +61,15 @@ class Reply extends Component {
   }
 
   render() {
-    const { reply } = this.props;
+    const { reply, authReducer } = this.props;
+    const { user } = authReducer;
 
     return (
       <Box className='jc-c'>
         <Card className='reply' sx={{ minWidth: 250, width: '100%' }}>
           <ReplyContent {...this.props} reply={reply} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
+          <ReplyActions {...this.props} reply={reply} user={user} onLike={this.onLike} onDislike={this.onDislike}/>
         </Card>
-        {/* <Card className='post' >
-          <PostContent {...this.props} post={post} authReducer={authReducer} onFollow={this.onFollow} onUnfollow={this.onUnfollow}/>
-          <PostActionsComments {...this.props} post={post} user={user} onLike={this.onLike} onDislike={this.onDislike} onSave={this.onSave} onReply={this.onReply}/>
-        </Card> */}
       </Box>
     )
   }
@@ -78,6 +77,7 @@ class Reply extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    authReducer: state.auth,
     postReducer: state.post,
     userReducer: state.user,
   }

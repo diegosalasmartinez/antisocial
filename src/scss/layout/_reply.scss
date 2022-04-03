@@ -45,4 +45,49 @@
       color: $white;
     }
   }
+
+  .MuiCardActions-root {
+    padding-left: 16px;
+    gap: 10px;
+
+    .icon-section {
+      display: flex;
+      align-items: center;
+
+      .MuiTypography-root {
+        color: $white-secondary;
+        margin-top: 1.25px;
+      }
+    }
+
+    #like, #dislike, #save, #comment {
+      svg {
+        color: $white-secondary;
+      }
+    }
+
+    #like.checked{
+      .MuiTypography-root, svg {
+        color: $blue;
+      }
+    }
+
+    #dislike.checked{
+      .MuiTypography-root, svg {
+        color: $red;
+      }
+    }
+    
+    #save.checked{
+      .MuiTypography-root, svg {
+        color: $purple;
+      }
+    }
+
+    #comment.checked{
+      .MuiTypography-root, svg {
+        color: $blue;
+      }
+    }
+  }
 }
