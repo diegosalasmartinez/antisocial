@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Box, CardActions, CardContent, Collapse, IconButton, Tooltip, Typography } from '@mui/material'
+import { Box, CardActions, IconButton, Tooltip, Typography } from '@mui/material'
 import ThumbUpIcon from '@mui/icons-material/ThumbUpOutlined'
 import ThumbUpFullIcon from '@mui/icons-material/ThumbUp'
 import ThumbDownIcon from '@mui/icons-material/ThumbDownOutlined'
@@ -28,7 +28,7 @@ export default class ReplyActions extends Component {
           </Box>
           <Box id='dislike' className={`icon-section ${dislikeClassName}`}>
             <Typography sx={{ fontSize: 15 }}>{reply.dislikes.length}</Typography>
-            <Tooltip title="Like">
+            <Tooltip title="Dislike">
               <IconButton aria-label="dislike" onClick={this.props.onDislike}>
                 { dislikeClassName === 'checked' ? <ThumbDownFullIcon fontSize='small'/> : <ThumbDownIcon fontSize='small'/> }
               </IconButton>

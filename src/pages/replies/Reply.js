@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postActions from '../../services/redux/actions/postActions'
+import * as replyActions from '../../services/redux/actions/replyActions'
 import * as userActions from '../../services/redux/actions/userActions'
 import { Box, Card } from '@mui/material'
 import ReplyContent from './replyContent/ReplyContent'
@@ -9,54 +10,54 @@ import ReplyActions from './replyContent/ReplyActions'
 
 class Reply extends Component {
   onLike = async () => {
-    const { post } = this.props;
-    const postUpdated = await this.props.likePost(post);
-    const { postReducer } = this.props;
+    const { reply } = this.props;
+    const replyUpdated = await this.props.likeReply(reply);
+    const { replyReducer } = this.props;
 
-    if (postReducer.failed) {
-      this.props.showNotification(postReducer.error);
-      await this.props.clearErrorPost();
+    if (replyReducer.failed) {
+      this.props.showNotification(replyReducer.error);
+      await this.props.clearErrorReply();
     } else {
-      this.props.updatePosts(postUpdated);
+      this.props.updateReplies(replyUpdated);
     }
   }
 
   onDislike = async () => {
-    const { post } = this.props;
-    const postUpdated = await this.props.dislikePost(post);
-    const { postReducer } = this.props;
+    const { reply } = this.props;
+    const replyUpdated = await this.props.dislikeReply(reply);
+    const { replyReducer } = this.props;
 
-    if (postReducer.failed) {
-      this.props.showNotification(postReducer.error);
-      await this.props.clearErrorPost();
+    if (replyReducer.failed) {
+      this.props.showNotification(replyReducer.error);
+      await this.props.clearErrorReply();
     } else {
-      this.props.updatePosts(postUpdated);
+      this.props.updateReplies(replyUpdated);
     }
   }
 
   onFollow = async () => {
-    const { post } = this.props;
-    await this.props.followUser(post.author._id);
+    const { reply } = this.props;
+    await this.props.followUser(reply.author._id);
     const { userReducer } = this.props;
 
     if (userReducer.failed) {
       this.props.showNotification(userReducer.error);
       await this.props.clearErrorUser();
     } else {
-      this.props.updateAuthor(post.author._id, post.author.followersNumber + 1);
+      this.props.updateAuthorReply(reply.author._id, reply.author.followersNumber + 1);
     }
   }
 
   onUnfollow = async () => {
-    const { post } = this.props;
-    await this.props.unfollowUser(post.author._id);
+    const { reply } = this.props;
+    await this.props.unfollowUser(reply.author._id);
     const { userReducer } = this.props;
 
     if (userReducer.failed) {
       this.props.showNotification(userReducer.error);
       await this.props.clearErrorUser();
     } else {
-      this.props.updateAuthor(post.author._id, post.author.followersNumber - 1);
+      this.props.updateAuthorReply(reply.author._id, reply.author.followersNumber - 1);
     }
   }
 
@@ -78,14 +79,14 @@ class Reply extends Component {
 const mapStateToProps = (state) => {
   return {
     authReducer: state.auth,
-    postReducer: state.post,
+    replyReducer: state.reply,
     userReducer: state.user,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    ...bindActionCreators(Object.assign({}, postActions, userActions), dispatch)
+    ...bindActionCreators(Object.assign({}, postActions, replyActions, userActions), dispatch)
   }
 }
 

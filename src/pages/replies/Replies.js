@@ -10,7 +10,7 @@ export default class Replies extends Component {
       <Box className='replies'>
         { replies.length > 0 ? 
           <>
-            { replies.map(r => <Reply {...this.props} key={r._id} reply={r} updatePosts={this.props.updatePosts} updateAuthor={this.props.updateAuthor}/>) }
+            { replies.map(r => <Reply {...this.props} key={r._id} reply={r} updateReplies={this.props.updateReplies} updateAuthorReply={this.props.updateAuthorReply}/>) }
           </>
           :
           <Typography className='no-replies' textAlign="center" sx={{ fontSize: 20 }}>
