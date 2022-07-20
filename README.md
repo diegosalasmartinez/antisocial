@@ -1,6 +1,6 @@
 # Antisocial
 
-This project simulates a social media app. It's inspired on Twitter and has a lot of functionalities. This repo only contains the front-end side for this system. See also [Health Care API](https://github.com/diegosalasmartinez/antisocial-api) to get access to the back-end project.
+This project simulates a social media app. It's inspired on Twitter and has a lot of functionalities. This repo only contains the front-end side for this system. See also [Antisocial API](https://github.com/diegosalasmartinez/antisocial-api) to get access to the back-end project.
 
 This project uses [Communication icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/communication).
 
