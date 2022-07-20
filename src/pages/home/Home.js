@@ -55,7 +55,7 @@ class Home extends Component {
     return (
       <Wrapper loading={loading}>
         <Box className='home'>
-          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor}/>
+          <Posts {...this.props} posts={posts} updatePosts={this.updatePosts} updateAuthor={this.updateAuthor} home={true}/>
         </Box>
       </Wrapper>
     )

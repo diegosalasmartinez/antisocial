@@ -4,7 +4,7 @@ import Post from './Post'
 
 export default class Posts extends Component {
   render() {
-    const { posts } = this.props;
+    const { posts, home } = this.props;
 
     return (
       <Box className='posts'>
@@ -13,9 +13,11 @@ export default class Posts extends Component {
             { posts.map(p => <Post {...this.props} key={p._id} post={p} updatePosts={this.props.updatePosts} updateAuthor={this.props.updateAuthor}/>) }
           </>
           :
-          <Typography className='no-posts' textAlign="center" sx={{ fontSize: 20 }}>
-            There aren't posts yet.
-          </Typography>
+          <>
+            <Typography className='no-posts' textAlign="center" sx={{ fontSize: 20 }}>
+              There aren't posts yet. { home && 'You should look Trending Section!'}
+            </Typography>
+          </>
         }
       </Box>
     )
